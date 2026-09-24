@@ -3,198 +3,1455 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Carioca Library</title>
+  <meta name="description" content="Biblioteca Carioca - encontre livros, estudos e recursos para crescer em conhecimento e fé.">
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #f7f5f0;
+      --surface: #ffffff;
+      --primary: #24382f;
+      --primary-light: #365344;
+      --gold: #b08d57;
+      --gold-light: #d7bd8d;
+      --text: #20251f;
+      --muted: #70766f;
+      --border: #e4e0d7;
+      --shadow: 0 10px 30px rgba(35, 45, 38, 0.08);
+      --radius: 18px;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f5f0;
-      color: #222;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
     }
 
-    header {
-      background: #1f3a2e;
-      color: white;
-      padding: 20px;
+    button,
+    input {
+      font: inherit;
     }
 
-    nav {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .login {
-      color: white;
-      text-decoration: none;
-    }
-
-    .hero {
-      max-width: 1100px;
-      margin: 60px auto;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 30px;
-    }
-
-    .search {
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      gap: 10px;
-    }
-
-    .search input {
-      flex: 1;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    .search button {
-      padding: 15px 25px;
-      border: none;
-      border-radius: 8px;
-      background: #1f3a2e;
-      color: white;
+    button {
       cursor: pointer;
     }
 
-    .section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
+    /* HEADER */
+
+    header {
+      background: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.12);
     }
 
-    .section h2 {
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 21px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--gold);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .login-button {
+      border: 1px solid rgba(255,255,255,0.5);
+      padding: 9px 16px;
+      border-radius: 30px;
+      color: white;
+    }
+
+    /* HERO */
+
+    .hero {
+      background:
+        linear-gradient(
+          rgba(36,56,47,0.96),
+          rgba(36,56,47,0.91)
+        );
+      color: white;
+      padding: 70px 24px 75px;
+    }
+
+    .hero-container {
+      max-width: 1050px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero-label {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: 1.05;
       margin-bottom: 20px;
     }
 
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: rgba(255,255,255,0.78);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .search-box {
+      max-width: 720px;
+      margin: 35px auto 0;
+      background: white;
+      border-radius: 50px;
+      padding: 7px;
+      display: flex;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 15px 20px;
+      color: var(--text);
+      background: transparent;
+      min-width: 0;
+    }
+
+    .search-button {
+      background: var(--gold);
+      border: none;
+      color: white;
+      padding: 0 25px;
+      border-radius: 40px;
+      font-weight: bold;
+    }
+
+    /* MAIN */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-top: 7px;
+      font-size: 14px;
+    }
+
+    /* CATEGORIES */
+
     .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      margin-bottom: 50px;
+      scrollbar-width: thin;
     }
 
     .category {
+      flex-shrink: 0;
+      border: 1px solid var(--border);
       background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      color: var(--primary);
+      padding: 11px 17px;
+      border-radius: 30px;
+      transition: 0.2s;
     }
 
-    footer {
-      margin-top: 80px;
-      background: #1f3a2e;
+    .category:hover,
+    .category.active {
+      background: var(--primary);
       color: white;
+      border-color: var(--primary);
+    }
+
+    /* BOOKS */
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .book-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(35,45,38,0.13);
+    }
+
+    .book-cover {
+      height: 205px;
+      background: linear-gradient(135deg, #304b3e, #17271f);
+      color: white;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .book-cover span {
+      color: var(--gold-light);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .book-cover strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .book-info {
+      padding: 18px;
+    }
+
+    .book-category {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .book-title {
+      color: var(--primary);
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    .book-author {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .book-button {
+      margin-top: 16px;
+      width: 100%;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--primary);
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .book-button:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* CATEGORY LIST */
+
+    .all-categories {
+      margin-top: 75px;
+    }
+
+    .category-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category-item {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 17px;
+      border-radius: 14px;
+      color: var(--primary);
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .category-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* INFO */
+
+    .info-section {
+      margin-top: 75px;
+      background: var(--primary);
+      color: white;
+      border-radius: 25px;
+      padding: 45px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .info-section h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .info-section p {
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 70px;
+      background: #17271f;
+      color: rgba(255,255,255,0.7);
+      padding: 35px 24px;
       text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 300;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 22px;
       padding: 30px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      border: none;
+      background: none;
+      font-size: 25px;
+      color: var(--muted);
+    }
+
+    .modal h2 {
+      color: var(--primary);
+      font-family: Georgia, "Times New Roman", serif;
+      margin-bottom: 10px;
+      padding-right: 30px;
+    }
+
+    .modal p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 950px) {
+      .books-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .category-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .header-container {
+        padding: 14px 18px;
+      }
+
+      nav a:not(.login-button) {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 18px 60px;
+      }
+
+      main {
+        padding: 40px 18px;
+      }
+
+      .search-box {
+        border-radius: 18px;
+        flex-direction: column;
+        background: white;
+        gap: 5px;
+      }
+
+      .search-button {
+        padding: 13px;
+      }
+
+      .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .book-cover {
+        height: 180px;
+        padding: 17px;
+      }
+
+      .book-cover strong {
+        font-size: 19px;
+      }
+
+      .category-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .info-section {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-list {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: block;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- CABEÇALHO -->
+
   <header>
-    <nav>
-      <div class="logo">📚 Carioca Library</div>
-      <a class="login" href="#">Entrar</a>
-    </nav>
+    <div class="header-container">
+
+      <div class="logo">
+        <div class="logo-icon">📚</div>
+        <span>Carioca Library</span>
+      </div>
+
+      <nav>
+        <a href="#categorias">Categorias</a>
+        <a href="#livros">Livros</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#" class="login-button" onclick="abrirLogin(event)">
+          Entrar
+        </a>
+      </nav>
+
+    </div>
   </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-container">
+
+      <div class="hero-label">
+        Biblioteca Carioca
+      </div>
+
+      <h1>
+        Encontre seu próximo livro.
+      </h1>
+
+      <p>
+        Explore livros, estudos e recursos para crescer em conhecimento,
+        fé, liderança e compreensão do mundo.
+      </p>
+
+      <div class="search-box">
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Pesquise por título, autor ou categoria..."
+          oninput="pesquisarLivros()"
+        >
+
+        <button
+          class="search-button"
+          onclick="pesquisarLivros()"
+        >
+          Pesquisar
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTEÚDO PRINCIPAL -->
 
   <main>
 
-    <section class="hero">
-      <h1>Encontre seu próximo livro.</h1>
 
-      <p>
-        Explore o catálogo da Carioca Library.
-      </p>
+    <!-- CATEGORIAS -->
 
-      <div class="search">
-        <input
-          type="text"
-          placeholder="Pesquisar por título ou autor..."
-        >
+    <section id="categorias">
 
-        <button>Pesquisar</button>
+      <div class="section-header">
+
+        <div>
+          <h2 class="section-title">
+            Explore por categoria
+          </h2>
+
+          <p class="section-subtitle">
+            Encontre conteúdos de acordo com seu interesse.
+          </p>
+        </div>
+
       </div>
+
+
+      <div class="categories" id="categoryButtons">
+
+        <button
+          class="category active"
+          onclick="filtrarCategoria('Todos', this)"
+        >
+          Todos
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('História Cristã', this)">
+          História Cristã
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('História', this)">
+          História
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Evangelismo', this)">
+          Evangelismo
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Psicologia', this)">
+          Psicologia
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Filosofia', this)">
+          Filosofia
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Artes', this)">
+          Artes
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Missões Transculturais', this)">
+          Missões Transculturais
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Autoajuda', this)">
+          Autoajuda
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Escatologia', this)">
+          Escatologia
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Liderança', this)">
+          Liderança
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Anciãos da JOCUM', this)">
+          Anciãos da JOCUM
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Igreja', this)">
+          Igreja
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Doutrinas', this)">
+          Doutrinas
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Pessoa de Jesus', this)">
+          Pessoa de Jesus
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Espírito Santo', this)">
+          Espírito Santo
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Educação', this)">
+          Educação
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Família', this)">
+          Família
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Oração', this)">
+          Oração
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Ficção', this)">
+          Ficção
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Graça', this)">
+          Graça
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Vida Cristã', this)">
+          Vida Cristã
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Hermenêutica', this)">
+          Hermenêutica
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Estudos das Cartas de Paulo', this)">
+          Estudos das Cartas de Paulo
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Teologia e Estudo', this)">
+          Teologia e Estudo
+        </button>
+
+        <button class="category" onclick="filtrarCategoria('Comentários Bíblicos e Estudos Bíblicos', this)">
+          Comentários Bíblicos e Estudos Bíblicos
+        </button>
+
+      </div>
+
     </section>
 
-    <section class="section">
-      <h2>Categorias</h2>
 
-      <div class="categories">
+    <!-- LIVROS -->
 
-        <div class="category">
-          📖
-          <br><br>
-          Literatura
-        </div>
+    <section id="livros">
 
-        <div class="category">
-          ✝️
-          <br><br>
-          Teologia
-        </div>
+      <div class="section-header">
 
-        <div class="category">
-          ❤️
-          <br><br>
-          Devocional
-        </div>
+        <div>
 
-        <div class="category">
-          👥
-          <br><br>
-          Liderança
-        </div>
+          <h2 class="section-title">
+            Livros disponíveis
+          </h2>
 
-        <div class="category">
-          🌎
-          <br><br>
-          Missões
-        </div>
+          <p class="section-subtitle" id="resultadoTexto">
+            Alguns livros da nossa biblioteca.
+          </p>
 
-        <div class="category">
-          🧒
-          <br><br>
-          Infantil
         </div>
 
       </div>
+
+
+      <div class="books-grid" id="booksGrid">
+
+
+        <!-- LIVRO 1 -->
+
+        <article
+          class="book-card"
+          data-category="História Cristã"
+          data-search="história cristã igreja primeiros cristãos"
+        >
+
+          <div class="book-cover">
+
+            <span>História Cristã</span>
+
+            <strong>
+              História da Igreja
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              História Cristã
+            </div>
+
+            <div class="book-title">
+              História da Igreja
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('História da Igreja')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 2 -->
+
+        <article
+          class="book-card"
+          data-category="Evangelismo"
+          data-search="evangelismo missão evangelização"
+        >
+
+          <div class="book-cover">
+
+            <span>Evangelismo</span>
+
+            <strong>
+              Compartilhando a Fé
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Evangelismo
+            </div>
+
+            <div class="book-title">
+              Compartilhando a Fé
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Compartilhando a Fé')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 3 -->
+
+        <article
+          class="book-card"
+          data-category="Missões Transculturais"
+          data-search="missões transculturais povos culturas missionário"
+        >
+
+          <div class="book-cover">
+
+            <span>Missões</span>
+
+            <strong>
+              Missões Transculturais
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Missões Transculturais
+            </div>
+
+            <div class="book-title">
+              Missões Transculturais
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Missões Transculturais')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 4 -->
+
+        <article
+          class="book-card"
+          data-category="Psicologia"
+          data-search="psicologia comportamento mente emoções"
+        >
+
+          <div class="book-cover">
+
+            <span>Psicologia</span>
+
+            <strong>
+              Mente e Comportamento
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Psicologia
+            </div>
+
+            <div class="book-title">
+              Mente e Comportamento
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Mente e Comportamento')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 5 -->
+
+        <article
+          class="book-card"
+          data-category="Filosofia"
+          data-search="filosofia pensamento conhecimento verdade"
+        >
+
+          <div class="book-cover">
+
+            <span>Filosofia</span>
+
+            <strong>
+              Pensamento e Verdade
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Filosofia
+            </div>
+
+            <div class="book-title">
+              Pensamento e Verdade
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Pensamento e Verdade')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 6 -->
+
+        <article
+          class="book-card"
+          data-category="Liderança"
+          data-search="liderança líderes liderança cristã"
+        >
+
+          <div class="book-cover">
+
+            <span>Liderança</span>
+
+            <strong>
+              Liderar para Servir
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Liderança
+            </div>
+
+            <div class="book-title">
+              Liderar para Servir
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Liderar para Servir')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 7 -->
+
+        <article
+          class="book-card"
+          data-category="Vida Cristã"
+          data-search="vida cristã discipulado fé caminhada"
+        >
+
+          <div class="book-cover">
+
+            <span>Vida Cristã</span>
+
+            <strong>
+              Caminhada de Fé
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Vida Cristã
+            </div>
+
+            <div class="book-title">
+              Caminhada de Fé
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Caminhada de Fé')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- LIVRO 8 -->
+
+        <article
+          class="book-card"
+          data-category="Comentários Bíblicos e Estudos Bíblicos"
+          data-search="bíblia estudo bíblico comentários escrituras"
+        >
+
+          <div class="book-cover">
+
+            <span>Estudos Bíblicos</span>
+
+            <strong>
+              Comentários Bíblicos
+            </strong>
+
+          </div>
+
+          <div class="book-info">
+
+            <div class="book-category">
+              Comentários Bíblicos
+            </div>
+
+            <div class="book-title">
+              Comentários Bíblicos
+            </div>
+
+            <div class="book-author">
+              Livro de exemplo
+            </div>
+
+            <button
+              class="book-button"
+              onclick="abrirLivro('Comentários Bíblicos')"
+            >
+              Ver detalhes
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- TODAS AS CATEGORIAS -->
+
+    <section
+      class="all-categories"
+      id="todasCategorias"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h2 class="section-title">
+            Todas as categorias
+          </h2>
+
+          <p class="section-subtitle">
+            Nossa biblioteca está organizada para facilitar sua busca.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="category-list">
+
+        <div class="category-item">História Cristã</div>
+        <div class="category-item">História</div>
+        <div class="category-item">Evangelismo</div>
+        <div class="category-item">Psicologia</div>
+        <div class="category-item">Filosofia</div>
+        <div class="category-item">Artes</div>
+        <div class="category-item">Missões Transculturais</div>
+        <div class="category-item">Autoajuda</div>
+        <div class="category-item">Escatologia</div>
+        <div class="category-item">Liderança</div>
+        <div class="category-item">Anciãos da JOCUM</div>
+        <div class="category-item">Igreja</div>
+        <div class="category-item">Doutrinas</div>
+        <div class="category-item">Pessoa de Jesus</div>
+        <div class="category-item">Espírito Santo</div>
+        <div class="category-item">Educação</div>
+        <div class="category-item">Família</div>
+        <div class="category-item">Oração</div>
+        <div class="category-item">Ficção</div>
+        <div class="category-item">Graça</div>
+        <div class="category-item">Vida Cristã</div>
+        <div class="category-item">Hermenêutica</div>
+        <div class="category-item">Estudos das Cartas de Paulo</div>
+        <div class="category-item">Teologia e Estudo</div>
+        <div class="category-item">Comentários Bíblicos e Estudos Bíblicos</div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section
+      class="info-section"
+      id="sobre"
+    >
+
+      <div>
+
+        <h2>
+          Uma biblioteca para aprender, crescer e servir.
+        </h2>
+
+        <p>
+          A Carioca Library foi pensada para facilitar o acesso
+          aos livros e recursos disponíveis, tornando mais simples
+          encontrar aquilo que você precisa para seus estudos,
+          formação e caminhada.
+        </p>
+
+      </div>
+
+
+      <div class="info-list">
+
+        <div class="info-item">
+          📚 Organização por categorias
+        </div>
+
+        <div class="info-item">
+          🔎 Pesquisa rápida de livros
+        </div>
+
+        <div class="info-item">
+          📖 Consulta aos detalhes dos livros
+        </div>
+
+        <div class="info-item">
+          👤 Sistema de usuários e empréstimos
+        </div>
+
+      </div>
+
     </section>
 
   </main>
 
+
+  <!-- RODAPÉ -->
+
   <footer>
-    © 2026 Carioca Library
+
+    <strong>📚 Carioca Library</strong>
+
+    <br><br>
+
+    Biblioteca Carioca • 2026
+
   </footer>
+
+
+  <!-- MODAL -->
+
+  <div
+    class="modal"
+    id="modal"
+  >
+
+    <div class="modal-content">
+
+      <button
+        class="close-modal"
+        onclick="fecharModal()"
+      >
+        ×
+      </button>
+
+      <h2 id="modalTitle">
+        Livro
+      </h2>
+
+      <p id="modalText">
+        Informações do livro.
+      </p>
+
+      <br>
+
+      <button
+        class="book-button"
+        onclick="fecharModal()"
+      >
+        Fechar
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    let categoriaAtual = "Todos";
+
+
+    function pesquisarLivros() {
+
+      const termo =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const livros =
+        document.querySelectorAll(".book-card");
+
+      let encontrados = 0;
+
+      livros.forEach(function(livro) {
+
+        const texto =
+          (
+            livro.innerText +
+            " " +
+            livro.dataset.search
+          ).toLowerCase();
+
+        const categoria =
+          livro.dataset.category;
+
+        const correspondeCategoria =
+          categoriaAtual === "Todos" ||
+          categoria === categoriaAtual;
+
+        const correspondePesquisa =
+          termo === "" ||
+          texto.includes(termo);
+
+        if (
+          correspondeCategoria &&
+          correspondePesquisa
+        ) {
+
+          livro.style.display = "";
+
+          encontrados++;
+
+        } else {
+
+          livro.style.display = "none";
+
+        }
+
+      });
+
+
+      const resultado =
+        document.getElementById("resultadoTexto");
+
+
+      if (termo !== "") {
+
+        resultado.textContent =
+          encontrados +
+          " livro(s) encontrado(s) para sua pesquisa.";
+
+      } else if (categoriaAtual !== "Todos") {
+
+        resultado.textContent =
+          encontrados +
+          " livro(s) nesta categoria.";
+
+      } else {
+
+        resultado.textContent =
+          "Alguns livros da nossa biblioteca.";
+
+      }
+
+    }
+
+
+    function filtrarCategoria(
+      categoria,
+      botao
+    ) {
+
+      categoriaAtual = categoria;
+
+
+      document
+        .querySelectorAll(".category")
+        .forEach(function(item) {
+
+          item.classList.remove("active");
+
+        });
+
+
+      botao.classList.add("active");
+
+
+      pesquisarLivros();
+
+    }
+
+
+    function abrirLivro(nome) {
+
+      document
+        .getElementById("modalTitle")
+        .textContent = nome;
+
+
+      document
+        .getElementById("modalText")
+        .textContent =
+        "Este livro fará parte do catálogo da Carioca Library. " +
+        "Em breve você poderá consultar disponibilidade, localização, " +
+        "autor, categoria e situação de empréstimo diretamente pelo sistema.";
+
+
+      document
+        .getElementById("modal")
+        .classList.add("show");
+
+    }
+
+
+    function fecharModal() {
+
+      document
+        .getElementById("modal")
+        .classList.remove("show");
+
+    }
+
+
+    function abrirLogin(event) {
+
+      event.preventDefault();
+
+      document
+        .getElementById("modalTitle")
+        .textContent = "Entrar na Carioca Library";
+
+
+      document
+        .getElementById("modalText")
+        .textContent =
+        "A área de login será conectada ao sistema de usuários " +
+        "e administradores através do Supabase.";
+
+
+      document
+        .getElementById("modal")
+        .classList.add("show");
+
+    }
+
+
+    document
+      .getElementById("modal")
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            event.target ===
+            document.getElementById("modal")
+          ) {
+
+            fecharModal();
+
+          }
+
+        }
+      );
+
+  </script>
 
 </body>
 </html>
