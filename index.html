@@ -1451,6 +1451,19 @@
       );
 
   </script>
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script>
+  const SUPABASE_URL = "sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
+  const SUPABASE_PUBLISHABLE_KEY = "https://qcgsuazwggixcqqduxwo.supabase.co/rest/v1/";
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  console.log("Carioca Library conectado ao Supabase!");
+</script>
 </body>
 </html>
