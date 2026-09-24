@@ -1378,28 +1378,7 @@
     }
 
 
-    function abrirLivro(nome) {
-
-      document
-        .getElementById("modalTitle")
-        .textContent = nome;
-
-
-      document
-        .getElementById("modalText")
-        .textContent =
-        "Este livro fará parte do catálogo da Carioca Library. " +
-        "Em breve você poderá consultar disponibilidade, localização, " +
-        "autor, categoria e situação de empréstimo diretamente pelo sistema.";
-
-
-      document
-        .getElementById("modal")
-        .classList.add("show");
-
-    }
-
-
+    
     function fecharModal() {
 
       document
@@ -1446,7 +1425,198 @@
             fecharModal();
 
           }
+function abrirLogin(event) {
 
+  event.preventDefault();
+
+  document
+    .getElementById("modalTitle")
+    .textContent = "Entrar na Carioca Library";
+
+  document
+    .getElementById("modalText")
+    .innerHTML = `
+      <div style="text-align:left;">
+
+        <label for="loginEmail">E-mail</label>
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="seu@email.com"
+          style="
+            width:100%;
+            padding:12px;
+            margin:6px 0 14px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            box-sizing:border-box;
+          "
+        >
+
+        <label for="loginPassword">Senha</label>
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Sua senha"
+          style="
+            width:100%;
+            padding:12px;
+            margin:6px 0 16px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            box-sizing:border-box;
+          "
+        >
+
+        <button
+          onclick="fazerLogin()"
+          style="
+            width:100%;
+            padding:12px;
+            border:0;
+            border-radius:8px;
+            cursor:pointer;
+          "
+        >
+          Entrar
+        </button>
+
+        <button
+          onclick="criarConta()"
+          style="
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            background:white;
+            cursor:pointer;
+          "
+        >
+          Criar minha conta
+        </button>
+
+        <p
+          id="loginMensagem"
+          style="margin-top:15px;text-align:center;"
+        ></p>
+
+      </div>
+    `;
+
+  document
+    .getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+async function fazerLogin() {
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const mensagem =
+    document.getElementById("loginMensagem");
+
+  if (!email || !password) {
+
+    mensagem.textContent =
+      "Preencha seu e-mail e sua senha.";
+
+    return;
+
+  }
+
+  mensagem.textContent =
+    "Entrando...";
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+
+    mensagem.textContent =
+      "Não foi possível entrar: " +
+      error.message;
+
+    return;
+
+  }
+
+  mensagem.textContent =
+    "Login realizado com sucesso!";
+
+  console.log(
+    "Usuário conectado:",
+    data.user
+  );
+
+}
+
+
+async function criarConta() {
+
+  const email =
+    document.getElementById("loginEmail").value.trim();
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const mensagem =
+    document.getElementById("loginMensagem");
+
+  if (!email || !password) {
+
+    mensagem.textContent =
+      "Preencha seu e-mail e crie uma senha.";
+
+    return;
+
+  }
+
+  if (password.length < 6) {
+
+    mensagem.textContent =
+      "A senha precisa ter pelo menos 6 caracteres.";
+
+    return;
+
+  }
+
+  mensagem.textContent =
+    "Criando sua conta...";
+
+  const { data, error } =
+    await supabaseClient.auth.signUp({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+
+    mensagem.textContent =
+      "Não foi possível criar a conta: " +
+      error.message;
+
+    return;
+
+  }
+
+  if (data.user) {
+
+    mensagem.textContent =
+      "Conta criada! Verifique seu e-mail para confirmar o cadastro.";
+
+  }
+
+}
         }
       );
 
