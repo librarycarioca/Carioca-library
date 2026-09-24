@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carioca Library</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f5f0;
+      color: #222;
+    }
+
+    header {
+      background: #1f3a2e;
+      color: white;
+      padding: 20px;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .login {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .search {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .search input {
+      flex: 1;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .search button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #1f3a2e;
+      color: white;
+      cursor: pointer;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .category {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    footer {
+      margin-top: 80px;
+      background: #1f3a2e;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">📚 Carioca Library</div>
+      <a class="login" href="#">Entrar</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <h1>Encontre seu próximo livro.</h1>
+
+      <p>
+        Explore o catálogo da Carioca Library.
+      </p>
+
+      <div class="search">
+        <input
+          type="text"
+          placeholder="Pesquisar por título ou autor..."
+        >
+
+        <button>Pesquisar</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Categorias</h2>
+
+      <div class="categories">
+
+        <div class="category">
+          📖
+          <br><br>
+          Literatura
+        </div>
+
+        <div class="category">
+          ✝️
+          <br><br>
+          Teologia
+        </div>
+
+        <div class="category">
+          ❤️
+          <br><br>
+          Devocional
+        </div>
+
+        <div class="category">
+          👥
+          <br><br>
+          Liderança
+        </div>
+
+        <div class="category">
+          🌎
+          <br><br>
+          Missões
+        </div>
+
+        <div class="category">
+          🧒
+          <br><br>
+          Infantil
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Carioca Library
+  </footer>
+
+</body>
+</html>
