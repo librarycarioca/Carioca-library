@@ -2,2962 +2,4280 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Carioca Library — um acervo para descobrir</title>
-<meta name="description" content="Carioca Library — uma biblioteca para aprender, crescer e servir.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carioca Library — Acervo da JOCUM Carioca</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Karla:wght@400;500;600;700&display=swap');
 
 :root{
-  --ink:#1b2823;
-  --forest:#203b31;
-  --forest-deep:#162c24;
-  --cream:#f3efe6;
-  --paper:#faf8f2;
-  --white:#fffdf8;
-  --gold:#a87943;
-  --gold-light:#d8c29f;
-  --line:rgba(32,59,49,.18);
-  --muted:#6d716c;
-  --shadow:0 22px 60px rgba(25,39,33,.12);
+  --green:#17382f;
+  --green-dark:#0f2922;
+  --cream:#f2eee5;
+  --paper:#faf9f5;
+  --white:#fff;
+  --gold:#a47a45;
+  --terra:#99604b;
+  --text:#17211e;
+  --muted:#6d746f;
+  --line:#d9d5cb;
+  --red:#984e45;
 }
 
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
 html{
-  scroll-behavior:smooth
+  scroll-behavior:smooth;
 }
 
 body{
-  font-family:'Karla',sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  line-height:1.55;
-  font-size:16px
+  background:var(--paper);
+  color:var(--text);
+  font-family:"Karla",sans-serif;
+  line-height:1.5;
 }
 
-button,input,select,textarea{
-  font:inherit
+button,
+input,
+select,
+textarea{
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
-a{
-  color:inherit
+.hidden{
+  display:none!important;
 }
 
-/* ===== MASTHEAD ===== */
-
-.site-shell{
-  width:min(1320px,calc(100% - 48px));
-  margin:28px auto 0;
-  background:var(--paper);
-  box-shadow:0 12px 45px rgba(30,40,35,.07);
-  border:1px solid rgba(32,59,49,.08)
-}
+/* HEADER */
 
 header{
   position:sticky;
   top:0;
-  z-index:100;
-  background:rgba(250,248,242,.94);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line)
+  z-index:50;
+  background:rgba(250,249,245,.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
 }
 
 .header{
+  width:min(1200px,calc(100% - 36px));
   min-height:76px;
-  padding:0 36px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:20px
-}
-
-.brand{
-  text-decoration:none;
-  color:var(--forest);
+  margin:auto;
   display:flex;
   align-items:center;
-  gap:12px
+  justify-content:space-between;
+  gap:20px;
 }
 
-.brand-mark{
-  width:25px;
-  height:25px;
-  border:1px solid var(--gold);
-  display:grid;
-  place-items:center;
-  transform:rotate(45deg)
+.logo{
+  color:var(--green);
+  text-decoration:none;
 }
 
-.brand-mark i{
-  width:7px;
-  height:7px;
-  background:var(--gold);
-  display:block
-}
-
-.brand b{
-  font-family:'Bodoni Moda',serif;
-  font-weight:500;
+.logo-title{
+  font-family:"Bodoni Moda",serif;
   font-size:25px;
-  letter-spacing:-1px
 }
 
-.brand small{
+.logo-sub{
   display:block;
-  color:var(--muted);
   font-size:9px;
-  letter-spacing:2.1px;
+  letter-spacing:2px;
   text-transform:uppercase;
-  margin-top:-3px
+  color:var(--muted);
 }
 
 nav{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:34px
+  gap:25px;
 }
 
 nav a{
+  color:var(--green);
   text-decoration:none;
-  color:var(--forest);
   font-size:10px;
   font-weight:700;
-  letter-spacing:1.8px;
   text-transform:uppercase;
-  position:relative
+  letter-spacing:1.5px;
 }
 
-nav a:not(.navbtn):after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:100%;
-  bottom:-7px;
-  height:1px;
-  background:var(--gold);
-  transition:.25s
+nav a:hover{
+  color:var(--gold);
 }
 
-nav a:not(.navbtn):hover:after{
-  right:0
-}
-
-.header-actions{
+.header-right{
   display:flex;
-  justify-content:flex-end;
   align-items:center;
-  gap:16px
+  gap:10px;
 }
 
-.icon-link{
-  width:31px;
-  height:31px;
-  display:grid;
-  place-items:center;
-  border:1px solid transparent;
-  text-decoration:none;
-  color:var(--forest);
-  font-size:17px
+.user-name{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.icon-link:hover{
-  border-color:var(--line)
-}
+/* BUTTONS */
 
-.navbtn,
 .btn{
-  border:1px solid var(--forest);
-  border-radius:0;
-  background:var(--forest);
-  color:#fff;
-  padding:12px 19px;
+  border:1px solid var(--green);
+  border-radius:2px;
+  padding:11px 17px;
+  background:var(--green);
+  color:white;
   font-weight:600;
-  transition:.2s;
-  letter-spacing:.3px
 }
 
-.navbtn{
-  font-size:10px!important;
-  letter-spacing:1.5px!important;
-  text-transform:uppercase
-}
-
-.navbtn:hover,
 .btn:hover{
-  background:var(--forest-deep);
-  border-color:var(--forest-deep)
+  background:var(--green-dark);
 }
 
-/* ===== HERO ===== */
+.btn.light{
+  background:transparent;
+  color:var(--green);
+}
+
+.btn.white{
+  background:white;
+  color:var(--green);
+  border-color:white;
+}
+
+.btn.danger{
+  background:transparent;
+  color:var(--red);
+  border-color:#cba9a4;
+}
+
+.btn.small{
+  padding:7px 11px;
+  font-size:12px;
+}
+
+/* HERO */
 
 .hero{
-  position:relative;
-  margin:0;
-  min-height:640px;
-  overflow:hidden;
-  background:#54493d
-}
-
-.hero-photo{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(20,29,25,.72) 0%,
-      rgba(20,29,25,.46) 37%,
-      rgba(20,29,25,.08) 75%
-    ),
-    url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=2200&q=88');
-  background-size:cover;
-  background-position:center
-}
-
-.hero-photo:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    0deg,
-    rgba(18,27,23,.3),
-    transparent 35%
-  )
+  background:var(--cream);
+  border-bottom:1px solid var(--line);
 }
 
 .hero-inner{
-  position:relative;
-  z-index:2;
-  min-height:640px;
-  padding:76px 62px 62px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  max-width:930px;
-  color:#fff
+  width:min(1200px,calc(100% - 36px));
+  margin:auto;
+  padding:100px 0 90px;
 }
 
 .eyebrow{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:#efe4d0;
-  font-size:9px;
+  color:var(--gold);
+  font-size:10px;
   font-weight:700;
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-.eyebrow:before{
-  content:"";
-  width:34px;
-  height:1px;
-  background:var(--gold-light)
+  letter-spacing:2.5px;
+  text-transform:uppercase;
 }
 
 .hero h1{
-  font-family:'Bodoni Moda',serif;
+  margin:20px 0;
+  color:var(--green);
+  font-family:"Bodoni Moda",serif;
+  font-size:clamp(55px,8vw,105px);
   font-weight:400;
-  font-size:clamp(58px,8vw,108px);
-  line-height:.91;
+  line-height:.95;
   letter-spacing:-4px;
-  max-width:900px;
-  margin:22px 0 25px
 }
 
 .hero h1 em{
+  color:var(--terra);
   font-style:italic;
-  font-weight:400;
-  color:#e8d4b4;
-  white-space:nowrap
 }
 
 .hero p{
-  max-width:520px;
-  color:rgba(255,255,255,.88);
-  font-size:16px;
-  line-height:1.72
+  max-width:560px;
+  margin-bottom:28px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.7;
 }
 
-.hero-actions{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  margin-top:30px
-}
-
-.hero .btn{
-  background:#b06f4d;
-  border-color:#b06f4d;
-  padding:13px 25px;
-  text-transform:uppercase;
-  font-size:10px;
-  letter-spacing:2px
-}
-
-.hero .btn:hover{
-  background:#92573c;
-  border-color:#92573c
-}
-
-.hero-note{
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.72)
-}
-
-.scroll-mark{
-  position:absolute;
-  z-index:3;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-  color:rgba(255,255,255,.7);
-  font-size:8px;
-  letter-spacing:3px;
-  text-transform:uppercase
-}
-
-.scroll-mark span{
-  width:1px;
-  height:25px;
-  background:rgba(255,255,255,.6)
-}
-
-/* ===== CONTENT ===== */
-
-main{
-  max-width:none;
-  margin:auto;
-  padding:0
-}
+/* SECTIONS */
 
 .section{
-  padding:72px 62px;
-  border-bottom:1px solid var(--line)
+  width:min(1200px,calc(100% - 36px));
+  margin:auto;
+  padding:75px 0;
 }
 
-.heading{
+.section-header{
   display:flex;
+  align-items:end;
   justify-content:space-between;
-  align-items:flex-end;
-  gap:25px;
-  margin-bottom:28px
+  gap:30px;
+  margin-bottom:30px;
 }
 
-.heading h2{
-  font-family:'Bodoni Moda',serif;
+.section-header h2{
+  color:var(--green);
+  font-family:"Bodoni Moda",serif;
+  font-size:45px;
   font-weight:400;
-  font-size:42px;
-  letter-spacing:-1.5px;
-  color:var(--forest);
-  line-height:1
+  line-height:1;
 }
 
-.heading p{
+.section-header p{
+  max-width:420px;
   color:var(--muted);
-  font-size:12px;
-  max-width:330px;
-  text-align:right
 }
 
-.kicker{
-  font-size:9px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:2.5px;
-  color:var(--gold)
-}
+/* CATEGORIES */
 
-/* ===== CATEGORIES ===== */
-
-.chips{
+.categories{
   display:flex;
-  gap:0;
-  overflow:auto;
+  overflow-x:auto;
   border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line)
+  border-bottom:1px solid var(--line);
 }
 
-.chip{
+.category-btn{
   white-space:nowrap;
   border:0;
   border-right:1px solid var(--line);
+  padding:13px 17px;
   background:transparent;
-  color:var(--forest);
-  padding:13px 18px;
-  font-size:9px;
+  color:var(--green);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
   text-transform:uppercase;
-  letter-spacing:1.4px;
-  font-weight:700
 }
 
-.chip:first-child{
-  border-left:1px solid var(--line)
+.category-btn:hover,
+.category-btn.active{
+  background:var(--green);
+  color:white;
 }
 
-.chip.active,
-.chip:hover{
-  background:var(--forest);
-  color:white
+/* SEARCH */
+
+.search{
+  display:flex;
+  gap:10px;
+  margin-bottom:30px;
 }
 
-/* ===== BOOKS ===== */
+.search input{
+  flex:1;
+}
 
-.books{
+/* BOOKS */
+
+.book-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:0;
   border-top:1px solid var(--line);
-  border-left:1px solid var(--line)
+  border-left:1px solid var(--line);
 }
 
-.card{
-  background:var(--paper);
-  border:0;
+.book-card{
+  background:white;
   border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  overflow:hidden;
-  transition:.28s;
-  min-width:0
+  transition:.2s;
 }
 
-.card:hover{
-  background:#fffdf8;
-  transform:translateY(-4px);
-  box-shadow:0 20px 40px rgba(31,45,38,.08);
-  position:relative;
-  z-index:2
+.book-card:hover{
+  transform:translateY(-3px);
 }
 
-.cover{
-  height:285px;
-  margin:17px;
-  padding:20px;
-  background:linear-gradient(145deg,#2d4b3e,#162c24);
-  color:white;
+.book-cover{
+  height:280px;
+  margin:16px;
+  padding:24px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  position:relative;
-  overflow:hidden
-}
-
-.cover:before{
-  content:"";
-  position:absolute;
-  inset:13px;
-  border:1px solid rgba(225,204,169,.35)
-}
-
-.cover:after{
-  content:"";
-  position:absolute;
-  right:-35px;
-  bottom:-55px;
-  width:150px;
-  height:150px;
-  border:1px solid rgba(225,204,169,.35);
-  border-radius:50%
-}
-
-.cover .flower{
-  display:none
-}
-
-.cover small{
-  position:relative;
-  z-index:2;
-  color:#dbc7a7;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:8px;
-  padding-left:3px
-}
-
-.cover strong{
-  position:relative;
-  z-index:2;
-  font-family:'Bodoni Moda',serif;
-  font-weight:400;
-  font-size:27px;
-  line-height:1.03;
-  letter-spacing:-.6px;
-  max-width:190px
-}
-
-.cardbody{
-  padding:4px 18px 22px
-}
-
-.cat{
-  font-size:8px;
-  color:var(--gold);
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:1.8px
-}
-
-.title{
-  font-family:'Bodoni Moda',serif;
-  font-weight:500;
-  font-size:19px;
-  color:var(--forest);
-  margin:5px 0 1px;
-  line-height:1.15
-}
-
-.author{
-  font-size:12px;
-  color:var(--muted)
-}
-
-.cardbody .btn{
-  margin-top:15px;
-  width:100%;
-  border-radius:0;
-  background:transparent;
-  color:var(--forest);
-  border:1px solid var(--line);
-  padding:10px;
-  font-size:9px;
-  text-transform:uppercase;
-  letter-spacing:1.5px
-}
-
-.cardbody .btn:hover{
-  background:var(--forest);
+  background:linear-gradient(145deg,#315044,#122c24);
   color:white;
-  border-color:var(--forest)
+  overflow:hidden;
 }
 
-/* ===== ACCOUNT / ADMIN ===== */
-
-.panel{
-  background:var(--white);
-  border:1px solid var(--line);
-  border-radius:0;
-  padding:30px;
-  box-shadow:none;
-  margin-top:20px
+.book-cover img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.panel h3{
-  font-family:'Bodoni Moda',serif;
+.book-cover small{
+  color:#d7c2a1;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.book-cover strong{
+  font-family:"Bodoni Moda",serif;
+  font-size:25px;
   font-weight:400;
-  font-size:30px;
-  color:var(--forest);
-  margin-bottom:16px
+  line-height:1.05;
 }
 
-.hidden{
-  display:none!important
+.book-info{
+  padding:5px 18px 22px;
 }
 
-.formgrid{
+.book-category{
+  color:var(--gold);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.book-title{
+  margin:6px 0;
+  color:var(--green);
+  font-family:"Bodoni Moda",serif;
+  font-size:20px;
+  line-height:1.15;
+}
+
+.book-author{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.availability{
+  margin-top:10px;
+  font-size:12px;
+}
+
+.available{
+  color:#357053;
+}
+
+.unavailable{
+  color:#9b4b43;
+}
+
+.book-info .btn{
+  width:100%;
+  margin-top:15px;
+}
+
+/* ACCOUNT */
+
+.account{
+  background:var(--green);
+  color:white;
+}
+
+.account-inner{
+  width:min(1200px,calc(100% - 36px));
+  margin:auto;
+  padding:70px 0;
+}
+
+.account h2{
+  margin:8px 0;
+  font-family:"Bodoni Moda",serif;
+  font-size:48px;
+  font-weight:400;
+}
+
+.account p{
+  max-width:600px;
+  color:#cbd6d1;
+}
+
+.account .admin-panel{
+  margin-top:30px;
+}
+
+/* ADMIN */
+
+.admin{
+  background:var(--cream);
+}
+
+.admin-panel{
+  padding:30px;
+  margin-top:25px;
+  background:white;
+  border:1px solid var(--line);
+}
+
+.admin-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:25px;
+}
+
+.admin-tab{
+  border:1px solid var(--line);
+  padding:10px 15px;
+  background:white;
+}
+
+.admin-tab.active{
+  background:var(--green);
+  color:white;
+  border-color:var(--green);
+}
+
+.admin-content{
+  display:none;
+}
+
+.admin-content.active{
+  display:block;
+}
+
+.form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:15px
+  gap:15px;
 }
 
 .field{
   display:flex;
   flex-direction:column;
-  gap:7px
+  gap:7px;
 }
 
 .field.full{
-  grid-column:1/-1
+  grid-column:1/-1;
 }
 
 .field label{
+  color:var(--green);
   font-size:9px;
   font-weight:700;
-  color:var(--forest);
-  letter-spacing:1px;
-  text-transform:uppercase
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-.field input,
-.field select,
-.field textarea{
-  border:1px solid var(--line);
-  border-radius:0;
-  padding:12px;
+input,
+select,
+textarea{
+  width:100%;
   outline:none;
-  background:#fffdf8;
-  color:var(--ink)
+  border:1px solid var(--line);
+  padding:12px;
+  background:white;
+  color:var(--text);
 }
 
-.field textarea{
-  min-height:90px;
-  resize:vertical
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--green);
 }
 
 .actions{
   display:flex;
-  gap:10px;
   flex-wrap:wrap;
-  margin-top:18px
+  gap:10px;
+  margin-top:18px;
 }
 
-.btn.alt{
-  background:transparent;
-  color:var(--forest);
-  border:1px solid var(--line)
+.info-box{
+  padding:16px;
+  margin-bottom:20px;
+  background:var(--cream);
+  border-left:3px solid var(--gold);
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* TABLE */
+
+.table-wrap{
+  overflow:auto;
+  margin-top:25px;
+  border:1px solid var(--line);
 }
 
 table{
   width:100%;
+  min-width:700px;
   border-collapse:collapse;
-  font-size:13px
+  background:white;
 }
 
 th,
 td{
+  padding:13px;
+  border-bottom:1px solid var(--line);
   text-align:left;
-  padding:13px 8px;
-  border-bottom:1px solid var(--line)
+  font-size:13px;
 }
 
 th{
-  color:var(--forest);
+  color:var(--green);
   font-size:9px;
+  letter-spacing:1px;
   text-transform:uppercase;
-  letter-spacing:1px
 }
 
-/* ===== FOOTER ===== */
-
-footer{
-  background:var(--forest-deep);
-  color:rgba(255,255,255,.65);
-  padding:64px 62px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:end;
-  gap:30px;
-  text-align:left
-}
-
-footer b{
-  color:white;
-  font-family:'Bodoni Moda',serif;
-  font-weight:400;
-  font-size:34px;
-  letter-spacing:-1px
-}
-
-footer p{
-  margin-top:7px;
-  font-size:11px;
-  max-width:340px
-}
-
-.footer-note{
-  text-align:right;
-  font-size:9px;
-  letter-spacing:1.8px;
+.status{
+  display:inline-block;
+  padding:4px 8px;
+  font-size:10px;
   text-transform:uppercase;
-  line-height:1.8
+  letter-spacing:.5px;
 }
 
-/* ===== MODAL ===== */
+.status.available{
+  background:#e2eee8;
+}
+
+.status.borrowed{
+  background:#eee6dc;
+  color:#80613d;
+}
+
+.status.returned{
+  background:#e3eee7;
+  color:#37674e;
+}
+
+/* MODAL */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(20,29,25,.68);
+  z-index:100;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:18px;
-  z-index:300
+  padding:20px;
+  background:rgba(10,20,16,.65);
 }
 
 .modal.show{
-  display:flex
+  display:flex;
 }
 
-.modalbox{
-  background:var(--paper);
-  width:min(520px,100%);
-  border-radius:0;
-  padding:30px;
+.modal-box{
   position:relative;
+  width:min(540px,100%);
   max-height:90vh;
   overflow:auto;
-  border:1px solid rgba(255,255,255,.2)
+  padding:30px;
+  background:var(--paper);
 }
 
-.close{
+.modal-close{
   position:absolute;
-  right:15px;
   top:10px;
+  right:15px;
   border:0;
   background:none;
   font-size:28px;
-  color:var(--muted)
 }
 
-.modalbox h2{
-  font-family:'Bodoni Moda',serif;
+.modal h2{
+  margin-bottom:20px;
+  color:var(--green);
+  font-family:"Bodoni Moda",serif;
+  font-size:38px;
   font-weight:400;
-  font-size:34px;
-  color:var(--forest);
-  padding-right:35px;
-  line-height:1.05
 }
 
-.msg{
-  margin-top:12px;
-  font-size:13px;
-  color:var(--muted)
+.auth-tabs{
+  display:flex;
+  margin-bottom:20px;
 }
+
+.auth-tab{
+  flex:1;
+  border:1px solid var(--line);
+  padding:10px;
+  background:white;
+}
+
+.auth-tab.active{
+  background:var(--green);
+  color:white;
+}
+
+.message{
+  margin-top:12px;
+  color:var(--red);
+  font-size:13px;
+}
+
+.message.success{
+  color:#357053;
+}
+
+/* EMPTY */
+
+.empty{
+  grid-column:1/-1;
+  padding:60px 20px;
+  border:1px dashed var(--line);
+  text-align:center;
+  color:var(--muted);
+}
+
+/* TOAST */
 
 .toast{
   position:fixed;
+  right:20px;
   bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--forest);
-  color:white;
-  padding:12px 17px;
-  border-radius:0;
+  z-index:200;
   display:none;
-  z-index:500;
-  font-size:13px
+  max-width:380px;
+  padding:14px 18px;
+  background:var(--green);
+  color:white;
 }
 
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:980px){
-
-  .site-shell{
-    width:min(100% - 24px,1320px);
-    margin-top:12px
-  }
-
-  .header{
-    grid-template-columns:1fr auto
-  }
-
-  .header nav{
-    display:none
-  }
-
-  .header-actions{
-    grid-column:2
-  }
-
-  .books{
-    grid-template-columns:repeat(3,1fr)
-  }
-
-  .hero,
-  .hero-inner{
-    min-height:590px
-  }
+.toast.show{
+  display:block;
 }
 
-@media(max-width:700px){
+/* FOOTER */
 
-  .site-shell{
-    width:100%;
-    margin:0;
-    border:0
+footer{
+  padding:50px 20px;
+  background:var(--green-dark);
+  color:#cbd3cf;
+}
+
+.footer-inner{
+  width:min(1200px,100%);
+  margin:auto;
+}
+
+footer strong{
+  color:white;
+  font-family:"Bodoni Moda",serif;
+  font-size:30px;
+  font-weight:400;
+}
+
+footer p{
+  margin-top:5px;
+  font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  nav{
+    display:none;
   }
+
+  .book-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
 
   .header{
-    padding:0 18px;
-    min-height:68px
+    width:calc(100% - 24px);
   }
 
-  .brand-mark{
-    width:21px;
-    height:21px
-  }
-
-  .brand b{
-    font-size:21px
-  }
-
-  .brand small{
-    display:none
-  }
-
-  .icon-link{
-    display:none
-  }
-
-  .hero{
-    min-height:620px
-  }
-
-  .hero-photo{
-    background-position:58% center
+  .user-name{
+    display:none;
   }
 
   .hero-inner{
-    min-height:620px;
-    padding:45px 25px 55px
+    padding:70px 0;
   }
 
   .hero h1{
-    font-size:clamp(53px,15vw,78px);
-    letter-spacing:-3px
+    font-size:58px;
+    letter-spacing:-3px;
   }
 
-  .hero h1 em{
-    white-space:normal
+  .section-header{
+    display:block;
   }
 
-  .hero p{
-    font-size:15px
+  .section-header h2{
+    margin-bottom:12px;
+    font-size:36px;
   }
 
-  .hero-actions{
-    align-items:flex-start;
-    flex-direction:column;
-    gap:13px
+  .book-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .section{
-    padding:55px 24px
+  .book-cover{
+    height:230px;
+    margin:10px;
+    padding:15px;
   }
 
-  .heading{
-    align-items:flex-start;
-    flex-direction:column
+  .book-cover strong{
+    font-size:19px;
   }
 
-  .heading p{
-    text-align:left
+  .book-info{
+    padding:5px 11px 15px;
   }
 
-  .heading h2{
-    font-size:36px
+  .book-title{
+    font-size:17px;
   }
 
-  .books{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .cover{
-    height:250px;
-    margin:11px;
-    padding:16px
-  }
-
-  .cover strong{
-    font-size:23px
-  }
-
-  .cardbody{
-    padding:4px 13px 18px
-  }
-
-  .footer-note{
-    text-align:left
-  }
-
-  .formgrid{
-    grid-template-columns:1fr
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
   .field.full{
-    grid-column:auto
+    grid-column:auto;
   }
 
-  footer{
-    padding:50px 24px;
-    grid-template-columns:1fr
+  .admin-panel{
+    padding:18px;
   }
+
 }
 
-@media(max-width:430px){
-
-  .books{
-    grid-template-columns:1fr 1fr
-  }
-
-  .cover{
-    height:220px
-  }
-
-  .cover strong{
-    font-size:20px
-  }
-
-  .hero h1{
-    font-size:51px
-  }
-
-  .hero-note{
-    display:none
-  }
-
-  .section{
-    padding-left:17px;
-    padding-right:17px
-  }
-}
 </style>
 </head>
 
 <body>
 
-<div class="site-shell">
-
 <header>
 
-  <div class="header">
+<div class="header">
 
-    <a class="brand" href="#top" aria-label="Carioca Library">
+<a href="#acervo" class="logo">
 
-      <span class="brand-mark">
-        <i></i>
-      </span>
+<div class="logo-title">
+Carioca Library
+</div>
 
-      <div>
-        <b>Carioca Library</b>
-        <small>um acervo para descobrir</small>
-      </div>
+<span class="logo-sub">
+Acervo da JOCUM Carioca
+</span>
 
-    </a>
+</a>
 
-    <nav>
-      <a href="#categorias">Coleções</a>
-      <a href="#livros">Acervo</a>
-      <a href="#sobre">Sobre</a>
-    </nav>
+<nav>
 
-    <div class="header-actions">
+<a href="#colecoes">
+Coleções
+</a>
 
-      <a class="icon-link"
-         href="#livros"
-         aria-label="Buscar">⌕</a>
+<a href="#acervo">
+Acervo
+</a>
 
-      <a href="#"
-         class="navbtn"
-         id="accountBtn"
-         onclick="abrirConta(event)">Entrar</a>
+<a href="#conta">
+Minha conta
+</a>
 
-    </div>
+<a
+href="#administracao"
+id="adminNav"
+class="hidden"
+>
+Administração
+</a>
 
-  </div>
+</nav>
+
+<div class="header-right">
+
+<span
+id="userName"
+class="user-name"
+></span>
+
+<button
+id="authButton"
+class="btn small"
+onclick="abrirLogin()"
+>
+Entrar
+</button>
+
+</div>
+
+</div>
 
 </header>
 
 
-<section class="hero" id="top">
+<main>
 
-  <div class="hero-photo"></div>
+<section class="hero">
 
-  <div class="hero-inner">
+<div class="hero-inner">
 
-    <span class="eyebrow">
-      Biblioteca Carioca · Acervo
-    </span>
+<div class="eyebrow">
+Biblioteca Carioca · Acervo
+</div>
 
-    <h1>
-      Ler, <em>aprender</em><br>
-      e servir.
-    </h1>
+<h1>
+Ler, <em>aprender</em><br>
+e servir.
+</h1>
 
-    <p>
-      Um espaço para encontrar histórias,
-      conhecimento e recursos.
-    </p>
+<p>
+Um espaço para encontrar histórias, conhecimento e recursos.
+</p>
 
-    <div class="hero-actions">
+<a
+href="#acervo"
+class="btn"
+>
+Explorar o acervo
+</a>
 
-      <a class="btn" href="#livros">
-        Explorar o acervo &nbsp; →
-      </a>
-
-      <span class="hero-note">
-        Pesquise por título, autor ou categoria
-      </span>
-
-    </div>
-
-  </div>
-
-  <div class="scroll-mark">
-    scroll
-    <span></span>
-  </div>
+</div>
 
 </section>
 
 
-<main>
+<section
+id="colecoes"
+class="section"
+>
 
-  <!-- CATEGORIAS -->
+<div class="section-header">
 
-  <section class="section" id="categorias">
+<div>
 
-    <div class="heading">
+<div class="eyebrow">
+Navegue
+</div>
 
-      <div>
+<h2>
+Coleções
+</h2>
 
-        <span class="kicker">
-          01 · Navegue
-        </span>
+</div>
 
-        <h2>
-          Explore por coleção
-        </h2>
+<p>
+Explore o acervo da JOCUM Carioca por temas e coleções.
+</p>
 
-      </div>
+</div>
 
-      <p>
-        Escolha uma categoria e deixe o acervo
-        conduzir a sua próxima leitura.
-      </p>
+<div
+id="categoryButtons"
+class="categories"
+>
 
-    </div>
+<button class="category-btn active">
+Todos
+</button>
 
-    <div class="chips" id="categoryButtons">
+</div>
 
-      <button
-        class="chip active"
-        onclick="setCategory('Todos',this)">
-        Todos
-      </button>
+</section>
 
-    </div>
 
-  </section>
+<section
+id="acervo"
+class="section"
+>
 
+<div class="section-header">
 
-  <!-- ACERVO -->
+<div>
 
-  <section class="section" id="livros">
+<div class="eyebrow">
+Biblioteca
+</div>
 
-    <div class="heading">
+<h2>
+Acervo da JOCUM Carioca
+</h2>
 
-      <div>
+</div>
 
-        <span class="kicker">
-          02 · Acervo
-        </span>
+<p id="resultText">
+Carregando acervo...
+</p>
 
-        <h2>
-          Acervo da JOCUM Carioca
-        </h2>
+</div>
 
-      </div>
+<div class="search">
 
-      <p id="resultText">
-        Carregando o catálogo...
-      </p>
+<input
+id="searchInput"
+placeholder="Pesquisar por título ou autor..."
+oninput="renderBooks()"
+>
 
-    </div>
+</div>
 
+<div
+id="booksGrid"
+class="book-grid"
+>
 
-    <div
-      class="search"
-      style="
-        display:flex;
-        max-width:680px;
-        margin:0 0 34px;
-        border-bottom:1px solid var(--line);
-        padding-bottom:8px;
-        gap:12px
-      "
-    >
+<div class="empty">
+Carregando acervo...
+</div>
 
-      <input
-        id="searchInput"
-        style="
-          flex:1;
-          border:0;
-          outline:0;
-          background:transparent;
-          color:var(--ink);
-          padding:9px 0;
-          font-size:15px
-        "
-        placeholder="Pesquisar título, autor ou categoria..."
-        oninput="renderBooks()"
-      >
+</div>
 
-      <button
-        class="btn"
-        onclick="renderBooks()"
-        style="
-          padding:10px 17px;
-          font-size:9px;
-          text-transform:uppercase;
-          letter-spacing:1.5px
-        "
-      >
-        Pesquisar
-      </button>
+</section>
 
-    </div>
 
+<section
+id="conta"
+class="account"
+>
 
-    <div class="books" id="booksGrid"></div>
+<div class="account-inner">
 
-  </section>
+<div class="eyebrow">
+Área pessoal
+</div>
 
+<h2>
+Minha conta
+</h2>
 
-  <!-- MINHA BIBLIOTECA -->
+<p id="accountMessage">
+Entre para acompanhar seus empréstimos.
+</p>
 
-  <section class="section" id="sobre">
+<br>
 
-    <div class="heading">
+<button
+id="accountButton"
+class="btn white"
+onclick="abrirLogin()"
+>
+Entrar / criar conta
+</button>
 
-      <div>
+<div id="userLoans"></div>
 
-        <span class="kicker">
-          03 · Minha biblioteca
-        </span>
+</div>
 
-        <h2>
-          Seu espaço de leitura
-        </h2>
+</section>
 
-      </div>
 
-      <p>
-        Entre para acompanhar seus empréstimos
-        e acessar sua conta.
-      </p>
+<section
+id="administracao"
+class="section admin hidden"
+>
 
-    </div>
+<div class="section-header">
 
+<div>
 
-    <div class="panel">
+<div class="eyebrow">
+Acesso restrito
+</div>
 
-      <div id="userPanel">
+<h2>
+Administração
+</h2>
 
-        <p>
-          Faça login para acessar seus empréstimos
-          e recursos da biblioteca.
-        </p>
+</div>
 
-        <div class="actions">
+<p>
+Gerencie o acervo, exemplares, empréstimos e administradores.
+</p>
 
-          <button
-            class="btn"
-            onclick="abrirLogin()">
-            Entrar / Criar conta
-          </button>
+</div>
 
-        </div>
 
-      </div>
+<div class="admin-panel">
 
+<div class="admin-tabs">
 
-      <div
-        id="accountPanel"
-        class="hidden">
-      </div>
+<button
+class="admin-tab active"
+onclick="abrirAdminTab('livros',this)"
+>
+Livros
+</button>
 
-    </div>
+<button
+class="admin-tab"
+onclick="abrirAdminTab('colecoesAdmin',this)"
+>
+Coleções
+</button>
 
-  </section>
+<button
+class="admin-tab"
+onclick="abrirAdminTab('emprestimos',this)"
+>
+Empréstimos
+</button>
 
+<button
+class="admin-tab"
+onclick="abrirAdminTab('usuarios',this)"
+>
+Administradores
+</button>
 
-  <!-- ADMIN -->
+</div>
 
-  <section
-    class="section hidden"
-    id="adminSection">
 
-    <div class="heading">
+<!-- LIVROS -->
 
-      <div>
+<div
+id="livros"
+class="admin-content active"
+>
 
-        <span class="kicker">
-          Administração
-        </span>
+<h3>
+Adicionar livro
+</h3>
 
-        <h2>
-          Área da biblioteca
-        </h2>
+<div class="info-box">
+Cadastre o livro aqui. Depois você poderá cadastrar quantos exemplares físicos existirem desse título.
+</div>
 
-      </div>
+<form
+id="bookForm"
+onsubmit="adicionarLivro(event)"
+>
 
-      <p>
-        Catálogo e empréstimos.
-      </p>
+<div class="form-grid">
 
-    </div>
+<div class="field">
 
+<label>
+Título
+</label>
 
-    <div class="panel">
+<input
+id="bookTitle"
+required
+>
 
-      <h3>
-        Adicionar livro
-      </h3>
+</div>
 
-      <form
-        id="bookForm"
-        onsubmit="adicionarLivro(event)"
-      >
 
-        <div class="formgrid">
+<div class="field">
 
-          <div class="field">
+<label>
+Autor
+</label>
 
-            <label>
-              Título *
-            </label>
+<input
+id="bookAuthor"
+>
 
-            <input
-              id="bookTitle"
-              required>
+</div>
 
-          </div>
 
+<div class="field">
 
-          <div class="field">
+<label>
+ISBN
+</label>
 
-            <label>
-              Autor
-            </label>
+<input
+id="bookIsbn"
+>
 
-            <input id="bookAuthor">
+</div>
 
-          </div>
 
+<div class="field">
 
-          <div class="field">
+<label>
+Ano de publicação
+</label>
 
-            <label>
-              Categoria
-            </label>
+<input
+id="bookYear"
+type="number"
+>
 
-            <select id="bookCategory"></select>
+</div>
 
-          </div>
 
+<div class="field">
 
-          <div class="field">
+<label>
+Coleção
+</label>
 
-            <label>
-              ISBN
-            </label>
+<select
+id="bookCategory"
+required
+>
 
-            <input id="bookIsbn">
+<option value="">
+Selecione uma coleção
+</option>
 
-          </div>
+</select>
 
+</div>
 
-          <div class="field full">
 
-            <label>
-              Descrição
-            </label>
+<div class="field">
 
-            <textarea id="bookDescription"></textarea>
+<label>
+Capa — URL
+</label>
 
-          </div>
+<input
+id="bookCover"
+type="url"
+placeholder="https://..."
+>
 
-        </div>
+</div>
 
 
-        <div class="actions">
+<div class="field full">
 
-          <button
-            class="btn"
-            type="submit">
-            Adicionar livro
-          </button>
+<label>
+Descrição
+</label>
 
-        </div>
+<textarea
+id="bookDescription"
+></textarea>
 
-        <p
-          class="msg"
-          id="bookMsg">
-        </p>
+</div>
 
-      </form>
+</div>
 
-    </div>
 
+<div class="actions">
 
-    <div class="panel">
+<button
+class="btn"
+type="submit"
+>
+Cadastrar livro
+</button>
 
-      <h3>
-        Empréstimos
-      </h3>
+<button
+type="button"
+class="btn light"
+onclick="document.getElementById('bookForm').reset()"
+>
+Limpar
+</button>
 
-      <div id="adminLoans">
-        Carregando...
-      </div>
+</div>
 
-    </div>
+<p
+id="bookMsg"
+class="message"
+></p>
 
-  </section>
+</form>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Livro
+</th>
+
+<th>
+Coleção
+</th>
+
+<th>
+Exemplares
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="adminBooks"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- COLEÇÕES -->
+
+<div
+id="colecoesAdmin"
+class="admin-content"
+>
+
+<h3>
+Gerenciar coleções
+</h3>
+
+<div class="info-box">
+As coleções ficam disponíveis para todo o acervo.
+</div>
+
+<form
+onsubmit="adicionarColecao(event)"
+>
+
+<div class="field">
+
+<label>
+Nova coleção
+</label>
+
+<input
+id="newCategoryName"
+required
+>
+
+</div>
+
+<div class="actions">
+
+<button class="btn">
+Adicionar coleção
+</button>
+
+</div>
+
+</form>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Coleção
+</th>
+
+<th>
+Livros
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="adminCategories"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- EMPRÉSTIMOS -->
+
+<div
+id="emprestimos"
+class="admin-content"
+>
+
+<h3>
+Empréstimos
+</h3>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Livro
+</th>
+
+<th>
+Usuário
+</th>
+
+<th>
+Retirada
+</th>
+
+<th>
+Prazo
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Ação
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="adminLoans"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- ADMINISTRADORES -->
+
+<div
+id="usuarios"
+class="admin-content"
+>
+
+<h3>
+Administradores
+</h3>
+
+<div class="info-box">
+Somente um administrador pode conceder ou retirar a função de administrador de uma conta existente.
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+E-mail
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Função
+</th>
+
+<th>
+Ação
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="adminUsers"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 
 <footer>
 
-  <div>
+<div class="footer-inner">
 
-    <b>
-      Carioca Library
-    </b>
+<strong>
+Carioca Library
+</strong>
 
-    <p>
-      Uma biblioteca para ler,
-      aprender e servir.
-    </p>
+<p>
+Uma biblioteca para ler, aprender e servir.
+</p>
 
-  </div>
-
-
-  <div class="footer-note">
-
-    Acervo · Comunidade · Conhecimento
-    <br>
-    Rio de Janeiro
-
-  </div>
+</div>
 
 </footer>
 
-</div>
-
-
-<!-- MODAL -->
 
 <div
-  class="modal"
-  id="modal"
-  onclick="if(event.target===this)fecharModal()"
+id="modal"
+class="modal"
 >
 
-  <div class="modalbox">
+<div class="modal-box">
 
-    <button
-      class="close"
-      onclick="fecharModal()">
-      ×
-    </button>
+<button
+class="modal-close"
+onclick="fecharModal()"
+>
+×
+</button>
 
-    <h2 id="modalTitle">
-      Entrar
-    </h2>
+<h2 id="modalTitle">
+Entrar
+</h2>
 
-    <div id="modalBody"></div>
+<div id="modalBody"></div>
 
-  </div>
+</div>
 
 </div>
 
 
 <div
-  class="toast"
-  id="toast">
-</div>
+id="toast"
+class="toast"
+></div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* =========================================================
+/* =====================================================
    SUPABASE
-   ========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
-  "https://qcgsuazwggixcqqduxwo.supabase.co";
+"https://qcgsuazwggixcqqduxwo.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
+"sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+);
 
 
-let books = [];
-let categories = [];
-let categoryAtual = "Todos";
+/* =====================================================
+   ESTADO
+===================================================== */
+
 let currentUser = null;
 let currentProfile = null;
 
+let categories = [];
+let books = [];
+let copies = [];
+let loans = [];
+let profiles = [];
 
-const $ = id =>
-  document.getElementById(id);
-
-
-function esc(v){
-
-  return String(v ?? "").replace(
-    /[&<>"']/g,
-    m => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m])
-  );
-
-}
+let activeCategory = "Todos";
 
 
-function toast(t){
+/* =====================================================
+   UTILIDADES
+===================================================== */
 
-  $("toast").textContent = t;
+function esc(value){
 
-  $("toast").style.display = "block";
-
-  setTimeout(
-    () => $("toast").style.display = "none",
-    2800
-  );
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-function fecharModal(){
+function toast(message){
 
-  $("modal").classList.remove("show");
+const element =
+document.getElementById("toast");
 
-}
+element.textContent = message;
 
+element.classList.add("show");
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
-
-function abrirLogin(){
-
-  $("modalTitle").textContent =
-    "Entrar na Carioca Library";
-
-  $("modalBody").innerHTML = `
-
-    <div class="formgrid">
-
-      <div class="field full">
-
-        <label>
-          E-mail
-        </label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="seu@email.com">
-
-      </div>
-
-
-      <div class="field full">
-
-        <label>
-          Senha
-        </label>
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Sua senha">
-
-      </div>
-
-    </div>
-
-
-    <div class="actions">
-
-      <button
-        class="btn"
-        onclick="fazerLogin()">
-        Entrar
-      </button>
-
-      <button
-        class="btn alt"
-        onclick="criarConta()">
-        Criar minha conta
-      </button>
-
-    </div>
-
-
-    <p
-      class="msg"
-      id="loginMsg">
-    </p>
-
-  `;
-
-  $("modal").classList.add("show");
+setTimeout(
+()=>{
+element.classList.remove("show");
+},
+3500
+);
 
 }
 
 
-async function fazerLogin(){
+function formatDate(value){
 
-  const email =
-    $("loginEmail").value.trim();
+if(!value)
+return "—";
 
-  const password =
-    $("loginPassword").value;
+try{
 
-  const msg =
-    $("loginMsg");
+return new Date(value)
+.toLocaleDateString("pt-BR");
 
+}catch{
 
-  if(!email || !password){
+return "—";
 
-    msg.textContent =
-      "Preencha e-mail e senha.";
-
-    return;
-
-  }
-
-
-  msg.textContent =
-    "Entrando...";
-
-
-  const {error} =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
-
-
-  if(error){
-
-    msg.textContent =
-      "Não foi possível entrar: " +
-      error.message;
-
-    return;
-
-  }
-
-
-  fecharModal();
-
-  await refreshAuth();
-
-  toast(
-    "Login realizado com sucesso."
-  );
+}
 
 }
 
 
-async function criarConta(){
+function isAdmin(){
 
-  const email =
-    $("loginEmail").value.trim();
-
-  const password =
-    $("loginPassword").value;
-
-  const msg =
-    $("loginMsg");
-
-
-  if(!email || !password){
-
-    msg.textContent =
-      "Preencha e-mail e senha.";
-
-    return;
-
-  }
-
-
-  if(password.length < 6){
-
-    msg.textContent =
-      "A senha precisa ter pelo menos 6 caracteres.";
-
-    return;
-
-  }
-
-
-  msg.textContent =
-    "Criando sua conta...";
-
-
-  const {data,error} =
-    await supabaseClient.auth.signUp({
-      email,
-      password
-    });
-
-
-  if(error){
-
-    msg.textContent =
-      "Não foi possível criar a conta: " +
-      error.message;
-
-    return;
-
-  }
-
-
-  if(data.user){
-
-    try{
-
-      await supabaseClient
-        .from("profiles")
-        .upsert(
-          {
-            id:data.user.id,
-            email:email
-          },
-          {
-            onConflict:"id",
-            ignoreDuplicates:true
-          }
-        );
-
-    }catch(e){}
-
-  }
-
-
-  msg.textContent =
-    data.session
-      ? "Conta criada e login realizado."
-      : "Conta criada. Verifique seu e-mail para confirmar o cadastro.";
+return currentProfile?.role === "admin";
 
 }
 
 
-async function abrirConta(e){
-
-  if(e)
-    e.preventDefault();
-
-  if(currentUser){
-
-    renderAccount();
-
-    return;
-
-  }
-
-  abrirLogin();
-
-}
-
-
-/* =========================================================
+/* =====================================================
    AUTENTICAÇÃO
-   ========================================================= */
+===================================================== */
 
-async function refreshAuth(){
+async function atualizarUsuario(){
 
-  const {data} =
-    await supabaseClient.auth.getSession();
+const {
+data:{
+session
+}
+} =
+await supabaseClient.auth.getSession();
 
+if(session){
 
-  currentUser =
-    data.session?.user || null;
+await definirUsuario(session.user);
 
+}else{
 
-  currentProfile = null;
+limparUsuario();
 
-
-  if(currentUser){
-
-    const profile =
-      await supabaseClient
-        .from("profiles")
-        .select("*")
-        .eq("id",currentUser.id)
-        .maybeSingle();
-
-
-    currentProfile =
-      profile.data || null;
-
-  }
-
-
-  const accountBtn =
-    $("accountBtn");
-
-
-  if(currentUser){
-
-    accountBtn.textContent =
-      "Minha conta";
-
-    $("userPanel").innerHTML = `
-
-      <p>
-        Você está conectado como
-        <b>${esc(currentUser.email)}</b>.
-      </p>
-
-      <div class="actions">
-
-        <button
-          class="btn"
-          onclick="renderAccount()">
-          Ver meus empréstimos
-        </button>
-
-        <button
-          class="btn alt"
-          onclick="sair()">
-          Sair
-        </button>
-
-      </div>
-
-    `;
-
-  }else{
-
-    accountBtn.textContent =
-      "Entrar";
-
-    $("userPanel").innerHTML = `
-
-      <p>
-        Faça login para acessar seus
-        empréstimos e recursos da biblioteca.
-      </p>
-
-      <div class="actions">
-
-        <button
-          class="btn"
-          onclick="abrirLogin()">
-          Entrar / Criar conta
-        </button>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(currentProfile?.role === "admin"){
-
-    $("adminSection")
-      .classList.remove("hidden");
-
-    await loadLoans();
-
-  }else{
-
-    $("adminSection")
-      .classList.add("hidden");
-
-  }
+}
 
 }
 
 
-async function renderAccount(){
+async function definirUsuario(user){
 
-  if(!currentUser){
-
-    abrirLogin();
-
-    return;
-
-  }
+currentUser = user;
 
 
-  $("modalTitle").textContent =
-    "Minha conta";
+const {
+data:profile,
+error
+} =
+await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",user.id)
+.maybeSingle();
 
 
-  $("modalBody").innerHTML = `
+if(error){
 
-    <p>
-      Olá!
-      <b>${esc(currentUser.email)}</b>
-    </p>
+console.error(
+"Erro ao carregar perfil:",
+error
+);
 
-
-    <div
-      id="myLoans"
-      class="panel">
-      Carregando empréstimos...
-    </div>
+}
 
 
-    <div class="actions">
-
-      <button
-        class="btn alt"
-        onclick="sair()">
-        Sair
-      </button>
-
-    </div>
-
-  `;
+currentProfile = profile;
 
 
-  $("modal").classList.add("show");
+const nome =
+profile?.name ||
+profile?.full_name ||
+user.email;
 
 
-  await loadMyLoans();
+document.getElementById(
+"userName"
+).textContent = nome;
+
+
+const authButton =
+document.getElementById(
+"authButton"
+);
+
+authButton.textContent =
+"Sair";
+
+authButton.onclick = sair;
+
+
+document.getElementById(
+"accountMessage"
+).textContent =
+`Você está conectado como ${nome}.`;
+
+document.getElementById(
+"accountButton"
+).textContent =
+"Minha conta";
+
+
+const admin =
+isAdmin();
+
+
+document.getElementById(
+"adminNav"
+).classList.toggle(
+"hidden",
+!admin
+);
+
+
+document.getElementById(
+"administracao"
+).classList.toggle(
+"hidden",
+!admin
+);
+
+
+await carregarMeusEmprestimos();
+
+
+if(admin){
+
+await carregarAdministracao();
+
+}
+
+}
+
+
+function limparUsuario(){
+
+currentUser = null;
+
+currentProfile = null;
+
+document.getElementById(
+"userName"
+).textContent = "";
+
+const authButton =
+document.getElementById(
+"authButton"
+);
+
+authButton.textContent =
+"Entrar";
+
+authButton.onclick =
+abrirLogin;
+
+
+document.getElementById(
+"adminNav"
+).classList.add("hidden");
+
+
+document.getElementById(
+"administracao"
+).classList.add("hidden");
+
+
+document.getElementById(
+"accountMessage"
+).textContent =
+"Entre para acompanhar seus empréstimos.";
+
+
+document.getElementById(
+"accountButton"
+).textContent =
+"Entrar / criar conta";
+
+
+document.getElementById(
+"userLoans"
+).innerHTML = "";
 
 }
 
 
 async function sair(){
 
-  await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-  fecharModal();
+limparUsuario();
 
-  await refreshAuth();
-
-  toast(
-    "Você saiu da conta."
-  );
+toast("Você saiu da conta.");
 
 }
 
 
-async function loadMyLoans(){
+/* =====================================================
+   LOGIN / CADASTRO
+===================================================== */
 
-  const box =
-    $("myLoans");
-
-
-  if(!box)
-    return;
+let modoAuth = "login";
 
 
-  const {data,error} =
-    await supabaseClient
-      .from("loans")
-      .select("*")
-      .eq(
-        "user_id",
-        currentUser.id
-      );
+function abrirLogin(){
 
+modoAuth = "login";
 
-  if(error){
+renderAuthModal();
 
-    box.innerHTML =
-      "<p>Não foi possível carregar seus empréstimos.</p>";
-
-    return;
-
-  }
-
-
-  if(!data?.length){
-
-    box.innerHTML =
-      "<p>Você ainda não possui empréstimos registrados.</p>";
-
-    return;
-
-  }
-
-
-  box.innerHTML =
-    "<h3>Meus empréstimos</h3>" +
-
-    data.map(x => `
-
-      <p>
-
-        <b>Livro:</b>
-        ${esc(x.book_id)}
-
-        <br>
-
-        <b>Início:</b>
-        ${esc(
-          x.loan_date ||
-          x.created_at ||
-          ""
-        )}
-
-        <br>
-
-        <b>Devolução:</b>
-        ${esc(
-          x.return_date ||
-          "Em aberto"
-        )}
-
-      </p>
-
-      <hr
-        style="
-          border:0;
-          border-top:1px solid var(--line);
-          margin:14px 0
-        ">
-
-    `).join("");
+document
+.getElementById("modal")
+.classList.add("show");
 
 }
 
 
-/* =========================================================
+function renderAuthModal(){
+
+document.getElementById(
+"modalTitle"
+).textContent =
+modoAuth === "login"
+?
+"Entrar"
+:
+"Criar conta";
+
+
+document.getElementById(
+"modalBody"
+).innerHTML = `
+
+<div class="auth-tabs">
+
+<button
+class="auth-tab ${modoAuth === "login" ? "active" : ""}"
+onclick="modoAuth='login';renderAuthModal()"
+>
+Entrar
+</button>
+
+<button
+class="auth-tab ${modoAuth === "signup" ? "active" : ""}"
+onclick="modoAuth='signup';renderAuthModal()"
+>
+Criar conta
+</button>
+
+</div>
+
+<form onsubmit="enviarAuth(event)">
+
+<div class="field">
+
+<label>
+E-mail
+</label>
+
+<input
+id="authEmail"
+type="email"
+required
+>
+
+</div>
+
+<br>
+
+<div class="field">
+
+<label>
+Senha
+</label>
+
+<input
+id="authPassword"
+type="password"
+minlength="6"
+required
+>
+
+</div>
+
+<div class="actions">
+
+<button class="btn">
+${modoAuth === "login" ? "Entrar" : "Criar conta"}
+</button>
+
+</div>
+
+<p
+id="authMessage"
+class="message"
+></p>
+
+</form>
+
+`;
+
+}
+
+
+async function enviarAuth(event){
+
+event.preventDefault();
+
+
+const email =
+document.getElementById(
+"authEmail"
+).value
+.trim()
+.toLowerCase();
+
+
+const password =
+document.getElementById(
+"authPassword"
+).value;
+
+
+const message =
+document.getElementById(
+"authMessage"
+);
+
+
+message.textContent =
+"Aguarde...";
+
+
+if(modoAuth === "login"){
+
+const {
+error
+} =
+await supabaseClient.auth
+.signInWithPassword({
+email,
+password
+});
+
+
+if(error){
+
+message.textContent =
+"Não foi possível entrar: " +
+error.message;
+
+return;
+
+}
+
+
+fecharModal();
+
+toast("Login realizado.");
+
+
+}else{
+
+const {
+data,
+error
+} =
+await supabaseClient.auth
+.signUp({
+email,
+password
+});
+
+
+if(error){
+
+message.textContent =
+"Não foi possível criar a conta: " +
+error.message;
+
+return;
+
+}
+
+
+/*
+  Se o projeto exigir confirmação de e-mail,
+  o usuário receberá o e-mail do Supabase.
+*/
+
+if(data?.user){
+
+await supabaseClient
+.from("profiles")
+.upsert(
+{
+id:data.user.id,
+email:email,
+active:true
+},
+{
+onConflict:"id"
+}
+);
+
+}
+
+
+fecharModal();
+
+toast(
+"Conta criada. Verifique seu e-mail se o Supabase solicitar confirmação."
+);
+
+}
+
+}
+
+
+function fecharModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
    CATEGORIAS
-   ========================================================= */
+===================================================== */
 
-async function loadCategories(){
+async function carregarCategorias(){
 
-  const r =
-    await supabaseClient
-      .from("categories")
-      .select("*")
-      .order(
-        "name",
-        {ascending:true}
-      );
-
-
-  if(!r.error)
-    categories =
-      r.data || [];
+const {
+data,
+error
+} =
+await supabaseClient
+.from("categories")
+.select("*")
+.order("name");
 
 
-  renderCategories();
+if(error){
 
+console.error(error);
 
-  const select =
-    $("bookCategory");
-
-
-  if(select){
-
-    select.innerHTML =
-      '<option value="">Sem categoria</option>' +
-
-      categories.map(c => `
-
-        <option value="${esc(c.id)}">
-          ${esc(
-            c.name ||
-            c.title ||
-            c.category_name
-          )}
-        </option>
-
-      `).join("");
-
-  }
+return;
 
 }
 
 
-function categoryName(book){
-
-  if(book.category_name)
-    return book.category_name;
-
-  if(book.category)
-    return book.category;
+categories =
+data || [];
 
 
-  const id =
-    book.category_id;
+renderizarCategorias();
 
-
-  const c =
-    categories.find(
-      x => String(x.id) === String(id)
-    );
-
-
-  return (
-    c?.name ||
-    c?.title ||
-    "Sem categoria"
-  );
+preencherCategoriasAdmin();
 
 }
 
 
-function renderCategories(){
+function nomeCategoria(id){
 
-  const names = [
-    "Todos",
-    ...categories
-      .map(
-        c =>
-          c.name ||
-          c.title ||
-          c.category_name
-      )
-      .filter(Boolean)
-  ];
+const category =
+categories.find(
+item =>
+String(item.id) ===
+String(id)
+);
 
 
-  $("categoryButtons").innerHTML =
-    names.map(
-      (n,i) => `
-
-        <button
-          class="chip ${i===0?"active":""}"
-          onclick='setCategory(${JSON.stringify(n)},this)'>
-
-          ${esc(n)}
-
-        </button>
-
-      `
-    ).join("");
+return (
+category?.name ||
+category?.title ||
+category?.category_name ||
+"Sem coleção"
+);
 
 }
 
 
-function setCategory(c,b){
+function renderizarCategorias(){
 
-  categoryAtual = c;
-
-  document
-    .querySelectorAll(".chip")
-    .forEach(
-      x => x.classList.remove("active")
-    );
+const container =
+document.getElementById(
+"categoryButtons"
+);
 
 
-  b.classList.add("active");
+container.innerHTML = `
 
-  renderBooks();
+<button
+class="category-btn active"
+onclick="selecionarCategoria('Todos',this)"
+>
+Todos
+</button>
 
-}
+` +
 
+categories
+.map(category => {
 
-/* =========================================================
-   CATÁLOGO
-   ========================================================= */
+const name =
+category.name ||
+category.title ||
+category.category_name ||
+"";
 
-async function loadBooks(){
+return `
 
-  $("resultText").textContent =
-    "Carregando o catálogo...";
+<button
+class="category-btn"
+onclick="selecionarCategoria('${esc(name)}',this)"
+>
+${esc(name)}
+</button>
 
+`;
 
-  const r =
-    await supabaseClient
-      .from("books")
-      .select("*");
-
-
-  if(r.error){
-
-    $("resultText").textContent =
-      "Não foi possível carregar o catálogo.";
-
-    console.error(r.error);
-
-    return;
-
-  }
-
-
-  books =
-    r.data || [];
-
-
-  renderBooks();
+})
+.join("");
 
 }
 
 
-function bookTitle(b){
+function selecionarCategoria(
+category,
+button
+){
 
-  return (
-    b.title ||
-    b.name ||
-    b.book_title ||
-    "Livro sem título"
-  );
+activeCategory =
+category;
+
+
+document
+.querySelectorAll(".category-btn")
+.forEach(
+element =>
+element.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+renderBooks();
+
+
+document
+.getElementById("acervo")
+.scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
 
-function bookAuthor(b){
+function preencherCategoriasAdmin(){
 
-  return (
-    b.author ||
-    b.author_name ||
-    b.autor ||
-    "Autor não informado"
-  );
+const select =
+document.getElementById(
+"bookCategory"
+);
+
+
+select.innerHTML = `
+
+<option value="">
+Selecione uma coleção
+</option>
+
+` +
+
+categories
+.map(category => `
+
+<option value="${esc(category.id)}">
+${esc(
+category.name ||
+category.title ||
+category.category_name
+)}
+</option>
+
+`)
+.join("");
+
+}
+
+
+/* =====================================================
+   LIVROS
+===================================================== */
+
+async function carregarLivros(){
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("books")
+.select("*")
+.order("title");
+
+
+if(error){
+
+console.error(error);
+
+document.getElementById(
+"resultText"
+).textContent =
+"Não foi possível carregar o acervo.";
+
+
+document.getElementById(
+"booksGrid"
+).innerHTML = `
+
+<div class="empty">
+Não foi possível carregar o acervo.
+</div>
+
+`;
+
+return;
+
+}
+
+
+books =
+data || [];
+
+
+await carregarExemplares();
+
+renderBooks();
+
+}
+
+
+async function carregarExemplares(){
+
+if(!books.length){
+
+copies = [];
+
+return;
+
+}
+
+
+const ids =
+books.map(
+book => book.id
+);
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("book_copies")
+.select("*")
+.in("book_id",ids);
+
+
+if(error){
+
+console.error(
+"Erro ao carregar exemplares:",
+error
+);
+
+copies = [];
+
+return;
+
+}
+
+
+copies =
+data || [];
+
+}
+
+
+function exemplaresLivro(bookId){
+
+return copies.filter(
+copy =>
+String(copy.book_id) ===
+String(bookId)
+);
+
+}
+
+
+function exemplarDisponivel(copy){
+
+const status =
+String(
+copy.status || ""
+)
+.toLowerCase();
+
+
+return [
+"",
+"available",
+"available ",
+"disponivel",
+"disponível",
+"livre"
+].includes(status);
 
 }
 
 
 function renderBooks(){
 
-  const term =
-    (
-      $("searchInput").value || ""
-    )
-      .toLowerCase()
-      .trim();
-
-
-  const list =
-    books.filter(b => {
-
-      const cat =
-        categoryName(b);
-
-      const text =
-        JSON.stringify(b)
-          .toLowerCase();
-
-
-      return (
-        (
-          categoryAtual === "Todos" ||
-          cat === categoryAtual
-        ) &&
-        (
-          !term ||
-          text.includes(term)
-        )
-      );
-
-    });
-
-
-  $("resultText").textContent =
-    list.length +
-    " livro(s) encontrado(s).";
-
-
-  $("booksGrid").innerHTML =
-    list.length
-
-      ? list
-          .map(bookCard)
-          .join("")
-
-      : `
-
-        <div
-          class="panel"
-          style="grid-column:1/-1">
-
-          <p>
-            Nenhum livro encontrado.
-          </p>
-
-        </div>
-
-      `;
-
-}
-
-
-function bookCard(b){
-
-  const title =
-    bookTitle(b);
-
-  const author =
-    bookAuthor(b);
-
-  const cat =
-    categoryName(b);
-
-
-  return `
-
-    <article class="card">
-
-      <div class="cover">
-
-        <span class="flower"></span>
-
-        <small>
-          ${esc(cat)}
-        </small>
-
-        <strong>
-          ${esc(title)}
-        </strong>
-
-      </div>
-
-
-      <div class="cardbody">
-
-        <div class="cat">
-          ${esc(cat)}
-        </div>
-
-        <div class="title">
-          ${esc(title)}
-        </div>
-
-        <div class="author">
-          ${esc(author)}
-        </div>
-
-
-        <button
-          class="btn"
-          onclick='abrirLivro(${JSON.stringify(b.id)})'>
-
-          Ver detalhes
-
-        </button>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-function abrirLivro(id){
-
-  const b =
-    books.find(
-      x => String(x.id) === String(id)
-    );
-
-
-  if(!b)
-    return;
-
-
-  $("modalTitle").textContent =
-    bookTitle(b);
-
-
-  $("modalBody").innerHTML = `
-
-    <p>
-      <b>Autor:</b>
-      ${esc(bookAuthor(b))}
-    </p>
-
-    <p>
-      <b>Categoria:</b>
-      ${esc(categoryName(b))}
-    </p>
-
-    ${
-      b.isbn
-        ? `
-          <p>
-            <b>ISBN:</b>
-            ${esc(b.isbn)}
-          </p>
-        `
-        : ""
-    }
-
-    ${
-      b.description
-        ? `
-          <p>
-            <b>Descrição:</b>
-            ${esc(b.description)}
-          </p>
-        `
-        : ""
-    }
-
-
-    <div class="actions">
-
-      ${
-        currentUser
-
-          ? `
-            <button
-              class="btn"
-              onclick='solicitarEmprestimo(${JSON.stringify(b.id)})'>
-
-              Solicitar empréstimo
-
-            </button>
-          `
-
-          : `
-
-            <button
-              class="btn"
-              onclick="fecharModal();abrirLogin()">
-
-              Entrar para solicitar
-
-            </button>
-
-          `
-      }
-
-    </div>
-
-  `;
-
-
-  $("modal").classList.add("show");
-
-}
-
-
-/* =========================================================
-   ADMIN
-   ========================================================= */
-
-async function adicionarLivro(e){
-
-  e.preventDefault();
-
-
-  const msg =
-    $("bookMsg");
-
-
-  msg.textContent =
-    "Salvando...";
-
-
-  if(currentProfile?.role !== "admin"){
-
-    msg.textContent =
-      "Apenas administradores podem cadastrar livros.";
-
-    return;
-
-  }
-
-
-  const title =
-    $("bookTitle").value.trim();
-
-  const author =
-    $("bookAuthor").value.trim();
-
-  const category_id =
-    $("bookCategory").value || null;
-
-  const isbn =
-    $("bookIsbn").value.trim();
-
-  const description =
-    $("bookDescription").value.trim();
-
-
-  const payload = {
-    title,
-    author,
-    category_id,
-    isbn,
-    description
-  };
-
-
-  const r =
-    await supabaseClient
-      .from("books")
-      .insert(payload)
-      .select()
-      .single();
-
-
-  if(r.error){
-
-    msg.textContent =
-      "Erro ao cadastrar: " +
-      r.error.message;
-
-    return;
-
-  }
-
-
-  msg.textContent =
-    "Livro adicionado com sucesso.";
-
-
-  $("bookForm").reset();
-
-
-  books.push(r.data);
-
-
-  renderBooks();
-
-
-  toast(
-    "Livro adicionado."
-  );
-
-}
-
-
-async function loadLoans(){
-
-  if(
-    currentProfile?.role !== "admin"
-  )
-    return;
-
-
-  const box =
-    $("adminLoans");
-
-
-  if(!box)
-    return;
-
-
-  const r =
-    await supabaseClient
-      .from("loans")
-      .select("*");
-
-
-  if(r.error){
-
-    box.textContent =
-      "Não foi possível carregar os empréstimos.";
-
-    return;
-
-  }
-
-
-  if(!r.data?.length){
-
-    box.textContent =
-      "Nenhum empréstimo registrado.";
-
-    return;
-
-  }
-
-
-  box.innerHTML = `
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>
-            Usuário
-          </th>
-
-          <th>
-            Livro
-          </th>
-
-          <th>
-            Empréstimo
-          </th>
-
-          <th>
-            Devolução
-          </th>
-
-        </tr>
-
-      </thead>
-
-
-      <tbody>
-
-        ${
-          r.data.map(x => `
-
-            <tr>
-
-              <td>
-                ${esc(x.user_id)}
-              </td>
-
-              <td>
-                ${esc(x.book_id)}
-              </td>
-
-              <td>
-                ${esc(
-                  x.loan_date ||
-                  x.created_at ||
-                  ""
-                )}
-              </td>
-
-              <td>
-                ${esc(
-                  x.return_date ||
-                  "Em aberto"
-                )}
-              </td>
-
-            </tr>
-
-          `).join("")
-        }
-
-      </tbody>
-
-    </table>
-
-  `;
-
-}
-
-
-async function buscarExemplarDisponivel(bookId){
-
-  const r =
-    await supabaseClient
-      .from("book_copies")
-      .select("*")
-      .eq(
-        "book_id",
-        bookId
-      );
-
-
-  if(r.error)
-    return {
-      error:r.error
-    };
-
-
-  const rows =
-    r.data || [];
-
-
-  if(!rows.length){
-
-    return {
-      copy:null,
-      rows:[]
-    };
-
-  }
-
-
-  const statusKey =
-    [
-      "status",
-      "availability",
-      "state"
-    ]
-      .find(
-        k =>
-          Object.prototype
-            .hasOwnProperty
-            .call(rows[0],k)
-      );
-
-
-  if(!statusKey){
-
-    return {
-      copy:rows[0],
-      rows
-    };
-
-  }
-
-
-  const available =
-    rows.find(x => {
-
-      const v =
-        String(
-          x[statusKey] ?? ""
-        ).toLowerCase();
-
-
-      return [
-        "available",
-        "disponivel",
-        "disponível",
-        "available_for_loan",
-        "free",
-        "livre"
-      ].includes(v);
-
-    });
-
-
-  return {
-    copy:available || null,
-    rows,
-    statusKey
-  };
-
-}
-
-
-async function criarRegistroEmprestimo(
-  bookId,
-  copy
-){
-
-  const now =
-    new Date().toISOString();
-
-
-  const attempts = [];
-
-
-  if(copy?.id){
-
-    attempts.push({
-      user_id:currentUser.id,
-      book_copy_id:copy.id,
-      loan_date:now
-    });
-
-  }
-
-
-  attempts.push({
-    user_id:currentUser.id,
-    book_id:bookId,
-    loan_date:now
-  });
-
-
-  if(copy?.id){
-
-    attempts.push({
-      user_id:currentUser.id,
-      book_copy_id:copy.id
-    });
-
-  }
-
-
-  attempts.push({
-    user_id:currentUser.id,
-    book_id:bookId
-  });
-
-
-  let lastError = null;
-
-
-  for(
-    const payload of attempts
-  ){
-
-    const r =
-      await supabaseClient
-        .from("loans")
-        .insert(payload)
-        .select()
-        .maybeSingle();
-
-
-    if(!r.error){
-
-      return {
-        data:r.data,
-        payload
-      };
-
-    }
-
-
-    lastError =
-      r.error;
-
-
-    if(
-      !/column|schema cache|does not exist|could not find/i
-        .test(
-          r.error.message || ""
-        )
-    )
-      break;
-
-  }
-
-
-  return {
-    error:lastError
-  };
-
-}
-
-
-async function marcarExemplarEmprestado(
-  copy,
-  statusKey
-){
-
-  if(
-    !copy?.id ||
-    !statusKey
-  ){
-
-    return {
-      ok:true
-    };
-
-  }
-
-
-  const r =
-    await supabaseClient
-      .from("book_copies")
-      .update({
-        [statusKey]:"borrowed"
-      })
-      .eq(
-        "id",
-        copy.id
-      );
-
-
-  return {
-    ok:!r.error,
-    error:r.error
-  };
-
-}
-
-
-async function solicitarEmprestimo(
-  bookId
-){
-
-  if(!currentUser){
-
-    fecharModal();
-
-    abrirLogin();
-
-    return;
-
-  }
-
-
-  const b =
-    books.find(
-      x =>
-        String(x.id) ===
-        String(bookId)
-    );
-
-
-  if(!b)
-    return;
-
-
-  /*
-    Evita dois empréstimos
-    abertos do mesmo livro.
-  */
-
-  const existing =
-    await supabaseClient
-      .from("loans")
-      .select("*")
-      .eq(
-        "user_id",
-        currentUser.id
-      );
-
-
-  if(!existing.error){
-
-    const open =
-      (existing.data || [])
-        .some(x => {
-
-          const same =
-            String(
-              x.book_id ?? ""
-            ) ===
-            String(bookId)
-
-            ||
-
-            String(
-              x.book_copy_id ?? ""
-            ) ===
-            String(bookId);
-
-
-          const returned =
-            x.return_date !== null &&
-            x.return_date !== undefined &&
-            String(x.return_date) !== "";
-
-
-          return (
-            same &&
-            !returned
-          );
-
-        });
-
-
-    if(open){
-
-      toast(
-        "Você já possui um empréstimo aberto deste livro."
-      );
-
-      return;
-
-    }
-
-  }
-
-
-  const copyInfo =
-    await buscarExemplarDisponivel(
-      bookId
-    );
-
-
-  if(copyInfo.error){
-
-    toast(
-      "Não foi possível verificar a disponibilidade do livro."
-    );
-
-    console.error(
-      copyInfo.error
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Se houver controle de exemplares
-    e nenhum estiver disponível,
-    não cria empréstimo.
-  */
-
-  if(
-    copyInfo.rows.length &&
-    !copyInfo.copy
-  ){
-
-    toast(
-      "Este livro não está disponível no momento."
-    );
-
-    return;
-
-  }
-
-
-  const result =
-    await criarRegistroEmprestimo(
-      bookId,
-      copyInfo.copy
-    );
-
-
-  if(result.error){
-
-    toast(
-      "Não foi possível registrar o empréstimo. Verifique as colunas da tabela loans."
-    );
-
-    console.error(
-      result.error
-    );
-
-    return;
-
-  }
-
-
-  if(copyInfo.copy){
-
-    await marcarExemplarEmprestado(
-      copyInfo.copy,
-      copyInfo.statusKey
-    );
-
-  }
-
-
-  fecharModal();
-
-
-  toast(
-    "Empréstimo registrado com sucesso."
-  );
-
-
-  await loadBooks();
-
-  await loadLoans();
-
-}
-
-
-/* =========================================================
-   INICIALIZAÇÃO
-   ========================================================= */
-
-supabaseClient.auth.onAuthStateChange(
-  () =>
-    setTimeout(
-      refreshAuth,
-      0
-    )
+const input =
+document.getElementById(
+"searchInput"
 );
 
 
-(async()=>{
+const search =
+input
+?
+input.value.toLowerCase().trim()
+:
+"";
 
-  await loadCategories();
 
-  await loadBooks();
+const list =
+books.filter(book => {
 
-  await refreshAuth();
+const category =
+nomeCategoria(
+book.category_id
+);
 
-})();
+
+const text =
+`${book.title || ""}
+${book.author || ""}
+${book.isbn || ""}`
+.toLowerCase();
+
+
+return (
+
+(
+activeCategory === "Todos" ||
+category === activeCategory
+)
+
+&&
+
+(
+!search ||
+text.includes(search)
+)
+
+);
+
+});
+
+
+document.getElementById(
+"resultText"
+).textContent =
+`${list.length} livro${
+list.length === 1 ? "" : "s"
+} encontrado${
+list.length === 1 ? "" : "s"
+}.`;
+
+
+document.getElementById(
+"booksGrid"
+).innerHTML =
+
+list.length
+
+?
+
+list
+.map(
+criarCardLivro
+)
+.join("")
+
+:
+
+`
+
+<div class="empty">
+Nenhum livro encontrado.
+</div>
+
+`;
+
+}
+
+
+function criarCardLivro(book){
+
+const bookCopies =
+exemplaresLivro(
+book.id
+);
+
+
+const available =
+bookCopies.filter(
+exemplarDisponivel
+).length;
+
+
+const cover =
+book.cover_url
+
+?
+
+`
+
+<img
+src="${esc(book.cover_url)}"
+alt="Capa de ${esc(book.title)}"
+>
+
+`
+
+:
+
+`
+
+<small>
+${esc(nomeCategoria(book.category_id))}
+</small>
+
+<strong>
+${esc(book.title)}
+</strong>
+
+`;
+
+
+return `
+
+<article class="book-card">
+
+<div class="book-cover">
+
+${cover}
+
+</div>
+
+<div class="book-info">
+
+<div class="book-category">
+${esc(nomeCategoria(book.category_id))}
+</div>
+
+<div class="book-title">
+${esc(book.title)}
+</div>
+
+<div class="book-author">
+${esc(book.author || "Autor não informado")}
+</div>
+
+<div class="availability ${
+available
+?
+"available"
+:
+"unavailable"
+}">
+
+${
+bookCopies.length
+?
+`${available} exemplar${
+available === 1 ? "" : "es"
+} disponível${
+available === 1 ? "" : "eis"
+}`
+:
+"Sem exemplar cadastrado"
+}
+
+</div>
+
+<button
+class="btn"
+onclick="abrirLivro('${esc(book.id)}')"
+>
+Ver detalhes
+</button>
+
+</div>
+
+</article>
+
+`;
+
+}
+
+
+/* =====================================================
+   DETALHES DO LIVRO
+===================================================== */
+
+function abrirLivro(id){
+
+const book =
+books.find(
+item =>
+String(item.id) ===
+String(id)
+);
+
+
+if(!book)
+return;
+
+
+const available =
+exemplaresLivro(
+book.id
+)
+.filter(
+exemplarDisponivel
+)
+.length;
+
+
+document.getElementById(
+"modalTitle"
+).textContent =
+book.title;
+
+
+document.getElementById(
+"modalBody"
+).innerHTML = `
+
+<p>
+<b>Autor:</b>
+${esc(book.author || "Não informado")}
+</p>
+
+<br>
+
+<p>
+<b>Coleção:</b>
+${esc(nomeCategoria(book.category_id))}
+</p>
+
+${
+book.publication_year
+?
+
+`
+
+<br>
+
+<p>
+<b>Ano:</b>
+${esc(book.publication_year)}
+</p>
+
+`
+
+:
+""
+}
+
+${
+book.isbn
+?
+
+`
+
+<br>
+
+<p>
+<b>ISBN:</b>
+${esc(book.isbn)}
+</p>
+
+`
+
+:
+""
+}
+
+${
+book.description
+?
+
+`
+
+<br>
+
+<p>
+<b>Descrição:</b>
+${esc(book.description)}
+</p>
+
+`
+
+:
+""
+}
+
+<br>
+
+<p>
+
+<b>Disponibilidade:</b>
+
+${
+available
+?
+`${available} exemplar${
+available === 1 ? "" : "es"
+} disponível${
+available === 1 ? "" : "eis"
+}`
+:
+"Indisponível"
+}
+
+</p>
+
+<div class="actions">
+
+${
+currentUser && available
+
+?
+
+`
+
+<button
+class="btn"
+onclick="solicitarEmprestimo('${esc(book.id)}')"
+>
+Solicitar empréstimo
+</button>
+
+`
+
+:
+
+!currentUser
+
+?
+
+`
+
+<button
+class="btn"
+onclick="fecharModal();abrirLogin()"
+>
+Entrar para solicitar
+</button>
+
+`
+
+:
+
+""
+
+}
+
+</div>
+
+`;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+async function carregarAdministracao(){
+
+if(!isAdmin())
+return;
+
+
+await carregarLivrosAdmin();
+
+await carregarCategoriasAdmin();
+
+await carregarEmprestimosAdmin();
+
+await carregarUsuariosAdmin();
+
+}
+
+
+function abrirAdminTab(
+id,
+button
+){
+
+document
+.querySelectorAll(".admin-tab")
+.forEach(
+tab =>
+tab.classList.remove("active")
+);
+
+
+document
+.querySelectorAll(".admin-content")
+.forEach(
+content =>
+content.classList.remove("active")
+);
+
+
+button.classList.add("active");
+
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+
+/* =====================================================
+   ADICIONAR LIVRO
+===================================================== */
+
+async function adicionarLivro(event){
+
+event.preventDefault();
+
+
+if(!isAdmin()){
+
+toast(
+"Apenas administradores podem cadastrar livros."
+);
+
+return;
+
+}
+
+
+const title =
+document.getElementById(
+"bookTitle"
+).value.trim();
+
+
+const author =
+document.getElementById(
+"bookAuthor"
+).value.trim();
+
+
+const isbn =
+document.getElementById(
+"bookIsbn"
+).value.trim();
+
+
+const year =
+document.getElementById(
+"bookYear"
+).value;
+
+
+const category_id =
+document.getElementById(
+"bookCategory"
+).value;
+
+
+const cover_url =
+document.getElementById(
+"bookCover"
+).value.trim();
+
+
+const description =
+document.getElementById(
+"bookDescription"
+).value.trim();
+
+
+const message =
+document.getElementById(
+"bookMsg"
+);
+
+
+message.textContent =
+"Salvando livro...";
+
+
+const payload = {
+
+title:title,
+
+author:author || null,
+
+isbn:isbn || null,
+
+publication_year:
+year
+?
+Number(year)
+:
+null,
+
+description:
+description || null,
+
+cover_url:
+cover_url || null,
+
+category_id:
+category_id || null
+
+};
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("books")
+.insert(payload)
+.select()
+.single();
+
+
+if(error){
+
+console.error(error);
+
+message.textContent =
+"Erro: " +
+error.message;
+
+return;
+
+}
+
+
+message.textContent =
+"Livro cadastrado com sucesso.";
+
+message.classList.add(
+"success"
+);
+
+
+document
+.getElementById("bookForm")
+.reset();
+
+
+await carregarLivros();
+
+await carregarLivrosAdmin();
+
+toast(
+"Livro adicionado ao acervo."
+);
+
+}
+
+
+/* =====================================================
+   ADMIN — LIVROS
+===================================================== */
+
+async function carregarLivrosAdmin(){
+
+const tbody =
+document.getElementById(
+"adminBooks"
+);
+
+
+if(!tbody)
+return;
+
+
+if(!books.length){
+
+tbody.innerHTML = `
+
+<tr>
+<td colspan="4">
+Nenhum livro cadastrado.
+</td>
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tbody.innerHTML =
+books
+.map(book => {
+
+const bookCopies =
+exemplaresLivro(
+book.id
+);
+
+
+const available =
+bookCopies.filter(
+exemplarDisponivel
+).length;
+
+
+return `
+
+<tr>
+
+<td>
+
+<b>
+${esc(book.title)}
+</b>
+
+<br>
+
+${esc(book.author || "")}
+
+</td>
+
+<td>
+
+${esc(
+nomeCategoria(book.category_id)
+)}
+
+</td>
+
+<td>
+
+${available}
+/
+${bookCopies.length}
+
+<br>
+
+<small>
+${bookCopies.length} cadastrado(s)
+</small>
+
+</td>
+
+<td>
+
+<button
+class="btn small"
+onclick="abrirGerenciarExemplares('${esc(book.id)}')"
+>
+Exemplares
+</button>
+
+<button
+class="btn small light"
+onclick="abrirLivro('${esc(book.id)}')"
+>
+Ver
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+})
+.join("");
+
+}
+
+
+/* =====================================================
+   EXEMPLARES
+===================================================== */
+
+function abrirGerenciarExemplares(
+bookId
+){
+
+const book =
+books.find(
+item =>
+String(item.id) ===
+String(bookId)
+);
+
+
+if(!book)
+return;
+
+
+const bookCopies =
+exemplaresLivro(bookId);
+
+
+document.getElementById(
+"modalTitle"
+).textContent =
+"Exemplares";
+
+
+document.getElementById(
+"modalBody"
+).innerHTML = `
+
+<h3>
+${esc(book.title)}
+</h3>
+
+<br>
+
+<form
+onsubmit="adicionarExemplar(event,'${esc(bookId)}')"
+>
+
+<div class="field">
+
+<label>
+Código do exemplar
+</label>
+
+<input
+id="inventoryCode"
+placeholder="Ex.: JC-0001"
+required
+>
+
+</div>
+
+<br>
+
+<div class="field">
+
+<label>
+Observação
+</label>
+
+<input
+id="copyNotes"
+placeholder="Opcional"
+>
+
+</div>
+
+<div class="actions">
+
+<button class="btn">
+Adicionar exemplar
+</button>
+
+</div>
+
+</form>
+
+<br>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Código
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Observação
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+bookCopies.length
+
+?
+
+bookCopies
+.map(copy => `
+
+<tr>
+
+<td>
+${esc(copy.inventory_code || "—")}
+</td>
+
+<td>
+
+<span class="status ${
+exemplarDisponivel(copy)
+?
+"available"
+:
+"borrowed"
+}">
+
+${esc(copy.status || "available")}
+
+</span>
+
+</td>
+
+<td>
+${esc(copy.notes || "—")}
+</td>
+
+</tr>
+
+`)
+.join("")
+
+:
+
+`
+
+<tr>
+
+<td colspan="3">
+Nenhum exemplar cadastrado.
+</td>
+
+</tr>
+
+`
+
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+async function adicionarExemplar(
+event,
+bookId
+){
+
+event.preventDefault();
+
+
+if(!isAdmin())
+return;
+
+
+const inventory_code =
+document.getElementById(
+"inventoryCode"
+).value.trim();
+
+
+const notes =
+document.getElementById(
+"copyNotes"
+).value.trim();
+
+
+const {
+error
+} =
+await supabaseClient
+.from("book_copies")
+.insert({
+
+book_id:bookId,
+
+inventory_code:
+inventory_code,
+
+status:"available",
+
+notes:
+notes || null
+
+});
+
+
+if(error){
+
+toast(
+"Não foi possível cadastrar o exemplar: " +
+error.message
+);
+
+return;
+
+}
+
+
+toast(
+"Exemplar cadastrado."
+);
+
+
+await carregarLivros();
+
+
+await carregarLivrosAdmin();
+
+
+abrirGerenciarExemplares(
+bookId
+);
+
+}
+
+
+/* =====================================================
+   COLEÇÕES
+===================================================== */
+
+async function adicionarColecao(event){
+
+event.preventDefault();
+
+
+if(!isAdmin())
+return;
+
+
+const name =
+document.getElementById(
+"newCategoryName"
+)
+.value
+.trim();
+
+
+if(!name)
+return;
+
+
+const {
+error
+} =
+await supabaseClient
+.from("categories")
+.insert({
+name:name
+});
+
+
+if(error){
+
+toast(
+"Não foi possível criar a coleção: " +
+error.message
+);
+
+return;
+
+}
+
+
+document.getElementById(
+"newCategoryName"
+).value = "";
+
+
+toast(
+"Coleção adicionada."
+);
+
+
+await carregarCategorias();
+
+await carregarCategoriasAdmin();
+
+}
+
+
+async function carregarCategoriasAdmin(){
+
+const tbody =
+document.getElementById(
+"adminCategories"
+);
+
+
+if(!tbody)
+return;
+
+
+tbody.innerHTML =
+categories
+.map(category => {
+
+const count =
+books.filter(
+book =>
+String(book.category_id) ===
+String(category.id)
+).length;
+
+
+return `
+
+<tr>
+
+<td>
+${esc(
+category.name ||
+category.title ||
+category.category_name
+)}
+</td>
+
+<td>
+${count}
+</td>
+
+</tr>
+
+`;
+
+})
+.join("");
+
+}
+
+
+/* =====================================================
+   EMPRÉSTIMO
+===================================================== */
+
+async function solicitarEmprestimo(
+bookId
+){
+
+if(!currentUser){
+
+fecharModal();
+
+abrirLogin();
+
+return;
+
+}
+
+
+const availableCopies =
+exemplaresLivro(bookId)
+.filter(
+exemplarDisponivel
+);
+
+
+if(!availableCopies.length){
+
+toast(
+"Não há exemplar disponível."
+);
+
+return;
+
+}
+
+
+const copy =
+availableCopies[0];
+
+
+/*
+  Evita dois empréstimos abertos
+  do mesmo exemplar.
+*/
+
+const {
+data:openLoans,
+error:checkError
+} =
+await supabaseClient
+.from("loans")
+.select("*")
+.eq("copy_id",copy.id)
+.is("returned_at",null);
+
+
+if(checkError){
+
+console.error(checkError);
+
+}
+
+
+if(openLoans?.length){
+
+toast(
+"Esse exemplar acabou de ser emprestado."
+);
+
+await carregarLivros();
+
+return;
+
+}
+
+
+const now =
+new Date();
+
+
+const due =
+new Date();
+
+
+due.setDate(
+due.getDate() + 14
+);
+
+
+const {
+error
+} =
+await supabaseClient
+.from("loans")
+.insert({
+
+copy_id:copy.id,
+
+user_id:currentUser.id,
+
+borrowed_at:
+now.toISOString(),
+
+due_date:
+due.toISOString(),
+
+status:"borrowed"
+
+});
+
+
+if(error){
+
+toast(
+"Não foi possível registrar o empréstimo: " +
+error.message
+);
+
+return;
+
+}
+
+
+/* Marca o exemplar */
+
+const {
+error:copyError
+} =
+await supabaseClient
+.from("book_copies")
+.update({
+status:"borrowed"
+})
+.eq("id",copy.id);
+
+
+if(copyError){
+
+console.error(copyError);
+
+}
+
+
+fecharModal();
+
+toast(
+"Empréstimo registrado. Prazo: 14 dias."
+);
+
+
+await carregarLivros();
+
+await carregarMeusEmprestimos();
+
+if(isAdmin()){
+
+await carregarEmprestimosAdmin();
+
+}
+
+}
+
+
+/* =====================================================
+   MEUS EMPRÉSTIMOS
+===================================================== */
+
+async function carregarMeusEmprestimos(){
+
+const container =
+document.getElementById(
+"userLoans"
+);
+
+
+if(!container)
+return;
+
+
+if(!currentUser){
+
+container.innerHTML = "";
+
+return;
+
+}
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("loans")
+.select("*")
+.eq("user_id",currentUser.id)
+.order(
+"borrowed_at",
+{
+ascending:false
+}
+);
+
+
+if(error){
+
+container.innerHTML = `
+
+<div class="admin-panel">
+
+Não foi possível carregar seus empréstimos.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(!data?.length){
+
+container.innerHTML = `
+
+<div class="admin-panel">
+
+Você ainda não possui empréstimos.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML = `
+
+<div class="admin-panel">
+
+<h3>
+Meus empréstimos
+</h3>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Livro
+</th>
+
+<th>
+Retirada
+</th>
+
+<th>
+Prazo
+</th>
+
+<th>
+Devolução
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+data
+.map(loan => {
+
+const copy =
+copies.find(
+item =>
+String(item.id) ===
+String(loan.copy_id)
+);
+
+
+const book =
+books.find(
+item =>
+String(item.id) ===
+String(copy?.book_id)
+);
+
+
+return `
+
+<tr>
+
+<td>
+${esc(book?.title || "Livro")}
+</td>
+
+<td>
+${formatDate(loan.borrowed_at)}
+</td>
+
+<td>
+${formatDate(loan.due_date)}
+</td>
+
+<td>
+${formatDate(loan.returned_at)}
+</td>
+
+<td>
+
+<span class="status ${
+loan.status === "returned"
+?
+"returned"
+:
+"borrowed"
+}">
+
+${esc(loan.status || "")}
+
+</span>
+
+</td>
+
+</tr>
+
+`;
+
+})
+.join("")
+
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   ADMIN — EMPRÉSTIMOS
+===================================================== */
+
+async function carregarEmprestimosAdmin(){
+
+if(!isAdmin())
+return;
+
+
+const tbody =
+document.getElementById(
+"adminLoans"
+);
+
+
+if(!tbody)
+return;
+
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("loans")
+.select("*")
+.order(
+"borrowed_at",
+{
+ascending:false
+}
+);
+
+
+if(error){
+
+tbody.innerHTML = `
+
+<tr>
+
+<td colspan="6">
+
+Não foi possível carregar os empréstimos.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+loans =
+data || [];
+
+
+if(!loans.length){
+
+tbody.innerHTML = `
+
+<tr>
+
+<td colspan="6">
+
+Nenhum empréstimo registrado.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tbody.innerHTML =
+loans
+.map(loan => {
+
+const copy =
+copies.find(
+item =>
+String(item.id) ===
+String(loan.copy_id)
+);
+
+
+const book =
+books.find(
+item =>
+String(item.id) ===
+String(copy?.book_id)
+);
+
+
+const returned =
+loan.status === "returned" ||
+!!loan.returned_at;
+
+
+return `
+
+<tr>
+
+<td>
+
+${esc(
+book?.title ||
+"Livro não encontrado"
+)}
+
+<br>
+
+<small>
+${esc(
+copy?.inventory_code ||
+""
+)}
+</small>
+
+</td>
+
+<td>
+
+${esc(
+loan.user_id
+)}
+
+</td>
+
+<td>
+${formatDate(loan.borrowed_at)}
+</td>
+
+<td>
+${formatDate(loan.due_date)}
+</td>
+
+<td>
+
+<span class="status ${
+returned
+?
+"returned"
+:
+"borrowed"
+}">
+
+${esc(
+loan.status || ""
+)}
+
+</span>
+
+</td>
+
+<td>
+
+${
+returned
+
+?
+
+"Devolvido"
+
+:
+
+`
+
+<button
+class="btn small"
+onclick="registrarDevolucao('${esc(loan.id)}','${esc(loan.copy_id)}')"
+>
+Registrar devolução
+</button>
+
+`
+
+}
+
+</td>
+
+</tr>
+
+`;
+
+})
+.join("");
+
+}
+
+
+/* =====================================================
+   DEVOLUÇÃO
+===================================================== */
+
+async function registrarDevolucao(
+loanId,
+copyId
+){
+
+if(!isAdmin())
+return;
+
+
+const confirmar =
+confirm(
+"Registrar a devolução deste exemplar?"
+);
+
+
+if(!confirmar)
+return;
+
+
+const now =
+new Date()
+.toISOString();
+
+
+const {
+error
+} =
+await supabaseClient
+.from("loans")
+.update({
+
+returned_at:now,
+
+status:"returned"
+
+})
+.eq("id",loanId);
+
+
+if(error){
+
+toast(
+"Não foi possível registrar a devolução: " +
+error.message
+);
+
+return;
+
+}
+
+
+const {
+error:copyError
+} =
+await supabaseClient
+.from("book_copies")
+.update({
+status:"available"
+})
+.eq("id",copyId);
+
+
+if(copyError){
+
+console.error(copyError);
+
+toast(
+"Devolução registrada, mas houve erro ao liberar o exemplar."
+);
+
+}else{
+
+toast(
+"Devolução registrada."
+);
+
+}
+
+
+/*
+  O return_history não será escrito
+  automaticamente aqui porque ainda não
+  confirmamos as colunas dessa tabela.
+*/
+
+
+await carregarLivros();
+
+await carregarMeusEmprestimos();
+
+await carregarEmprestimosAdmin();
+
+}
+
+
+/* =====================================================
+   ADMINISTRADORES
+===================================================== */
+
+async function carregarUsuariosAdmin(){
+
+if(!isAdmin())
+return;
+
+
+const tbody =
+document.getElementById(
+"adminUsers"
+);
+
+
+if(!tbody)
+return;
+
+
+/*
+  Aqui usamos somente profiles.
+  Não precisamos expor dados sensíveis
+  do Authentication.
+*/
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("profiles")
+.select("id,email,role,active")
+.order("email");
+
+
+if(error){
+
+console.error(error);
+
+tbody.innerHTML = `
+
+<tr>
+
+<td colspan="4">
+
+Não foi possível carregar os usuários.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+profiles =
+data || [];
+
+
+if(!profiles.length){
+
+tbody.innerHTML = `
+
+<tr>
+
+<td colspan="4">
+
+Nenhum perfil encontrado.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+tbody.innerHTML =
+profiles
+.map(profile => {
+
+const admin =
+profile.role === "admin";
+
+
+const active =
+profile.active !== false;
+
+
+const isMe =
+String(profile.id) ===
+String(currentUser?.id);
+
+
+return `
+
+<tr>
+
+<td>
+
+${esc(
+profile.email ||
+"Sem e-mail"
+)}
+
+</td>
+
+<td>
+
+${
+active
+?
+"Ativo"
+:
+"Inativo"
+}
+
+</td>
+
+<td>
+
+${
+admin
+?
+"Administrador"
+:
+"Usuário"
+}
+
+</td>
+
+<td>
+
+${
+isMe
+
+?
+
+"<small>Minha conta</small>"
+
+:
+
+admin
+
+?
+
+`
+
+<button
+class="btn small danger"
+onclick="alterarFuncaoUsuario('${esc(profile.id)}','user')"
+>
+Remover administrador
+</button>
+
+`
+
+:
+
+`
+
+<button
+class="btn small"
+onclick="alterarFuncaoUsuario('${esc(profile.id)}','admin')"
+>
+Tornar administrador
+</button>
+
+`
+
+}
+
+</td>
+
+</tr>
+
+`;
+
+})
+.join("");
+
+}
+
+
+async function alterarFuncaoUsuario(
+userId,
+newRole
+){
+
+if(!isAdmin())
+return;
+
+
+if(
+String(userId) ===
+String(currentUser?.id)
+){
+
+toast(
+"Você não pode remover sua própria administração."
+);
+
+return;
+
+}
+
+
+const texto =
+newRole === "admin"
+
+?
+
+"Dar acesso de administrador a esta conta?"
+
+:
+
+"Remover o acesso de administrador desta conta?";
+
+
+if(!confirm(texto))
+return;
+
+
+const {
+error
+} =
+await supabaseClient
+.from("profiles")
+.update({
+role:newRole
+})
+.eq("id",userId);
+
+
+if(error){
+
+toast(
+"Não foi possível alterar a função: " +
+error.message
+);
+
+return;
+
+}
+
+
+toast(
+newRole === "admin"
+?
+"Usuário promovido a administrador."
+:
+"Administrador convertido em usuário."
+);
+
+
+await carregarUsuariosAdmin();
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+async function iniciar(){
+
+await carregarCategorias();
+
+await carregarLivros();
+
+await atualizarUsuario();
+
+}
+
+
+supabaseClient.auth.onAuthStateChange(
+() => {
+
+setTimeout(
+atualizarUsuario,
+300
+);
+
+}
+);
+
+
+iniciar();
 
 </script>
 
