@@ -20,19 +20,16 @@
   --ink:#18231f;
   --muted:#69726d;
   --line:#d8d4c9;
-  --terra:#a9674d;
-  --white:#fff;
+  --terra:#a9674d
 }
 
 *{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
 
 body{
   margin:0;
   background:var(--cream);
   color:var(--ink);
-  font-family:"DM Sans",sans-serif;
+  font-family:"DM Sans",sans-serif
 }
 
 header{
@@ -42,33 +39,27 @@ header{
   align-items:center;
   justify-content:space-between;
   padding:0 6%;
-  background:rgba(251,250,246,.96);
+  background:rgba(251,250,246,.94);
   position:sticky;
   top:0;
-  z-index:20;
-  backdrop-filter:blur(8px);
+  z-index:10
 }
 
 .logo{
   font-family:"Bodoni Moda",serif;
   font-size:25px;
-  color:var(--green);
+  color:var(--green)
 }
 
 nav{
   display:flex;
-  gap:10px;
-  align-items:center;
+  gap:18px;
+  align-items:center
 }
 
 button{
   font:inherit;
-  cursor:pointer;
-}
-
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
+  cursor:pointer
 }
 
 .btn{
@@ -76,66 +67,60 @@ button:disabled{
   background:var(--green);
   color:#fff;
   padding:11px 17px;
-  border-radius:4px;
+  border-radius:4px
 }
 
-.btn:hover:not(:disabled){
-  background:var(--green2);
+.btn:hover{
+  background:var(--green2)
 }
 
 .btn.secondary{
   background:transparent;
   color:var(--green);
-  border:1px solid var(--green);
+  border:1px solid var(--green)
 }
 
 .btn.danger{
-  background:#8a4030;
+  background:#7b4030
 }
 
-.btn.small{
-  padding:8px 12px;
-  font-size:13px;
+.btn.danger:hover{
+  background:#633225
+}
+
+.btn:disabled{
+  opacity:.55;
+  cursor:not-allowed
 }
 
 main{
   max-width:1180px;
   margin:auto;
-  padding:0 5% 70px;
+  padding:0 5% 70px
 }
 
-/* HERO */
-
 .hero{
-  min-height:530px;
-  margin-left:-5.55%;
-  margin-right:-5.55%;
-  padding:100px 7%;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  overflow:hidden;
+  padding:75px 0 55px;
   border-bottom:1px solid var(--line);
   background:
     linear-gradient(
-      90deg,
-      rgba(251,250,246,.94) 0%,
-      rgba(251,250,246,.82) 38%,
-      rgba(251,250,246,.40) 72%,
-      rgba(251,250,246,.20) 100%
+      rgba(244,240,231,.76),
+      rgba(244,240,231,.88)
     ),
-    url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2200&q=85")
-    center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2200&q=85");
+  background-size:cover;
+  background-position:center;
+  margin-left:-5.5%;
+  margin-right:-5.5%;
+  padding-left:5.5%;
+  padding-right:5.5%
 }
 
 .eyebrow{
   letter-spacing:.16em;
   text-transform:uppercase;
   font-size:11px;
-  color:var(--terra);
-  position:relative;
-  z-index:1;
+  color:var(--terra)
 }
 
 h1{
@@ -144,149 +129,101 @@ h1{
   font-size:clamp(48px,8vw,88px);
   line-height:.95;
   max-width:780px;
-  margin:17px 0;
-  position:relative;
-  z-index:1;
+  margin:17px 0
 }
 
 .hero p{
   max-width:600px;
   color:var(--muted);
   font-size:17px;
-  line-height:1.7;
-  position:relative;
-  z-index:1;
-}
-
-/* SECTIONS */
-
-section{
-  padding-top:55px;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:18px;
-}
-
-.section-title h2{
-  font-family:"Bodoni Moda",serif;
-  font-weight:500;
-  font-size:34px;
-  margin:0;
+  line-height:1.7
 }
 
 .toolbar{
   display:flex;
   gap:10px;
-  margin:35px 0 25px;
+  margin:35px 0 25px
 }
 
 .toolbar input{
-  flex:1;
+  flex:1
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
   padding:12px;
   border:1px solid var(--line);
   border-radius:4px;
   background:#fff;
   color:var(--ink);
-  font:inherit;
+  font:inherit
 }
-
-textarea{
-  resize:vertical;
-}
-
-/* BOOKS */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:18px;
+  gap:18px
 }
 
 .card{
   background:var(--paper);
   border:1px solid var(--line);
   padding:22px;
-  min-height:210px;
+  min-height:190px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  justify-content:space-between
 }
 
 .card h3{
   font-family:"Bodoni Moda",serif;
   font-size:23px;
   font-weight:500;
-  margin:0 0 8px;
+  margin:0 0 8px
 }
 
 .meta{
   font-size:13px;
-  color:var(--muted);
-  line-height:1.5;
+  color:var(--muted)
 }
 
-.availability{
-  margin-top:14px;
-  padding-top:12px;
-  border-top:1px solid var(--line);
-  font-size:12px;
-  color:var(--muted);
+section{
+  padding-top:45px
 }
 
-.available{
-  color:var(--green);
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:18px
 }
 
-.unavailable{
-  color:#8a4030;
+.section-title h2{
+  font-family:"Bodoni Moda",serif;
+  font-weight:500;
+  font-size:34px;
+  margin:0
 }
-
-/* PANELS */
 
 .hidden{
-  display:none!important;
+  display:none!important
 }
 
 .panel{
   background:var(--paper);
   border:1px solid var(--line);
   padding:25px;
-  margin-top:20px;
-}
-
-.panel h3{
-  font-family:"Bodoni Moda",serif;
-  font-size:24px;
-  font-weight:500;
-  margin-top:0;
+  margin-top:20px
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px;
+  gap:14px
 }
 
 .field.full{
-  grid-column:1/-1;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-  align-items:center;
-  flex-wrap:wrap;
+  grid-column:1/-1
 }
 
 .msg{
@@ -294,131 +231,18 @@ textarea{
   margin:12px 0;
   border-radius:4px;
   font-size:14px;
-  background:#eee9dc;
+  background:#eee9dc
 }
 
 .msg.error{
   background:#f3ddd6;
-  color:#713b2a;
+  color:#713b2a
 }
 
 .msg.ok{
   background:#dfece5;
-  color:#234d3d;
+  color:#234d3d
 }
-
-/* ADMIN */
-
-.admin{
-  border-top:1px solid var(--line);
-  margin-top:55px;
-  padding-top:40px;
-}
-
-.admin-book{
-  border:1px solid var(--line);
-  background:#fff;
-  margin-top:14px;
-}
-
-.admin-book-header{
-  padding:18px;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-  border-bottom:1px solid var(--line);
-}
-
-.admin-book-title{
-  font-family:"Bodoni Moda",serif;
-  font-size:22px;
-}
-
-.admin-book-stats{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-  padding:15px 18px;
-  background:#f7f5ef;
-}
-
-.stat{
-  font-size:13px;
-}
-
-.stat strong{
-  color:var(--green);
-}
-
-.copy-list{
-  padding:0 18px 18px;
-}
-
-.copy-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:13px 0;
-  border-bottom:1px solid var(--line);
-  font-size:13px;
-}
-
-.copy-row:last-child{
-  border-bottom:0;
-}
-
-.copy-code{
-  font-weight:600;
-  color:var(--green);
-}
-
-.copy-borrower{
-  color:var(--muted);
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:3px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-}
-
-.badge.available{
-  background:#dfece5;
-  color:#234d3d;
-}
-
-.badge.borrowed{
-  background:#f3ddd6;
-  color:#713b2a;
-}
-
-/* TABLE */
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:var(--paper);
-}
-
-th,
-td{
-  text-align:left;
-  padding:13px;
-  border-bottom:1px solid var(--line);
-  font-size:14px;
-}
-
-th{
-  font-weight:600;
-  color:var(--green);
-}
-
-/* MODALS */
 
 .modal{
   position:fixed;
@@ -428,25 +252,35 @@ th{
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:50;
+  z-index:30
 }
 
 .modal.open{
-  display:flex;
+  display:flex
 }
 
 .modalbox{
   background:var(--paper);
-  width:min(430px,100%);
+  width:min(470px,100%);
   padding:30px;
   border:1px solid var(--line);
+  max-height:90vh;
+  overflow:auto
 }
 
 .modalbox h2{
   font-family:"Bodoni Moda",serif;
   font-weight:500;
   font-size:34px;
-  margin:0 0 20px;
+  margin:0 0 20px
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+  align-items:center;
+  flex-wrap:wrap
 }
 
 .link{
@@ -454,69 +288,112 @@ th{
   background:none;
   color:var(--green);
   text-decoration:underline;
-  padding:0;
+  padding:0
 }
 
-/* FOOTER */
+.admin{
+  border-top:1px solid var(--line);
+  margin-top:45px;
+  padding-top:35px
+}
+
+.admin-book{
+  padding:18px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.admin-book:last-child{
+  border-bottom:0
+}
+
+.admin-row{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#e5e9e3;
+  color:var(--green);
+  font-size:12px;
+  margin-right:5px
+}
+
+.badge.borrowed{
+  background:#f0ddd5;
+  color:#713b2a
+}
+
+.copy-list{
+  margin-top:12px;
+  padding-left:18px
+}
+
+.copy-item{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  padding:8px 0;
+  border-top:1px solid #e5e1d8;
+  font-size:13px
+}
+
+.copy-item small{
+  color:var(--muted)
+}
 
 footer{
   border-top:1px solid var(--line);
   padding:25px 6%;
   color:var(--muted);
-  font-size:13px;
+  font-size:13px
 }
 
-/* MOBILE */
-
-@media(max-width:700px){
-
+@media(max-width:650px){
   header{
     padding:0 5%;
-    height:68px;
+    height:68px
   }
 
   .logo{
-    font-size:21px;
+    font-size:21px
+  }
+
+  nav .hide-mobile{
+    display:none
   }
 
   .hero{
-    margin-left:-5.55%;
-    margin-right:-5.55%;
-    min-height:480px;
-    padding:70px 8%;
-    background:
-      linear-gradient(
-        rgba(251,250,246,.78),
-        rgba(251,250,246,.78)
-      ),
-      url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1800&q=85")
-      center/cover no-repeat;
+    padding:50px 5% 40px;
+    margin-left:-5%;
+    margin-right:-5%
   }
 
   .form-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .field.full{
-    grid-column:auto;
+    grid-column:auto
   }
 
   .toolbar{
-    flex-direction:column;
+    flex-direction:column
   }
 
-  .admin-book-header{
-    flex-direction:column;
-  }
-
-  .copy-row{
-    flex-direction:column;
+  .admin-row{
     align-items:flex-start;
+    flex-direction:column
   }
 
-  table{
-    display:block;
-    overflow-x:auto;
+  .copy-item{
+    align-items:flex-start;
+    flex-direction:column
   }
 }
 </style>
@@ -528,7 +405,7 @@ footer{
   <div class="logo">Carioca Library</div>
 
   <nav>
-    <button class="btn secondary" id="userLabel" type="button">
+    <button class="btn secondary hide-mobile" id="userLabel" type="button">
       Visitante
     </button>
 
@@ -542,29 +419,17 @@ footer{
   </nav>
 </header>
 
-
 <main>
 
-<!-- HERO -->
-
 <section class="hero">
+  <div class="eyebrow">Acervo da JOCUM Carioca</div>
 
-  <div class="eyebrow">
-    Acervo da JOCUM Carioca
-  </div>
-
-  <h1>
-    Ler, aprender e servir.
-  </h1>
+  <h1>Ler, aprender e servir.</h1>
 
   <p>
     Um espaço para encontrar histórias, conhecimento e recursos.
   </p>
-
 </section>
-
-
-<!-- ACERVO -->
 
 <section>
 
@@ -573,18 +438,14 @@ footer{
   </div>
 
   <div class="toolbar">
-
     <input
       id="search"
       placeholder="Buscar por título ou autor..."
     >
 
     <select id="categoryFilter">
-      <option value="">
-        Todas as coleções
-      </option>
+      <option value="">Todas as coleções</option>
     </select>
-
   </div>
 
   <div id="status"></div>
@@ -592,9 +453,6 @@ footer{
   <div id="books" class="grid"></div>
 
 </section>
-
-
-<!-- MEUS EMPRÉSTIMOS -->
 
 <section id="myArea" class="hidden">
 
@@ -606,9 +464,6 @@ footer{
 
 </section>
 
-
-<!-- ADMIN -->
-
 <section id="adminArea" class="admin hidden">
 
   <div class="section-title">
@@ -617,14 +472,9 @@ footer{
 
   <div id="adminStatus"></div>
 
-
-  <!-- CADASTRO -->
-
   <div class="panel">
 
-    <h3>
-      Adicionar livro
-    </h3>
+    <h3>Adicionar livro</h3>
 
     <form id="bookForm">
 
@@ -673,39 +523,23 @@ footer{
         </div>
 
         <div class="field">
-
           <label>
             Quantidade de exemplares<br>
-
             <input
               id="quantity"
               type="number"
               min="1"
-              max="100"
               value="1"
               required
             >
-
           </label>
-
-          <div class="meta">
-            O sistema criará automaticamente os códigos dos exemplares.
-          </div>
-
         </div>
 
         <div class="field full">
-
           <label>
             Descrição<br>
-
-            <textarea
-              id="description"
-              rows="4"
-            ></textarea>
-
+            <textarea id="description" rows="4"></textarea>
           </label>
-
         </div>
 
       </div>
@@ -714,8 +548,8 @@ footer{
 
         <button
           class="btn"
-          type="submit"
           id="saveBookBtn"
+          type="submit"
         >
           Cadastrar livro
         </button>
@@ -726,14 +560,9 @@ footer{
 
   </div>
 
-
-  <!-- LIVROS DO ADMIN -->
-
   <div class="panel">
 
-    <h3>
-      Livros cadastrados
-    </h3>
+    <h3>Livros cadastrados</h3>
 
     <div id="adminBooks"></div>
 
@@ -742,7 +571,6 @@ footer{
 </section>
 
 </main>
-
 
 <footer>
   Uma biblioteca para ler, aprender e servir.
@@ -776,14 +604,12 @@ footer{
 
         <label>
           E-mail<br>
-
           <input
             id="email"
             type="email"
             required
             autocomplete="email"
           >
-
         </label>
 
       </div>
@@ -792,14 +618,12 @@ footer{
 
         <label>
           Senha<br>
-
           <input
             id="password"
             type="password"
             required
             autocomplete="current-password"
           >
-
         </label>
 
       </div>
@@ -855,22 +679,19 @@ footer{
 </div>
 
 
-<!-- RECUPERAÇÃO DE SENHA -->
+<!-- RESET -->
 
 <div class="modal" id="resetModal">
 
   <div class="modalbox">
 
-    <h2>
-      Nova senha
-    </h2>
+    <h2>Nova senha</h2>
 
     <div id="resetMsg"></div>
 
     <form id="resetForm">
 
       <label>
-
         Nova senha<br>
 
         <input
@@ -908,19 +729,56 @@ footer{
 </div>
 
 
+<!-- CONFIRMAÇÃO -->
+
+<div class="modal" id="confirmModal">
+
+  <div class="modalbox">
+
+    <h2 id="confirmTitle">
+      Confirmar
+    </h2>
+
+    <p id="confirmText"></p>
+
+    <div class="actions">
+
+      <button
+        class="btn danger"
+        id="confirmYes"
+        type="button"
+      >
+        Confirmar
+      </button>
+
+      <button
+        class="btn secondary"
+        id="confirmNo"
+        type="button"
+      >
+        Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <script>
 
 const SUPABASE_URL =
-  "https://qcgsuazwggixcqqduxwo.supabase.co";
+"https://qcgsuazwggixcqqduxwo.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
+"sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
 
 const db =
-  supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
 let user = null;
@@ -928,27 +786,33 @@ let profile = null;
 let categories = [];
 let books = [];
 let signupMode = false;
+let confirmAction = null;
 
 
 const $ = id =>
-  document.getElementById(id);
+document.getElementById(id);
 
 
-const esc = value =>
-  String(value ?? "")
-    .replace(/[&<>"']/g, char => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[char]));
+const esc = s =>
+String(s ?? "").replace(
+  /[&<>"']/g,
+  c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[c])
+);
 
 
-function message(element,text,type=""){
-  element.innerHTML =
+function message(el,text,type=""){
+
+  el.innerHTML =
     text
-      ? `<div class="msg ${type}">${esc(text)}</div>`
+      ? `<div class="msg ${type}">
+          ${esc(text)}
+        </div>`
       : "";
 }
 
@@ -963,13 +827,11 @@ function isAdmin(){
 }
 
 
-/* =========================================================
-   AUTENTICAÇÃO
-========================================================= */
-
 function openAuth(){
 
-  $("authModal").classList.add("open");
+  $("authModal")
+    .classList
+    .add("open");
 
   $("email").focus();
 
@@ -978,7 +840,9 @@ function openAuth(){
 
 function closeAuth(){
 
-  $("authModal").classList.remove("open");
+  $("authModal")
+    .classList
+    .remove("open");
 
   message(
     $("authMsg"),
@@ -988,46 +852,80 @@ function closeAuth(){
 }
 
 
-function showStatus(text,type=""){
+function showStatus(
+  t,
+  type=""
+){
 
   message(
     $("status"),
-    text,
+    t,
     type
   );
 
 }
 
 
-function showAdminStatus(text,type=""){
+function showAdminStatus(
+  t,
+  type=""
+){
 
   message(
     $("adminStatus"),
-    text,
+    t,
     type
   );
 
 }
 
 
-/* =========================================================
-   PERFIL
-========================================================= */
+function confirmBox(
+  title,
+  text,
+  fn
+){
+
+  $("confirmTitle")
+    .textContent = title;
+
+  $("confirmText")
+    .textContent = text;
+
+  confirmAction = fn;
+
+  $("confirmModal")
+    .classList
+    .add("open");
+
+}
+
+
+function closeConfirm(){
+
+  confirmAction = null;
+
+  $("confirmModal")
+    .classList
+    .remove("open");
+
+}
+
 
 async function loadProfile(){
 
   if(!user){
 
     profile = null;
-
     return;
-  }
 
+  }
 
   const {
     data,
     error
-  } = await db
+  } =
+  await db
     .from("profiles")
     .select(
       "id,email,full_name,role,active"
@@ -1035,55 +933,47 @@ async function loadProfile(){
     .eq("id",user.id)
     .maybeSingle();
 
-
   if(error){
 
     console.error(error);
-
     profile = null;
-
     return;
-  }
 
+  }
 
   profile = data;
 
 }
 
 
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
 async function loadCategories(){
 
   const {
     data,
     error
-  } = await db
+  } =
+  await db
     .from("categories")
     .select("id,name")
     .order("name");
 
-
   if(error){
 
     showStatus(
-      "Não consegui carregar as coleções: " +
-      error.message,
+      "Não consegui carregar as coleções: "
+      + error.message,
       "error"
     );
 
     return;
-  }
 
+  }
 
   categories = data || [];
 
-
   $("categoryFilter").innerHTML =
-    '<option value="">Todas as coleções</option>' +
-
+    '<option value="">Todas as coleções</option>'
+    +
     categories
       .map(c =>
         `<option value="${esc(c.id)}">
@@ -1094,8 +984,8 @@ async function loadCategories(){
 
 
   $("category").innerHTML =
-    '<option value="">Sem coleção</option>' +
-
+    '<option value="">Sem coleção</option>'
+    +
     categories
       .map(c =>
         `<option value="${esc(c.id)}">
@@ -1107,60 +997,69 @@ async function loadCategories(){
 }
 
 
-/* =========================================================
-   LIVROS
-========================================================= */
-
 async function loadBooks(){
 
   const {
     data,
     error
-  } = await db
+  } =
+  await db
     .from("books")
-    .select(`
-      id,
-      title,
-      author,
-      isbn,
-      edition,
-      publication_year,
-      description,
-      category_id,
-      categories(name),
-      book_copies(
-        id,
-        inventory_code,
-        status
-      )
-    `)
+    .select(
+      "id,title,author,isbn,edition,publication_year,description,category_id,categories(name)"
+    )
     .order("title");
-
 
   if(error){
 
     showStatus(
-      "Não consegui carregar os livros: " +
-      error.message,
+      "Não consegui carregar os livros: "
+      + error.message,
       "error"
     );
 
     return;
-  }
 
+  }
 
   books = data || [];
 
-  renderBooks();
+  await renderBooks();
 
 }
 
 
-/* =========================================================
-   MOSTRAR LIVROS
-========================================================= */
+async function availableCount(bookId){
 
-function renderBooks(){
+  const {
+    count,
+    error
+  } =
+  await db
+    .from("book_copies")
+    .select(
+      "id",
+      {
+        count:"exact",
+        head:true
+      }
+    )
+    .eq("book_id",bookId)
+    .eq("status","available");
+
+  if(error){
+
+    console.error(error);
+    return 0;
+
+  }
+
+  return count || 0;
+
+}
+
+
+async function renderBooks(){
 
   const term =
     $("search")
@@ -1173,187 +1072,169 @@ function renderBooks(){
 
 
   const list =
-    books.filter(book => {
+    books.filter(b =>
 
-      const matchesSearch =
+      (
         !term ||
-        `${book.title} ${book.author || ""}`
+        `${b.title} ${b.author || ""}`
           .toLowerCase()
-          .includes(term);
+          .includes(term)
+      )
 
+      &&
 
-      const matchesCategory =
+      (
         !cat ||
-        String(book.category_id) === String(cat);
+        String(b.category_id) === String(cat)
+      )
 
-
-      return (
-        matchesSearch &&
-        matchesCategory
-      );
-
-    });
+    );
 
 
   if(!list.length){
 
     $("books").innerHTML =
-      `<div class="panel">
-        Nenhum livro encontrado.
-      </div>`;
+      '<div class="panel">' +
+      'Nenhum livro encontrado.' +
+      '</div>';
 
     return;
+
   }
 
 
   $("books").innerHTML =
+    list
+      .map(b =>
 
-    list.map(book => {
-
-      const copies =
-        book.book_copies || [];
-
-
-      const available =
-        copies.filter(
-          copy =>
-            copy.status === "available"
-        ).length;
-
-
-      const total =
-        copies.length;
-
-
-      let button = "";
-
-
-      /*
-       * USUÁRIO LOGADO
-       */
-
-      if(user){
-
-        if(available > 0){
-
-          button =
-            `<button
-              class="btn"
-              type="button"
-              onclick="borrowBook('${book.id}')"
-            >
-              Quero emprestar
-            </button>`;
-
-        }else{
-
-          button =
-            `<button
-              class="btn secondary"
-              type="button"
-              disabled
-            >
-              Indisponível
-            </button>`;
-
-        }
-
-      }
-
-
-      /*
-       * VISITANTE
-       */
-
-      else{
-
-        button =
-          `<button
-            class="btn secondary"
-            type="button"
-            onclick="openAuth()"
-          >
-            Entrar para emprestar
-          </button>`;
-
-      }
-
-
-      return `
-
-        <article class="card">
+        `<article class="card">
 
           <div>
 
             <div class="meta">
               ${esc(
-                book.categories?.name ||
+                b.categories?.name ||
                 "Acervo"
               )}
             </div>
 
             <h3>
-              ${esc(book.title)}
+              ${esc(b.title)}
             </h3>
 
             <div class="meta">
               ${esc(
-                book.author ||
+                b.author ||
                 "Autor não informado"
               )}
             </div>
 
-            <div class="availability">
-
-              ${
-                total === 0
-
-                ? `<span class="unavailable">
-                    Nenhum exemplar cadastrado
-                   </span>`
-
-                : available > 0
-
-                ? `<span class="available">
-                    ${available}
-                    ${
-                      available === 1
-                        ? " exemplar disponível"
-                        : " exemplares disponíveis"
-                    }
-                   </span>`
-
-                : `<span class="unavailable">
-                    Nenhum exemplar disponível
-                   </span>`
-              }
-
+            <div
+              class="meta"
+              id="count-${b.id}"
+              style="margin-top:12px"
+            >
+              Verificando exemplares...
             </div>
 
           </div>
 
-          ${button}
+          <div id="action-${b.id}">
+          </div>
 
-        </article>
+        </article>`
 
-      `;
+      )
+      .join("");
 
-    }).join("");
+
+  await Promise.all(
+
+    list.map(
+      async b => {
+
+        const n =
+          await availableCount(b.id);
+
+        const ce =
+          $("count-" + b.id);
+
+        const ae =
+          $("action-" + b.id);
+
+
+        if(ce){
+
+          ce.textContent =
+            n
+              ? `${n} exemplar${
+                  n === 1 ? "" : "es"
+                } disponível${
+                  n === 1 ? "" : "is"
+                }`
+              : "Nenhum exemplar disponível";
+
+        }
+
+
+        if(ae){
+
+          if(user && n > 0){
+
+            ae.innerHTML =
+              `<button
+                class="btn"
+                type="button"
+                onclick="borrowBook('${b.id}')"
+              >
+                Quero emprestar
+              </button>`;
+
+          }
+
+          else if(user){
+
+            ae.innerHTML =
+              `<button
+                class="btn secondary"
+                type="button"
+                disabled
+              >
+                Indisponível
+              </button>`;
+
+          }
+
+          else{
+
+            ae.innerHTML =
+              `<button
+                class="btn secondary"
+                type="button"
+                onclick="openAuth()"
+              >
+                Entrar para emprestar
+              </button>`;
+
+          }
+
+        }
+
+      }
+    )
+
+  );
 
 }
 
-
-/* =========================================================
-   EMPRESTAR
-========================================================= */
 
 async function borrowBook(bookId){
 
   if(!user){
 
     openAuth();
-
     return;
+
   }
 
 
@@ -1365,10 +1246,11 @@ async function borrowBook(bookId){
   const {
     data,
     error
-  } = await db.rpc(
+  } =
+  await db.rpc(
     "borrow_book",
     {
-      p_book_id: bookId
+      p_book_id:bookId
     }
   );
 
@@ -1376,17 +1258,18 @@ async function borrowBook(bookId){
   if(error){
 
     showStatus(
-      error.message ||
-      "Não foi possível registrar o empréstimo.",
+      "Não foi possível registrar o empréstimo: "
+      + error.message,
       "error"
     );
 
     return;
+
   }
 
 
   showStatus(
-    `Empréstimo registrado. Exemplar ${data.inventory_code}. Devolver até ${formatDate(data.due_date)}.`,
+    "Empréstimo registrado. O exemplar deve ser retirado com a administração.",
     "ok"
   );
 
@@ -1395,44 +1278,33 @@ async function borrowBook(bookId){
 
   await loadMyLoans();
 
+  if(isAdmin())
+    await loadAdminBooks();
+
 }
 
 
-/* =========================================================
-   MEUS EMPRÉSTIMOS
-========================================================= */
-
 async function loadMyLoans(){
 
-  if(!user){
-
+  if(!user)
     return;
-  }
 
 
   const {
     data,
     error
-  } = await db
+  } =
+  await db
     .from("loans")
-    .select(`
-      id,
-      borrowed_at,
-      due_date,
-      returned_at,
-      status,
-      book_copies(
-        inventory_code,
-        books(
-          title,
-          author
-        )
-      )
-    `)
+    .select(
+      "id,due_date,status,returned_at,borrowed_at,book_copies(inventory_code,books(title,author))"
+    )
     .eq("user_id",user.id)
     .order(
       "borrowed_at",
-      {ascending:false}
+      {
+        ascending:false
+      }
     );
 
 
@@ -1440,126 +1312,76 @@ async function loadMyLoans(){
 
     $("myLoans").innerHTML =
       `<div class="panel">
-        Erro ao carregar seus empréstimos:
-        ${esc(error.message)}
+        Erro: ${esc(error.message)}
       </div>`;
 
     return;
-  }
 
-
-  if(!data?.length){
-
-    $("myLoans").innerHTML =
-      `<div class="panel">
-        Você ainda não possui empréstimos.
-      </div>`;
-
-    return;
   }
 
 
   $("myLoans").innerHTML =
 
-    data.map(loan => {
+    (data || []).length
 
-      const book =
-        loan.book_copies?.books;
+      ?
 
+      (data || [])
+        .map(l =>
 
-      const active =
-        loan.status === "active";
+          `<article class="card">
 
+            <div>
 
-      return `
+              <div class="meta">
+                ${
+                  l.status === "active"
+                    ? "Em empréstimo"
+                    : "Devolvido"
+                }
+              </div>
 
-        <article class="card">
-
-          <div>
-
-            <div class="meta">
-
-              ${
-                active
-                  ? "Em empréstimo"
-                  : "Devolvido"
-              }
-
-            </div>
-
-            <h3>
-              ${esc(
-                book?.title ||
-                "Livro"
-              )}
-            </h3>
-
-            <div class="meta">
-              ${esc(
-                book?.author ||
-                "Autor não informado"
-              )}
-            </div>
-
-            <div class="availability">
-
-              Exemplar:
-              <strong>
+              <h3>
                 ${esc(
-                  loan.book_copies
-                    ?.inventory_code ||
+                  l.book_copies?.books?.title ||
+                  "Livro"
+                )}
+              </h3>
+
+              <div class="meta">
+                Exemplar:
+                ${esc(
+                  l.book_copies?.inventory_code ||
                   "—"
                 )}
-              </strong>
+              </div>
 
-              <br>
-
-              ${
-                active
-                  ? `Devolver até:
-                     ${formatDate(
-                       loan.due_date
-                     )}`
-                  : `Devolvido em:
-                     ${formatDateTime(
-                       loan.returned_at
-                     )}`
-              }
+              <div class="meta">
+                Devolver à administração até:
+                ${esc(
+                  l.due_date || "—"
+                )}
+              </div>
 
             </div>
 
-          </div>
+          </article>`
 
-          ${
-            active
+        )
+        .join("")
 
-            ? `<div class="meta">
-                 Entregue o livro fisicamente
-                 ao administrador para que ele
-                 confirme a devolução.
-               </div>`
+      :
 
-            : `<span class="badge available">
-                 Devolvido
-               </span>`
-          }
-
-        </article>
-
-      `;
-
-    }).join("");
+      `<div class="panel">
+        Você ainda não possui empréstimos.
+      </div>`;
 
 }
 
 
-/* =========================================================
-   ADMIN — CADASTRAR LIVRO + EXEMPLARES
-========================================================= */
+async function saveBook(e){
 
-async function saveBook(event){
-
-  event.preventDefault();
+  e.preventDefault();
 
 
   if(!isAdmin()){
@@ -1570,81 +1392,1264 @@ async function saveBook(event){
     );
 
     return;
+
   }
 
-
-  const title =
-    $("title").value.trim();
-
-  const author =
-    $("author").value.trim();
-
-  const isbn =
-    $("isbn").value.trim();
-
-  const edition =
-    $("edition").value.trim();
-
-  const year =
-    $("year").value
-      ? Number($("year").value)
-      : null;
-
-  const category =
-    $("category").value || null;
-
-  const description =
-    $("description").value.trim();
 
   const quantity =
-    Number($("quantity").value);
-
-
-  if(!title){
-
-    showAdminStatus(
-      "Digite o título do livro.",
-      "error"
+    Math.max(
+      1,
+      parseInt(
+        $("quantity").value,
+        10
+      ) || 1
     );
 
-    return;
-  }
+
+  const payload = {
+
+    title:
+      $("title")
+        .value
+        .trim(),
+
+    author:
+      $("author")
+        .value
+        .trim() || null,
+
+    isbn:
+      $("isbn")
+        .value
+        .trim() || null,
+
+    edition:
+      $("edition")
+        .value
+        .trim() || null,
+
+    publication_year:
+      $("year").value
+        ? Number(
+            $("year").value
+          )
+        : null,
+
+    description:
+      $("description")
+        .value
+        .trim() || null,
+
+    category_id:
+      $("category").value || null
+
+  };
 
 
-  if(
-    !quantity ||
-    quantity < 1 ||
-    quantity > 100
-  ){
+  $("saveBookBtn").disabled = true;
 
-    showAdminStatus(
-      "A quantidade deve estar entre 1 e 100.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const button =
-    $("saveBookBtn");
-
-
-  button.disabled = true;
-
-  button.textContent =
+  $("saveBookBtn")
+    .textContent =
     "Cadastrando...";
+
+
+  try{
+
+    const {
+      data:book,
+      error
+    } =
+    await db
+      .from("books")
+      .insert(payload)
+      .select(
+        "id,title"
+      )
+      .single();
+
+
+    if(error)
+      throw error;
+
+
+    const prefix =
+      String(book.id)
+        .replace(/-/g,"")
+        .slice(0,6)
+        .toUpperCase();
+
+
+    const copies =
+      Array.from(
+        {
+          length:quantity
+        },
+        (_,i) => ({
+
+          book_id:book.id,
+
+          inventory_code:
+            `CAR-${prefix}-${String(
+              i + 1
+            ).padStart(3,"0")}`,
+
+          status:"available"
+
+        })
+      );
+
+
+    const {
+      error:copyError
+    } =
+    await db
+      .from("book_copies")
+      .insert(copies);
+
+
+    if(copyError){
+
+      await db
+        .from("books")
+        .delete()
+        .eq("id",book.id);
+
+      throw new Error(
+        "Não foi possível criar os exemplares: "
+        + copyError.message
+      );
+
+    }
+
+
+    $("bookForm").reset();
+
+    $("quantity").value = 1;
+
+
+    showAdminStatus(
+      `Livro cadastrado com ${quantity} exemplar${
+        quantity === 1 ? "" : "es"
+      }.`,
+      "ok"
+    );
+
+
+    await loadBooks();
+
+    await loadAdminBooks();
+
+
+  }
+
+  catch(err){
+
+    showAdminStatus(
+      err.message ||
+      "Erro ao cadastrar livro.",
+      "error"
+    );
+
+  }
+
+  finally{
+
+    $("saveBookBtn").disabled = false;
+
+    $("saveBookBtn")
+      .textContent =
+      "Cadastrar livro";
+
+  }
+
+}
+
+
+async function loadAdminBooks(){
+
+  if(!isAdmin())
+    return;
 
 
   const {
     data,
     error
-  } = await db.rpc(
-    "create_book_with_copies",
-    {
-      p_title:title,
-      p_author:author || null,
-      p_isbn:isbn || null,
-      p_edition:edition || null,
-      p_publication_year:year,
-     
+  } =
+  await db
+    .from("books")
+    .select(
+      "id,title,author,categories(name),book_copies(id,inventory_code,status)"
+    )
+    .order("title");
+
+
+  if(error){
+
+    $("adminBooks").innerHTML =
+      `<div class="msg error">
+        ${esc(error.message)}
+      </div>`;
+
+    return;
+
+  }
+
+
+  const ids =
+    (data || [])
+      .flatMap(
+        b =>
+          (b.book_copies || [])
+            .filter(
+              c =>
+                c.status === "borrowed"
+            )
+            .map(
+              c => c.id
+            )
+      );
+
+
+  let loans = [];
+
+
+  if(ids.length){
+
+    const r =
+      await db
+        .from("loans")
+        .select(
+          "id,copy_id,user_id,due_date,borrowed_at,status,profiles(full_name,email)"
+        )
+        .in(
+          "copy_id",
+          ids
+        )
+        .eq(
+          "status",
+          "active"
+        );
+
+
+    if(!r.error)
+      loans = r.data || [];
+
+  }
+
+
+  const loanByCopy =
+    Object.fromEntries(
+      loans.map(
+        l => [
+          l.copy_id,
+          l
+        ]
+      )
+    );
+
+
+  $("adminBooks").innerHTML =
+
+    (data || []).length
+
+      ?
+
+      (data || [])
+        .map(b => {
+
+          const copies =
+            b.book_copies || [];
+
+          const av =
+            copies.filter(
+              c =>
+                c.status ===
+                "available"
+            ).length;
+
+          const bor =
+            copies.filter(
+              c =>
+                c.status ===
+                "borrowed"
+            ).length;
+
+
+          return `
+
+          <div class="admin-book">
+
+            <div class="admin-row">
+
+              <div>
+
+                <strong>
+                  ${esc(b.title)}
+                </strong>
+
+                <div class="meta">
+                  ${esc(
+                    b.author ||
+                    "Autor não informado"
+                  )}
+                  ·
+                  ${esc(
+                    b.categories?.name ||
+                    "Sem coleção"
+                  )}
+                </div>
+
+                <div
+                  style="margin-top:8px"
+                >
+
+                  <span class="badge">
+                    ${copies.length}
+                    exemplar${
+                      copies.length === 1
+                        ? ""
+                        : "es"
+                    }
+                  </span>
+
+                  <span class="badge">
+                    ${av}
+                    disponível${
+                      av === 1
+                        ? ""
+                        : "is"
+                    }
+                  </span>
+
+                  ${
+                    bor
+
+                    ?
+
+                    `<span class="badge borrowed">
+                      ${bor}
+                      emprestado${
+                        bor === 1
+                          ? ""
+                          : "s"
+                      }
+                    </span>`
+
+                    :
+
+                    ""
+                  }
+
+                </div>
+
+              </div>
+
+
+              <button
+                class="btn danger"
+                type="button"
+                onclick="deleteBook('${b.id}')"
+              >
+                Excluir livro
+              </button>
+
+            </div>
+
+
+            <div class="copy-list">
+
+              ${
+                copies.length
+
+                ?
+
+                copies
+                  .map(c => {
+
+                    const l =
+                      loanByCopy[c.id];
+
+
+                    return `
+
+                    <div class="copy-item">
+
+                      <div>
+
+                        <strong>
+                          ${esc(
+                            c.inventory_code
+                          )}
+                        </strong>
+
+                        <small>
+                          ·
+                          ${
+                            c.status ===
+                            "available"
+                              ? "Disponível"
+                              : "Emprestado"
+                          }
+                        </small>
+
+                        ${
+                          l
+
+                          ?
+
+                          `<br>
+                          <small>
+                            Com:
+                            ${esc(
+                              l.profiles?.full_name ||
+                              l.profiles?.email ||
+                              "usuário"
+                            )}
+
+                            · até
+                            ${esc(
+                              l.due_date ||
+                              "—"
+                            )}
+                          </small>`
+
+                          :
+
+                          ""
+                        }
+
+                      </div>
+
+
+                      ${
+                        c.status ===
+                        "borrowed"
+
+                        ?
+
+                        `<button
+                          class="btn secondary"
+                          type="button"
+                          onclick="adminReturn(
+                            '${c.id}',
+                            '${l?.id || ""}'
+                          )"
+                        >
+                          Confirmar devolução
+                        </button>`
+
+                        :
+
+                        ""
+                      }
+
+                    </div>`;
+
+                  })
+                  .join("")
+
+                :
+
+                `<div class="meta">
+                  Nenhum exemplar cadastrado.
+                </div>`
+              }
+
+            </div>
+
+          </div>`;
+
+        })
+        .join("")
+
+      :
+
+      `<div class="panel">
+        Nenhum livro cadastrado.
+      </div>`;
+
+}
+
+
+async function adminReturn(
+  copyId,
+  loanId
+){
+
+  if(!isAdmin()){
+
+    showAdminStatus(
+      "Apenas administradores podem registrar devoluções.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(!loanId){
+
+    showAdminStatus(
+      "Não encontrei o empréstimo ativo deste exemplar.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  confirmBox(
+
+    "Confirmar devolução",
+
+    "Confirme somente depois que o livro físico tiver sido entregue à administração.",
+
+    async () => {
+
+      const {
+        error
+      } =
+      await db.rpc(
+        "admin_return_loan",
+        {
+          p_loan_id:loanId
+        }
+      );
+
+
+      if(error){
+
+        showAdminStatus(
+          "Não foi possível registrar a devolução: "
+          + error.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      showAdminStatus(
+        "Devolução confirmada. O exemplar está novamente disponível para empréstimo.",
+        "ok"
+      );
+
+
+      await loadBooks();
+
+      await loadAdminBooks();
+
+    }
+
+  );
+
+}
+
+
+async function deleteBook(bookId){
+
+  if(!isAdmin()){
+
+    showAdminStatus(
+      "Apenas administradores podem excluir livros.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    data:copies,
+    error
+  } =
+  await db
+    .from("book_copies")
+    .select(
+      "id,status"
+    )
+    .eq(
+      "book_id",
+      bookId
+    );
+
+
+  if(error){
+
+    showAdminStatus(
+      "Não consegui verificar os exemplares: "
+      + error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    (copies || [])
+      .some(
+        c =>
+          c.status ===
+          "borrowed"
+      )
+  ){
+
+    showAdminStatus(
+      "Este livro não pode ser excluído enquanto houver exemplar emprestado. Primeiro registre a devolução.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    data:loans,
+    error:loanError
+  } =
+  await db
+    .from("loans")
+    .select(
+      "id,copy_id"
+    )
+    .in(
+      "copy_id",
+      (copies || [])
+        .map(
+          c => c.id
+        )
+    );
+
+
+  if(loanError){
+
+    showAdminStatus(
+      "Não consegui verificar o histórico: "
+      + loanError.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    (loans || []).length
+  ){
+
+    showAdminStatus(
+      "Este livro possui histórico de empréstimos e não será apagado para preservar o histórico da biblioteca.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const book =
+    books.find(
+      b =>
+        String(b.id) ===
+        String(bookId)
+    );
+
+
+  confirmBox(
+
+    "Excluir livro",
+
+    `Excluir “${
+      book?.title ||
+      "este livro"
+    }” e todos os exemplares ainda sem histórico? Esta ação não pode ser desfeita.`,
+
+    async () => {
+
+      const {
+        error:ce
+      } =
+      await db
+        .from("book_copies")
+        .delete()
+        .eq(
+          "book_id",
+          bookId
+        );
+
+
+      if(ce){
+
+        showAdminStatus(
+          "Não foi possível excluir os exemplares: "
+          + ce.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const {
+        error:be
+      } =
+      await db
+        .from("books")
+        .delete()
+        .eq(
+          "id",
+          bookId
+        );
+
+
+      if(be){
+
+        showAdminStatus(
+          "Não foi possível excluir o livro: "
+          + be.message,
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      showAdminStatus(
+        "Livro excluído.",
+        "ok"
+      );
+
+
+      await loadBooks();
+
+      await loadAdminBooks();
+
+    }
+
+  );
+
+}
+
+
+function updateUI(){
+
+  $("loginBtn")
+    .classList
+    .toggle(
+      "hidden",
+      !!user
+    );
+
+
+  $("logoutBtn")
+    .classList
+    .toggle(
+      "hidden",
+      !user
+    );
+
+
+  $("userLabel")
+    .textContent =
+    user
+      ? (
+          profile?.full_name ||
+          user.email
+        )
+      : "Visitante";
+
+
+  $("myArea")
+    .classList
+    .toggle(
+      "hidden",
+      !user
+    );
+
+
+  $("adminArea")
+    .classList
+    .toggle(
+      "hidden",
+      !isAdmin()
+    );
+
+
+  if(user)
+    loadMyLoans();
+
+
+  if(isAdmin())
+    loadAdminBooks();
+
+}
+
+
+async function authSubmit(e){
+
+  e.preventDefault();
+
+
+  const email =
+    $("email")
+      .value
+      .trim();
+
+  const password =
+    $("password")
+      .value;
+
+  const fullName =
+    $("fullName")
+      .value
+      .trim();
+
+
+  $("authSubmit")
+    .disabled = true;
+
+
+  message(
+    $("authMsg"),
+    ""
+  );
+
+
+  try{
+
+    if(signupMode){
+
+      const {
+        data,
+        error
+      } =
+      await db.auth.signUp({
+
+        email,
+
+        password,
+
+        options:{
+          data:{
+            full_name:
+              fullName
+          }
+        }
+
+      });
+
+
+      if(error)
+        throw error;
+
+
+      if(!data.session){
+
+        message(
+          $("authMsg"),
+          "Conta criada. Se a confirmação de e-mail estiver ativa no Supabase, confirme o e-mail antes de entrar.",
+          "ok"
+        );
+
+      }
+
+      else{
+
+        closeAuth();
+
+      }
+
+    }
+
+    else{
+
+      const {
+        error
+      } =
+      await db.auth
+        .signInWithPassword({
+          email,
+          password
+        });
+
+
+      if(error)
+        throw error;
+
+
+      closeAuth();
+
+    }
+
+  }
+
+  catch(err){
+
+    message(
+      $("authMsg"),
+      err.message ||
+      "Erro ao entrar.",
+      "error"
+    );
+
+  }
+
+  finally{
+
+    $("authSubmit")
+      .disabled = false;
+
+    $("authSubmit")
+      .textContent =
+      signupMode
+        ? "Criar conta"
+        : "Entrar";
+
+  }
+
+}
+
+
+async function forgot(){
+
+  const email =
+    $("email")
+      .value
+      .trim();
+
+
+  if(!email){
+
+    message(
+      $("authMsg"),
+      "Digite seu e-mail primeiro.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await db.auth
+    .resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+          location.origin +
+          location.pathname
+      }
+    );
+
+
+  if(error){
+
+    message(
+      $("authMsg"),
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  message(
+    $("authMsg"),
+    "Enviamos o link de recuperação para seu e-mail.",
+    "ok"
+  );
+
+}
+
+
+async function resetPassword(e){
+
+  e.preventDefault();
+
+
+  const {
+    error
+  } =
+  await db.auth.updateUser({
+
+    password:
+      $("newPassword")
+        .value
+
+  });
+
+
+  if(error){
+
+    message(
+      $("resetMsg"),
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  message(
+    $("resetMsg"),
+    "Senha alterada. Agora você pode entrar.",
+    "ok"
+  );
+
+}
+
+
+async function logout(){
+
+  await db.auth.signOut();
+
+}
+
+
+$("loginBtn")
+  .addEventListener(
+    "click",
+    openAuth
+  );
+
+
+$("logoutBtn")
+  .addEventListener(
+    "click",
+    logout
+  );
+
+
+$("closeAuth")
+  .addEventListener(
+    "click",
+    closeAuth
+  );
+
+
+$("authForm")
+  .addEventListener(
+    "submit",
+    authSubmit
+  );
+
+
+$("forgotBtn")
+  .addEventListener(
+    "click",
+    forgot
+  );
+
+
+$("switchAuth")
+  .addEventListener(
+    "click",
+    () => {
+
+      signupMode =
+        !signupMode;
+
+
+      $("authTitle")
+        .textContent =
+        signupMode
+          ? "Criar conta"
+          : "Entrar";
+
+
+      $("authSubmit")
+        .textContent =
+        signupMode
+          ? "Criar conta"
+          : "Entrar";
+
+
+      $("nameField")
+        .classList
+        .toggle(
+          "hidden",
+          !signupMode
+        );
+
+
+      $("switchAuth")
+        .textContent =
+        signupMode
+          ? "Já tenho uma conta"
+          : "Criar conta";
+
+    }
+  );
+
+
+$("bookForm")
+  .addEventListener(
+    "submit",
+    saveBook
+  );
+
+
+$("search")
+  .addEventListener(
+    "input",
+    renderBooks
+  );
+
+
+$("categoryFilter")
+  .addEventListener(
+    "change",
+    renderBooks
+  );
+
+
+$("closeReset")
+  .addEventListener(
+    "click",
+    () =>
+      $("resetModal")
+        .classList
+        .remove("open")
+  );
+
+
+$("resetForm")
+  .addEventListener(
+    "submit",
+    resetPassword
+  );
+
+
+$("confirmNo")
+  .addEventListener(
+    "click",
+    closeConfirm
+  );
+
+
+$("confirmYes")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const fn =
+        confirmAction;
+
+      closeConfirm();
+
+      if(fn)
+        await fn();
+
+    }
+  );
+
+
+db.auth.onAuthStateChange(
+  async (
+    event,
+    session
+  ) => {
+
+    user =
+      session?.user ||
+      null;
+
+
+    if(user)
+      await loadProfile();
+
+    else
+      profile = null;
+
+
+    updateUI();
+
+
+    if(
+      event ===
+      "PASSWORD_RECOVERY"
+    ){
+
+      $("resetMsg")
+        .innerHTML = "";
+
+      $("resetModal")
+        .classList
+        .add("open");
+
+    }
+
+  }
+);
+
+
+(async function start(){
+
+  showStatus(
+    "Carregando acervo..."
+  );
+
+
+  await loadCategories();
+
+  await loadBooks();
+
+
+  const {
+    data
+  } =
+  await db.auth
+    .getSession();
+
+
+  user =
+    data.session?.user ||
+    null;
+
+
+  if(user)
+    await loadProfile();
+
+
+  updateUI();
+
+
+  showStatus("");
+
+
+  if(
+    location.hash
+      .includes(
+        "type=recovery"
+      )
+  ){
+
+    $("resetModal")
+      .classList
+      .add("open");
+
+  }
+
+})();
+
+</script>
+
+</body>
+</html>
