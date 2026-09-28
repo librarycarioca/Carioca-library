@@ -20,16 +20,18 @@
   --ink:#18231f;
   --muted:#69726d;
   --line:#d8d4c9;
-  --terra:#a9674d
+  --terra:#a9674d;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
   background:var(--cream);
   color:var(--ink);
-  font-family:"DM Sans",sans-serif
+  font-family:"DM Sans",sans-serif;
 }
 
 header{
@@ -42,24 +44,24 @@ header{
   background:rgba(251,250,246,.94);
   position:sticky;
   top:0;
-  z-index:10
+  z-index:10;
 }
 
 .logo{
   font-family:"Bodoni Moda",serif;
   font-size:25px;
-  color:var(--green)
+  color:var(--green);
 }
 
 nav{
   display:flex;
   gap:18px;
-  align-items:center
+  align-items:center;
 }
 
 button{
   font:inherit;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .btn{
@@ -67,60 +69,54 @@ button{
   background:var(--green);
   color:#fff;
   padding:11px 17px;
-  border-radius:4px
+  border-radius:4px;
 }
 
 .btn:hover{
-  background:var(--green2)
+  background:var(--green2);
 }
 
 .btn.secondary{
   background:transparent;
   color:var(--green);
-  border:1px solid var(--green)
+  border:1px solid var(--green);
 }
 
 .btn.danger{
-  background:#7b4030
-}
-
-.btn.danger:hover{
-  background:#633225
+  background:#7b4030;
 }
 
 .btn:disabled{
-  opacity:.55;
-  cursor:not-allowed
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 main{
   max-width:1180px;
   margin:auto;
-  padding:0 5% 70px
+  padding:0 5% 70px;
 }
 
 .hero{
   padding:75px 0 55px;
   border-bottom:1px solid var(--line);
+
   background:
     linear-gradient(
       rgba(244,240,231,.76),
       rgba(244,240,231,.88)
     ),
     url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2200&q=85");
+
   background-size:cover;
   background-position:center;
-  margin-left:-5.5%;
-  margin-right:-5.5%;
-  padding-left:5.5%;
-  padding-right:5.5%
 }
 
 .eyebrow{
   letter-spacing:.16em;
   text-transform:uppercase;
   font-size:11px;
-  color:var(--terra)
+  color:var(--terra);
 }
 
 h1{
@@ -129,40 +125,43 @@ h1{
   font-size:clamp(48px,8vw,88px);
   line-height:.95;
   max-width:780px;
-  margin:17px 0
+  margin:17px 0;
 }
 
 .hero p{
   max-width:600px;
   color:var(--muted);
   font-size:17px;
-  line-height:1.7
+  line-height:1.7;
 }
 
 .toolbar{
   display:flex;
   gap:10px;
-  margin:35px 0 25px
+  margin:35px 0 25px;
 }
 
 .toolbar input{
-  flex:1
+  flex:1;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
   padding:12px;
   border:1px solid var(--line);
   border-radius:4px;
   background:#fff;
   color:var(--ink);
-  font:inherit
+  font:inherit;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-  gap:18px
+  grid-template-columns:
+    repeat(auto-fill,minmax(230px,1fr));
+  gap:18px;
 }
 
 .card{
@@ -172,58 +171,58 @@ input,select,textarea{
   min-height:190px;
   display:flex;
   flex-direction:column;
-  justify-content:space-between
+  justify-content:space-between;
 }
 
 .card h3{
   font-family:"Bodoni Moda",serif;
   font-size:23px;
   font-weight:500;
-  margin:0 0 8px
+  margin:0 0 8px;
 }
 
 .meta{
   font-size:13px;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 section{
-  padding-top:45px
+  padding-top:45px;
 }
 
 .section-title{
   display:flex;
   justify-content:space-between;
   align-items:end;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
 
 .section-title h2{
   font-family:"Bodoni Moda",serif;
   font-weight:500;
   font-size:34px;
-  margin:0
+  margin:0;
 }
 
 .hidden{
-  display:none!important
+  display:none!important;
 }
 
 .panel{
   background:var(--paper);
   border:1px solid var(--line);
   padding:25px;
-  margin-top:20px
+  margin-top:20px;
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px
+  gap:14px;
 }
 
 .field.full{
-  grid-column:1/-1
+  grid-column:1/-1;
 }
 
 .msg{
@@ -231,17 +230,17 @@ section{
   margin:12px 0;
   border-radius:4px;
   font-size:14px;
-  background:#eee9dc
+  background:#eee9dc;
 }
 
 .msg.error{
   background:#f3ddd6;
-  color:#713b2a
+  color:#713b2a;
 }
 
 .msg.ok{
   background:#dfece5;
-  color:#234d3d
+  color:#234d3d;
 }
 
 .modal{
@@ -252,11 +251,11 @@ section{
   align-items:center;
   justify-content:center;
   padding:20px;
-  z-index:30
+  z-index:30;
 }
 
 .modal.open{
-  display:flex
+  display:flex;
 }
 
 .modalbox{
@@ -265,14 +264,14 @@ section{
   padding:30px;
   border:1px solid var(--line);
   max-height:90vh;
-  overflow:auto
+  overflow:auto;
 }
 
 .modalbox h2{
   font-family:"Bodoni Moda",serif;
   font-weight:500;
   font-size:34px;
-  margin:0 0 20px
+  margin:0 0 20px;
 }
 
 .actions{
@@ -280,7 +279,7 @@ section{
   gap:10px;
   margin-top:15px;
   align-items:center;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .link{
@@ -288,29 +287,29 @@ section{
   background:none;
   color:var(--green);
   text-decoration:underline;
-  padding:0
+  padding:0;
 }
 
 .admin{
   border-top:1px solid var(--line);
   margin-top:45px;
-  padding-top:35px
+  padding-top:35px;
 }
 
 .admin-book{
   padding:18px 0;
-  border-bottom:1px solid var(--line)
+  border-bottom:1px solid var(--line);
 }
 
 .admin-book:last-child{
-  border-bottom:0
+  border-bottom:0;
 }
 
 .admin-row{
   display:flex;
   justify-content:space-between;
   gap:18px;
-  align-items:center
+  align-items:center;
 }
 
 .badge{
@@ -320,17 +319,17 @@ section{
   background:#e5e9e3;
   color:var(--green);
   font-size:12px;
-  margin-right:5px
+  margin-right:5px;
 }
 
 .badge.borrowed{
   background:#f0ddd5;
-  color:#713b2a
+  color:#713b2a;
 }
 
 .copy-list{
   margin-top:12px;
-  padding-left:18px
+  padding-left:18px;
 }
 
 .copy-item{
@@ -338,62 +337,61 @@ section{
   justify-content:space-between;
   gap:12px;
   align-items:center;
-  padding:8px 0;
+  padding:9px 0;
   border-top:1px solid #e5e1d8;
-  font-size:13px
+  font-size:13px;
 }
 
 .copy-item small{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 footer{
   border-top:1px solid var(--line);
   padding:25px 6%;
   color:var(--muted);
-  font-size:13px
+  font-size:13px;
 }
 
 @media(max-width:650px){
+
   header{
     padding:0 5%;
-    height:68px
+    height:68px;
   }
 
   .logo{
-    font-size:21px
+    font-size:21px;
   }
 
   nav .hide-mobile{
-    display:none
+    display:none;
   }
 
   .hero{
-    padding:50px 5% 40px;
-    margin-left:-5%;
-    margin-right:-5%
+    padding:50px 0 40px;
   }
 
   .form-grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .field.full{
-    grid-column:auto
+    grid-column:auto;
   }
 
   .toolbar{
-    flex-direction:column
+    flex-direction:column;
   }
 
   .admin-row{
     align-items:flex-start;
-    flex-direction:column
+    flex-direction:column;
   }
 
   .copy-item{
     align-items:flex-start;
-    flex-direction:column
+    flex-direction:column;
   }
 }
 </style>
@@ -402,34 +400,61 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Carioca Library</div>
+
+  <div class="logo">
+    Carioca Library
+  </div>
 
   <nav>
-    <button class="btn secondary hide-mobile" id="userLabel" type="button">
+
+    <button
+      class="btn secondary hide-mobile"
+      id="userLabel"
+      type="button"
+    >
       Visitante
     </button>
 
-    <button class="btn" id="loginBtn" type="button">
+    <button
+      class="btn"
+      id="loginBtn"
+      type="button"
+    >
       Entrar
     </button>
 
-    <button class="btn hidden" id="logoutBtn" type="button">
+    <button
+      class="btn hidden"
+      id="logoutBtn"
+      type="button"
+    >
       Sair
     </button>
+
   </nav>
+
 </header>
+
 
 <main>
 
 <section class="hero">
-  <div class="eyebrow">Acervo da JOCUM Carioca</div>
 
-  <h1>Ler, aprender e servir.</h1>
+  <div class="eyebrow">
+    Acervo da JOCUM Carioca
+  </div>
+
+  <h1>
+    Ler, aprender e servir.
+  </h1>
 
   <p>
-    Um espaço para encontrar histórias, conhecimento e recursos.
+    Um espaço para encontrar histórias,
+    conhecimento e recursos.
   </p>
+
 </section>
+
 
 <section>
 
@@ -438,33 +463,51 @@ footer{
   </div>
 
   <div class="toolbar">
+
     <input
       id="search"
       placeholder="Buscar por título ou autor..."
     >
 
     <select id="categoryFilter">
-      <option value="">Todas as coleções</option>
+      <option value="">
+        Todas as coleções
+      </option>
     </select>
+
   </div>
 
   <div id="status"></div>
 
-  <div id="books" class="grid"></div>
+  <div
+    id="books"
+    class="grid"
+  ></div>
 
 </section>
 
-<section id="myArea" class="hidden">
+
+<section
+  id="myArea"
+  class="hidden"
+>
 
   <div class="section-title">
     <h2>Meus empréstimos</h2>
   </div>
 
-  <div id="myLoans" class="grid"></div>
+  <div
+    id="myLoans"
+    class="grid"
+  ></div>
 
 </section>
 
-<section id="adminArea" class="admin hidden">
+
+<section
+  id="adminArea"
+  class="admin hidden"
+>
 
   <div class="section-title">
     <h2>Administração</h2>
@@ -472,59 +515,100 @@ footer{
 
   <div id="adminStatus"></div>
 
+
   <div class="panel">
 
-    <h3>Adicionar livro</h3>
+    <h3>
+      Adicionar livro
+    </h3>
 
     <form id="bookForm">
 
       <div class="form-grid">
 
         <div class="field">
+
           <label>
             Título<br>
-            <input id="title" required>
+
+            <input
+              id="title"
+              required
+            >
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             Autor<br>
+
             <input id="author">
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             ISBN<br>
+
             <input id="isbn">
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             Edição<br>
+
             <input id="edition">
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             Ano<br>
-            <input id="year" type="number">
+
+            <input
+              id="year"
+              type="number"
+            >
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             Coleção<br>
+
             <select id="category"></select>
+
           </label>
+
         </div>
 
+
         <div class="field">
+
           <label>
             Quantidade de exemplares<br>
+
             <input
               id="quantity"
               type="number"
@@ -532,17 +616,28 @@ footer{
               value="1"
               required
             >
+
           </label>
+
         </div>
 
+
         <div class="field full">
+
           <label>
             Descrição<br>
-            <textarea id="description" rows="4"></textarea>
+
+            <textarea
+              id="description"
+              rows="4"
+            ></textarea>
+
           </label>
+
         </div>
 
       </div>
+
 
       <div class="actions">
 
@@ -560,9 +655,12 @@ footer{
 
   </div>
 
+
   <div class="panel">
 
-    <h3>Livros cadastrados</h3>
+    <h3>
+      Livros cadastrados
+    </h3>
 
     <div id="adminBooks"></div>
 
@@ -572,6 +670,7 @@ footer{
 
 </main>
 
+
 <footer>
   Uma biblioteca para ler, aprender e servir.
 </footer>
@@ -579,7 +678,10 @@ footer{
 
 <!-- LOGIN -->
 
-<div class="modal" id="authModal">
+<div
+  class="modal"
+  id="authModal"
+>
 
   <div class="modalbox">
 
@@ -589,44 +691,57 @@ footer{
 
     <div id="authMsg"></div>
 
+
     <form id="authForm">
 
-      <div id="nameField" class="hidden">
+      <div
+        id="nameField"
+        class="hidden"
+      >
 
         <label>
           Nome<br>
+
           <input id="fullName">
+
         </label>
 
       </div>
+
 
       <div style="margin-top:12px">
 
         <label>
           E-mail<br>
+
           <input
             id="email"
             type="email"
             required
             autocomplete="email"
           >
+
         </label>
 
       </div>
+
 
       <div style="margin-top:12px">
 
         <label>
           Senha<br>
+
           <input
             id="password"
             type="password"
             required
             autocomplete="current-password"
           >
+
         </label>
 
       </div>
+
 
       <div class="actions">
 
@@ -650,6 +765,7 @@ footer{
 
     </form>
 
+
     <div style="margin-top:18px">
 
       <button
@@ -661,6 +777,7 @@ footer{
       </button>
 
     </div>
+
 
     <div style="margin-top:20px">
 
@@ -679,13 +796,18 @@ footer{
 </div>
 
 
-<!-- RESET -->
+<!-- RECUPERAÇÃO -->
 
-<div class="modal" id="resetModal">
+<div
+  class="modal"
+  id="resetModal"
+>
 
   <div class="modalbox">
 
-    <h2>Nova senha</h2>
+    <h2>
+      Nova senha
+    </h2>
 
     <div id="resetMsg"></div>
 
@@ -702,6 +824,7 @@ footer{
         >
 
       </label>
+
 
       <div class="actions">
 
@@ -731,7 +854,10 @@ footer{
 
 <!-- CONFIRMAÇÃO -->
 
-<div class="modal" id="confirmModal">
+<div
+  class="modal"
+  id="confirmModal"
+>
 
   <div class="modalbox">
 
@@ -790,30 +916,35 @@ let confirmAction = null;
 
 
 const $ = id =>
-document.getElementById(id);
+  document.getElementById(id);
 
 
-const esc = s =>
-String(s ?? "").replace(
-  /[&<>"']/g,
-  c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
-  }[c])
-);
+const esc = value =>
+  String(value ?? "").replace(
+    /[&<>"']/g,
+    c => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[c])
+  );
 
 
-function message(el,text,type=""){
+function message(
+  element,
+  text,
+  type=""
+){
 
-  el.innerHTML =
+  element.innerHTML =
     text
       ? `<div class="msg ${type}">
-          ${esc(text)}
-        </div>`
+           ${esc(text)}
+         </div>`
       : "";
+
 }
 
 
@@ -844,22 +975,17 @@ function closeAuth(){
     .classList
     .remove("open");
 
-  message(
-    $("authMsg"),
-    ""
-  );
-
 }
 
 
 function showStatus(
-  t,
+  text,
   type=""
 ){
 
   message(
     $("status"),
-    t,
+    text,
     type
   );
 
@@ -867,13 +993,13 @@ function showStatus(
 
 
 function showAdminStatus(
-  t,
+  text,
   type=""
 ){
 
   message(
     $("adminStatus"),
-    t,
+    text,
     type
   );
 
@@ -883,7 +1009,7 @@ function showAdminStatus(
 function confirmBox(
   title,
   text,
-  fn
+  action
 ){
 
   $("confirmTitle")
@@ -892,7 +1018,7 @@ function confirmBox(
   $("confirmText")
     .textContent = text;
 
-  confirmAction = fn;
+  confirmAction = action;
 
   $("confirmModal")
     .classList
@@ -912,14 +1038,20 @@ function closeConfirm(){
 }
 
 
+/* =========================
+   PERFIL
+========================= */
+
 async function loadProfile(){
 
   if(!user){
 
     profile = null;
+
     return;
 
   }
+
 
   const {
     data,
@@ -930,21 +1062,32 @@ async function loadProfile(){
     .select(
       "id,email,full_name,role,active"
     )
-    .eq("id",user.id)
+    .eq(
+      "id",
+      user.id
+    )
     .maybeSingle();
+
 
   if(error){
 
     console.error(error);
+
     profile = null;
+
     return;
 
   }
+
 
   profile = data;
 
 }
 
+
+/* =========================
+   CATEGORIAS
+========================= */
 
 async function loadCategories(){
 
@@ -954,8 +1097,11 @@ async function loadCategories(){
   } =
   await db
     .from("categories")
-    .select("id,name")
+    .select(
+      "id,name"
+    )
     .order("name");
+
 
   if(error){
 
@@ -969,33 +1115,46 @@ async function loadCategories(){
 
   }
 
-  categories = data || [];
+
+  categories =
+    data || [];
+
 
   $("categoryFilter").innerHTML =
-    '<option value="">Todas as coleções</option>'
+    `<option value="">
+      Todas as coleções
+    </option>`
     +
     categories
-      .map(c =>
-        `<option value="${esc(c.id)}">
-          ${esc(c.name)}
-        </option>`
+      .map(
+        c =>
+          `<option value="${esc(c.id)}">
+            ${esc(c.name)}
+          </option>`
       )
       .join("");
 
 
   $("category").innerHTML =
-    '<option value="">Sem coleção</option>'
+    `<option value="">
+      Sem coleção
+    </option>`
     +
     categories
-      .map(c =>
-        `<option value="${esc(c.id)}">
-          ${esc(c.name)}
-        </option>`
+      .map(
+        c =>
+          `<option value="${esc(c.id)}">
+            ${esc(c.name)}
+          </option>`
       )
       .join("");
 
 }
 
+
+/* =========================
+   LIVROS
+========================= */
 
 async function loadBooks(){
 
@@ -1010,6 +1169,7 @@ async function loadBooks(){
     )
     .order("title");
 
+
   if(error){
 
     showStatus(
@@ -1022,14 +1182,19 @@ async function loadBooks(){
 
   }
 
-  books = data || [];
+
+  books =
+    data || [];
+
 
   await renderBooks();
 
 }
 
 
-async function availableCount(bookId){
+async function availableCount(
+  bookId
+){
 
   const {
     count,
@@ -1044,15 +1209,24 @@ async function availableCount(bookId){
         head:true
       }
     )
-    .eq("book_id",bookId)
-    .eq("status","available");
+    .eq(
+      "book_id",
+      bookId
+    )
+    .eq(
+      "status",
+      "available"
+    );
+
 
   if(error){
 
     console.error(error);
+
     return 0;
 
   }
+
 
   return count || 0;
 
@@ -1067,36 +1241,40 @@ async function renderBooks(){
       .trim()
       .toLowerCase();
 
-  const cat =
-    $("categoryFilter").value;
+  const selectedCategory =
+    $("categoryFilter")
+      .value;
 
 
-  const list =
-    books.filter(b =>
+  const filtered =
+    books.filter(
+      book =>
 
-      (
-        !term ||
-        `${b.title} ${b.author || ""}`
+        (
+          !term ||
+          `${book.title} ${
+            book.author || ""
+          }`
           .toLowerCase()
           .includes(term)
-      )
+        )
 
-      &&
+        &&
 
-      (
-        !cat ||
-        String(b.category_id) === String(cat)
-      )
-
+        (
+          !selectedCategory ||
+          String(book.category_id) ===
+          String(selectedCategory)
+        )
     );
 
 
-  if(!list.length){
+  if(!filtered.length){
 
     $("books").innerHTML =
-      '<div class="panel">' +
-      'Nenhum livro encontrado.' +
-      '</div>';
+      `<div class="panel">
+        Nenhum livro encontrado.
+      </div>`;
 
     return;
 
@@ -1104,88 +1282,108 @@ async function renderBooks(){
 
 
   $("books").innerHTML =
-    list
-      .map(b =>
+    filtered
+      .map(
+        book =>
 
-        `<article class="card">
+          `<article class="card">
 
-          <div>
+            <div>
 
-            <div class="meta">
-              ${esc(
-                b.categories?.name ||
-                "Acervo"
-              )}
+              <div class="meta">
+                ${esc(
+                  book.categories?.name ||
+                  "Acervo"
+                )}
+              </div>
+
+              <h3>
+                ${esc(book.title)}
+              </h3>
+
+              <div class="meta">
+                ${esc(
+                  book.author ||
+                  "Autor não informado"
+                )}
+              </div>
+
+              <div
+                class="meta"
+                id="count-${book.id}"
+                style="margin-top:12px"
+              >
+                Verificando exemplares...
+              </div>
+
             </div>
 
-            <h3>
-              ${esc(b.title)}
-            </h3>
+            <div id="action-${book.id}"></div>
 
-            <div class="meta">
-              ${esc(
-                b.author ||
-                "Autor não informado"
-              )}
-            </div>
-
-            <div
-              class="meta"
-              id="count-${b.id}"
-              style="margin-top:12px"
-            >
-              Verificando exemplares...
-            </div>
-
-          </div>
-
-          <div id="action-${b.id}">
-          </div>
-
-        </article>`
-
+          </article>`
       )
       .join("");
 
 
   await Promise.all(
 
-    list.map(
-      async b => {
+    filtered.map(
+      async book => {
 
-        const n =
-          await availableCount(b.id);
-
-        const ce =
-          $("count-" + b.id);
-
-        const ae =
-          $("action-" + b.id);
+        const available =
+          await availableCount(
+            book.id
+          );
 
 
-        if(ce){
+        const countElement =
+          $(
+            "count-" +
+            book.id
+          );
 
-          ce.textContent =
-            n
-              ? `${n} exemplar${
-                  n === 1 ? "" : "es"
-                } disponível${
-                  n === 1 ? "" : "is"
-                }`
-              : "Nenhum exemplar disponível";
+        const actionElement =
+          $(
+            "action-" +
+            book.id
+          );
+
+
+        if(countElement){
+
+          countElement.textContent =
+            available > 0
+
+              ?
+
+              `${available}
+               exemplar${
+                 available === 1
+                   ? ""
+                   : "es"
+               }
+               disponível${
+                 available === 1
+                   ? ""
+                   : "is"
+               }`
+
+              :
+
+              "Nenhum exemplar disponível";
 
         }
 
 
-        if(ae){
+        if(actionElement){
 
-          if(user && n > 0){
+          if(user && available > 0){
 
-            ae.innerHTML =
+            actionElement.innerHTML =
               `<button
                 class="btn"
                 type="button"
-                onclick="borrowBook('${b.id}')"
+                onclick="borrowBook('${book.id}')"
               >
                 Quero emprestar
               </button>`;
@@ -1194,7 +1392,7 @@ async function renderBooks(){
 
           else if(user){
 
-            ae.innerHTML =
+            actionElement.innerHTML =
               `<button
                 class="btn secondary"
                 type="button"
@@ -1207,7 +1405,7 @@ async function renderBooks(){
 
           else{
 
-            ae.innerHTML =
+            actionElement.innerHTML =
               `<button
                 class="btn secondary"
                 type="button"
@@ -1228,11 +1426,18 @@ async function renderBooks(){
 }
 
 
-async function borrowBook(bookId){
+/* =========================
+   EMPRESTAR
+========================= */
+
+async function borrowBook(
+  bookId
+){
 
   if(!user){
 
     openAuth();
+
     return;
 
   }
@@ -1278,11 +1483,12 @@ async function borrowBook(bookId){
 
   await loadMyLoans();
 
-  if(isAdmin())
-    await loadAdminBooks();
-
 }
 
+
+/* =========================
+   MEUS EMPRÉSTIMOS
+========================= */
 
 async function loadMyLoans(){
 
@@ -1299,7 +1505,10 @@ async function loadMyLoans(){
     .select(
       "id,due_date,status,returned_at,borrowed_at,book_copies(inventory_code,books(title,author))"
     )
-    .eq("user_id",user.id)
+    .eq(
+      "user_id",
+      user.id
+    )
     .order(
       "borrowed_at",
       {
@@ -1320,30 +1529,65 @@ async function loadMyLoans(){
   }
 
 
+  if(!(data || []).length){
+
+    $("myLoans").innerHTML =
+      `<div class="panel">
+        Você ainda não possui empréstimos.
+      </div>`;
+
+    return;
+
+  }
+
+
   $("myLoans").innerHTML =
+    data
+      .map(
+        loan => {
 
-    (data || []).length
+          let statusText =
+            "Devolvido";
 
-      ?
 
-      (data || [])
-        .map(l =>
+          if(
+            loan.status ===
+            "borrowed"
+          ){
 
-          `<article class="card">
+            statusText =
+              "Em empréstimo";
+
+          }
+
+
+          if(
+            loan.status ===
+            "overdue"
+          ){
+
+            statusText =
+              "Em atraso";
+
+          }
+
+
+          return `
+
+          <article class="card">
 
             <div>
 
               <div class="meta">
-                ${
-                  l.status === "active"
-                    ? "Em empréstimo"
-                    : "Devolvido"
-                }
+                ${statusText}
               </div>
 
               <h3>
                 ${esc(
-                  l.book_copies?.books?.title ||
+                  loan
+                    .book_copies
+                    ?.books
+                    ?.title ||
                   "Livro"
                 )}
               </h3>
@@ -1351,33 +1595,58 @@ async function loadMyLoans(){
               <div class="meta">
                 Exemplar:
                 ${esc(
-                  l.book_copies?.inventory_code ||
+                  loan
+                    .book_copies
+                    ?.inventory_code ||
                   "—"
                 )}
               </div>
 
-              <div class="meta">
+              <div
+                class="meta"
+                style="margin-top:8px"
+              >
                 Devolver à administração até:
                 ${esc(
-                  l.due_date || "—"
+                  loan.due_date ||
+                  "—"
                 )}
               </div>
 
+              ${
+                loan.status ===
+                "borrowed"
+
+                ?
+
+                `<div
+                  class="meta"
+                  style="margin-top:10px"
+                >
+                  Entregue o livro fisicamente
+                  ao administrador para registrar
+                  a devolução.
+                </div>`
+
+                :
+
+                ""
+              }
+
             </div>
 
-          </article>`
+          </article>`;
 
-        )
-        .join("")
-
-      :
-
-      `<div class="panel">
-        Você ainda não possui empréstimos.
-      </div>`;
+        }
+      )
+      .join("");
 
 }
 
+
+/* =========================
+   CADASTRAR LIVRO
+========================= */
 
 async function saveBook(e){
 
@@ -1406,130 +1675,83 @@ async function saveBook(e){
     );
 
 
-  const payload = {
+  $("saveBookBtn").disabled =
+    true;
 
-    title:
-      $("title")
-        .value
-        .trim(),
-
-    author:
-      $("author")
-        .value
-        .trim() || null,
-
-    isbn:
-      $("isbn")
-        .value
-        .trim() || null,
-
-    edition:
-      $("edition")
-        .value
-        .trim() || null,
-
-    publication_year:
-      $("year").value
-        ? Number(
-            $("year").value
-          )
-        : null,
-
-    description:
-      $("description")
-        .value
-        .trim() || null,
-
-    category_id:
-      $("category").value || null
-
-  };
-
-
-  $("saveBookBtn").disabled = true;
-
-  $("saveBookBtn")
-    .textContent =
+  $("saveBookBtn").textContent =
     "Cadastrando...";
 
 
   try{
 
     const {
-      data:book,
+      data,
       error
     } =
-    await db
-      .from("books")
-      .insert(payload)
-      .select(
-        "id,title"
-      )
-      .single();
+    await db.rpc(
+      "create_book_with_copies",
+      {
+        p_title:
+          $("title")
+            .value
+            .trim(),
+
+        p_author:
+          $("author")
+            .value
+            .trim() ||
+          null,
+
+        p_isbn:
+          $("isbn")
+            .value
+            .trim() ||
+          null,
+
+        p_edition:
+          $("edition")
+            .value
+            .trim() ||
+          null,
+
+        p_publication_year:
+          $("year").value
+            ? Number(
+                $("year").value
+              )
+            : null,
+
+        p_description:
+          $("description")
+            .value
+            .trim() ||
+          null,
+
+        p_category_id:
+          $("category").value ||
+          null,
+
+        p_quantity:
+          quantity
+      }
+    );
 
 
     if(error)
       throw error;
 
 
-    const prefix =
-      String(book.id)
-        .replace(/-/g,"")
-        .slice(0,6)
-        .toUpperCase();
-
-
-    const copies =
-      Array.from(
-        {
-          length:quantity
-        },
-        (_,i) => ({
-
-          book_id:book.id,
-
-          inventory_code:
-            `CAR-${prefix}-${String(
-              i + 1
-            ).padStart(3,"0")}`,
-
-          status:"available"
-
-        })
-      );
-
-
-    const {
-      error:copyError
-    } =
-    await db
-      .from("book_copies")
-      .insert(copies);
-
-
-    if(copyError){
-
-      await db
-        .from("books")
-        .delete()
-        .eq("id",book.id);
-
-      throw new Error(
-        "Não foi possível criar os exemplares: "
-        + copyError.message
-      );
-
-    }
-
-
     $("bookForm").reset();
 
-    $("quantity").value = 1;
+    $("quantity").value =
+      1;
 
 
     showAdminStatus(
       `Livro cadastrado com ${quantity} exemplar${
-        quantity === 1 ? "" : "es"
+        quantity === 1
+          ? ""
+          : "es"
       }.`,
       "ok"
     );
@@ -1542,10 +1764,10 @@ async function saveBook(e){
 
   }
 
-  catch(err){
+  catch(error){
 
     showAdminStatus(
-      err.message ||
+      error.message ||
       "Erro ao cadastrar livro.",
       "error"
     );
@@ -1554,7 +1776,8 @@ async function saveBook(e){
 
   finally{
 
-    $("saveBookBtn").disabled = false;
+    $("saveBookBtn")
+      .disabled = false;
 
     $("saveBookBtn")
       .textContent =
@@ -1564,6 +1787,10 @@ async function saveBook(e){
 
 }
 
+
+/* =========================
+   ADMINISTRAÇÃO
+========================= */
 
 async function loadAdminBooks(){
 
@@ -1595,17 +1822,19 @@ async function loadAdminBooks(){
   }
 
 
-  const ids =
+  const borrowedCopyIds =
     (data || [])
       .flatMap(
-        b =>
-          (b.book_copies || [])
+        book =>
+          (book.book_copies || [])
             .filter(
-              c =>
-                c.status === "borrowed"
+              copy =>
+                copy.status ===
+                "borrowed"
             )
             .map(
-              c => c.id
+              copy =>
+                copy.id
             )
       );
 
@@ -1613,9 +1842,11 @@ async function loadAdminBooks(){
   let loans = [];
 
 
-  if(ids.length){
+  if(
+    borrowedCopyIds.length
+  ){
 
-    const r =
+    const result =
       await db
         .from("loans")
         .select(
@@ -1623,16 +1854,20 @@ async function loadAdminBooks(){
         )
         .in(
           "copy_id",
-          ids
+          borrowedCopyIds
         )
         .eq(
           "status",
-          "active"
+          "borrowed"
         );
 
 
-    if(!r.error)
-      loans = r.data || [];
+    if(!result.error){
+
+      loans =
+        result.data || [];
+
+    }
 
   }
 
@@ -1640,37 +1875,46 @@ async function loadAdminBooks(){
   const loanByCopy =
     Object.fromEntries(
       loans.map(
-        l => [
-          l.copy_id,
-          l
+        loan => [
+          loan.copy_id,
+          loan
         ]
       )
     );
 
 
+  if(!(data || []).length){
+
+    $("adminBooks").innerHTML =
+      `<div class="panel">
+        Nenhum livro cadastrado.
+      </div>`;
+
+    return;
+
+  }
+
+
   $("adminBooks").innerHTML =
-
-    (data || []).length
-
-      ?
-
-      (data || [])
-        .map(b => {
+    data
+      .map(
+        book => {
 
           const copies =
-            b.book_copies || [];
+            book.book_copies ||
+            [];
 
-          const av =
+          const available =
             copies.filter(
-              c =>
-                c.status ===
+              copy =>
+                copy.status ===
                 "available"
             ).length;
 
-          const bor =
+          const borrowed =
             copies.filter(
-              c =>
-                c.status ===
+              copy =>
+                copy.status ===
                 "borrowed"
             ).length;
 
@@ -1684,20 +1928,23 @@ async function loadAdminBooks(){
               <div>
 
                 <strong>
-                  ${esc(b.title)}
+                  ${esc(book.title)}
                 </strong>
 
                 <div class="meta">
                   ${esc(
-                    b.author ||
+                    book.author ||
                     "Autor não informado"
                   )}
+
                   ·
+
                   ${esc(
-                    b.categories?.name ||
+                    book.categories?.name ||
                     "Sem coleção"
                   )}
                 </div>
+
 
                 <div
                   style="margin-top:8px"
@@ -1713,23 +1960,23 @@ async function loadAdminBooks(){
                   </span>
 
                   <span class="badge">
-                    ${av}
+                    ${available}
                     disponível${
-                      av === 1
+                      available === 1
                         ? ""
                         : "is"
                     }
                   </span>
 
                   ${
-                    bor
+                    borrowed
 
                     ?
 
                     `<span class="badge borrowed">
-                      ${bor}
+                      ${borrowed}
                       emprestado${
-                        bor === 1
+                        borrowed === 1
                           ? ""
                           : "s"
                       }
@@ -1748,7 +1995,7 @@ async function loadAdminBooks(){
               <button
                 class="btn danger"
                 type="button"
-                onclick="deleteBook('${b.id}')"
+                onclick="deleteBook('${book.id}')"
               >
                 Excluir livro
               </button>
@@ -1764,88 +2011,99 @@ async function loadAdminBooks(){
                 ?
 
                 copies
-                  .map(c => {
+                  .map(
+                    copy => {
 
-                    const l =
-                      loanByCopy[c.id];
+                      const loan =
+                        loanByCopy[
+                          copy.id
+                        ];
 
 
-                    return `
+                      return `
 
-                    <div class="copy-item">
+                      <div class="copy-item">
 
-                      <div>
+                        <div>
 
-                        <strong>
-                          ${esc(
-                            c.inventory_code
-                          )}
-                        </strong>
+                          <strong>
+                            ${esc(
+                              copy.inventory_code
+                            )}
+                          </strong>
 
-                        <small>
-                          ·
+                          <small>
+                            ·
+
+                            ${
+                              copy.status ===
+                              "available"
+
+                                ? "Disponível"
+
+                                : "Emprestado"
+                            }
+
+                          </small>
+
+
                           ${
-                            c.status ===
-                            "available"
-                              ? "Disponível"
-                              : "Emprestado"
+                            loan
+
+                            ?
+
+                            `<br>
+
+                            <small>
+                              Com:
+                              ${esc(
+                                loan
+                                  .profiles
+                                  ?.full_name ||
+                                loan
+                                  .profiles
+                                  ?.email ||
+                                "usuário"
+                              )}
+
+                              · até
+                              ${esc(
+                                loan.due_date ||
+                                "—"
+                              )}
+                            </small>`
+
+                            :
+
+                            ""
                           }
-                        </small>
+
+                        </div>
+
 
                         ${
-                          l
+                          copy.status ===
+                          "borrowed"
 
                           ?
 
-                          `<br>
-                          <small>
-                            Com:
-                            ${esc(
-                              l.profiles?.full_name ||
-                              l.profiles?.email ||
-                              "usuário"
-                            )}
-
-                            · até
-                            ${esc(
-                              l.due_date ||
-                              "—"
-                            )}
-                          </small>`
+                          `<button
+                            class="btn secondary"
+                            type="button"
+                            onclick="adminReturn('${loan?.id || ""}')"
+                          >
+                            Confirmar devolução
+                          </button>`
 
                           :
 
                           ""
                         }
 
-                      </div>
+                      </div>`;
 
-
-                      ${
-                        c.status ===
-                        "borrowed"
-
-                        ?
-
-                        `<button
-                          class="btn secondary"
-                          type="button"
-                          onclick="adminReturn(
-                            '${c.id}',
-                            '${l?.id || ""}'
-                          )"
-                        >
-                          Confirmar devolução
-                        </button>`
-
-                        :
-
-                        ""
-                      }
-
-                    </div>`;
-
-                  })
+                    }
+                  )
                   .join("")
 
                 :
@@ -1859,20 +2117,18 @@ async function loadAdminBooks(){
 
           </div>`;
 
-        })
-        .join("")
-
-      :
-
-      `<div class="panel">
-        Nenhum livro cadastrado.
-      </div>`;
+        }
+      )
+      .join("");
 
 }
 
 
+/* =========================
+   DEVOLUÇÃO DO ADMIN
+========================= */
+
 async function adminReturn(
-  copyId,
   loanId
 ){
 
@@ -1914,7 +2170,8 @@ async function adminReturn(
       await db.rpc(
         "admin_return_loan",
         {
-          p_loan_id:loanId
+          p_loan_id:
+            loanId
         }
       );
 
@@ -1940,6 +2197,8 @@ async function adminReturn(
 
       await loadBooks();
 
+      await loadMyLoans();
+
       await loadAdminBooks();
 
     }
@@ -1949,7 +2208,13 @@ async function adminReturn(
 }
 
 
-async function deleteBook(bookId){
+/* =========================
+   EXCLUIR LIVRO
+========================= */
+
+async function deleteBook(
+  bookId
+){
 
   if(!isAdmin()){
 
@@ -1963,102 +2228,10 @@ async function deleteBook(bookId){
   }
 
 
-  const {
-    data:copies,
-    error
-  } =
-  await db
-    .from("book_copies")
-    .select(
-      "id,status"
-    )
-    .eq(
-      "book_id",
-      bookId
-    );
-
-
-  if(error){
-
-    showAdminStatus(
-      "Não consegui verificar os exemplares: "
-      + error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  if(
-    (copies || [])
-      .some(
-        c =>
-          c.status ===
-          "borrowed"
-      )
-  ){
-
-    showAdminStatus(
-      "Este livro não pode ser excluído enquanto houver exemplar emprestado. Primeiro registre a devolução.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const {
-    data:loans,
-    error:loanError
-  } =
-  await db
-    .from("loans")
-    .select(
-      "id,copy_id"
-    )
-    .in(
-      "copy_id",
-      (copies || [])
-        .map(
-          c => c.id
-        )
-    );
-
-
-  if(loanError){
-
-    showAdminStatus(
-      "Não consegui verificar o histórico: "
-      + loanError.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  if(
-    (loans || []).length
-  ){
-
-    showAdminStatus(
-      "Este livro possui histórico de empréstimos e não será apagado para preservar o histórico da biblioteca.",
-      "error"
-    );
-
-    return;
-
-  }
-
-
   const book =
     books.find(
-      b =>
-        String(b.id) ===
+      item =>
+        String(item.id) ===
         String(bookId)
     );
 
@@ -2070,52 +2243,27 @@ async function deleteBook(bookId){
     `Excluir “${
       book?.title ||
       "este livro"
-    }” e todos os exemplares ainda sem histórico? Esta ação não pode ser desfeita.`,
+    }”? Livros com histórico de empréstimos serão protegidos pelo banco.`,
 
     async () => {
 
       const {
-        error:ce
+        error
       } =
-      await db
-        .from("book_copies")
-        .delete()
-        .eq(
-          "book_id",
-          bookId
-        );
+      await db.rpc(
+        "admin_delete_book",
+        {
+          p_book_id:
+            bookId
+        }
+      );
 
 
-      if(ce){
-
-        showAdminStatus(
-          "Não foi possível excluir os exemplares: "
-          + ce.message,
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      const {
-        error:be
-      } =
-      await db
-        .from("books")
-        .delete()
-        .eq(
-          "id",
-          bookId
-        );
-
-
-      if(be){
+      if(error){
 
         showAdminStatus(
           "Não foi possível excluir o livro: "
-          + be.message,
+          + error.message,
           "error"
         );
 
@@ -2140,6 +2288,10 @@ async function deleteBook(bookId){
 
 }
 
+
+/* =========================
+   INTERFACE
+========================= */
 
 function updateUI(){
 
@@ -2185,15 +2337,25 @@ function updateUI(){
     );
 
 
-  if(user)
+  if(user){
+
     loadMyLoans();
 
+  }
 
-  if(isAdmin())
+
+  if(isAdmin()){
+
     loadAdminBooks();
+
+  }
 
 }
 
+
+/* =========================
+   LOGIN / CADASTRO
+========================= */
 
 async function authSubmit(e){
 
@@ -2217,6 +2379,13 @@ async function authSubmit(e){
 
   $("authSubmit")
     .disabled = true;
+
+
+  $("authSubmit")
+    .textContent =
+    signupMode
+      ? "Criando..."
+      : "Entrando...";
 
 
   message(
@@ -2257,7 +2426,7 @@ async function authSubmit(e){
 
         message(
           $("authMsg"),
-          "Conta criada. Se a confirmação de e-mail estiver ativa no Supabase, confirme o e-mail antes de entrar.",
+          "Conta criada. Se a confirmação de e-mail estiver ativa, confirme seu e-mail antes de entrar.",
           "ok"
         );
 
@@ -2276,11 +2445,13 @@ async function authSubmit(e){
       const {
         error
       } =
-      await db.auth
-        .signInWithPassword({
-          email,
-          password
-        });
+      await db.auth.signInWithPassword({
+
+        email,
+
+        password
+
+      });
 
 
       if(error)
@@ -2293,11 +2464,11 @@ async function authSubmit(e){
 
   }
 
-  catch(err){
+  catch(error){
 
     message(
       $("authMsg"),
-      err.message ||
+      error.message ||
       "Erro ao entrar.",
       "error"
     );
@@ -2319,6 +2490,10 @@ async function authSubmit(e){
 
 }
 
+
+/* =========================
+   RECUPERAÇÃO
+========================= */
 
 async function forgot(){
 
@@ -2422,6 +2597,10 @@ async function logout(){
 
 }
 
+
+/* =========================
+   EVENTOS
+========================= */
 
 $("loginBtn")
   .addEventListener(
@@ -2549,58 +2728,76 @@ $("confirmYes")
     "click",
     async () => {
 
-      const fn =
+      const action =
         confirmAction;
 
       closeConfirm();
 
-      if(fn)
-        await fn();
+      if(action)
+        await action();
 
     }
   );
 
 
+/* =========================
+   AUTENTICAÇÃO
+========================= */
+
 db.auth.onAuthStateChange(
-  async (
+  (
     event,
     session
   ) => {
 
-    user =
-      session?.user ||
-      null;
+    setTimeout(
+      async () => {
+
+        user =
+          session?.user ||
+          null;
 
 
-    if(user)
-      await loadProfile();
+        if(user){
 
-    else
-      profile = null;
+          await loadProfile();
+
+        }
+
+        else{
+
+          profile = null;
+
+        }
 
 
-    updateUI();
+        updateUI();
 
 
-    if(
-      event ===
-      "PASSWORD_RECOVERY"
-    ){
+        if(
+          event ===
+          "PASSWORD_RECOVERY"
+        ){
 
-      $("resetMsg")
-        .innerHTML = "";
+          $("resetModal")
+            .classList
+            .add("open");
 
-      $("resetModal")
-        .classList
-        .add("open");
+        }
 
-    }
+      },
+      0
+    );
 
   }
 );
 
 
-(async function start(){
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+(async function(){
 
   showStatus(
     "Carregando acervo..."
@@ -2624,12 +2821,14 @@ db.auth.onAuthStateChange(
     null;
 
 
-  if(user)
+  if(user){
+
     await loadProfile();
+
+  }
 
 
   updateUI();
-
 
   showStatus("");
 
