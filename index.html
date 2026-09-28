@@ -1,414 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Carioca Library</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{
-  --green:#173c32;
-  --green2:#245447;
-  --cream:#f6f1e8;
-  --paper:#fffdf8;
-  --ink:#18201d;
-  --muted:#68716d;
-  --line:#d9d4c9;
-  --terra:#a75e45;
+  --green:#183b32;
+  --green2:#245247;
+  --cream:#f4f0e7;
+  --paper:#fbfaf6;
+  --ink:#18231f;
+  --muted:#69726d;
+  --line:#d8d4c9;
+  --terra:#a9674d
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
   background:var(--cream);
   color:var(--ink);
-  font-family:"DM Sans",sans-serif;
-}
-
-button,
-input,
-select,
-textarea{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
+  font-family:"DM Sans",sans-serif
 }
 
 header{
-  background:var(--green);
-  color:#fff;
-  padding:20px 6vw;
+  height:76px;
+  border-bottom:1px solid var(--line);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:16px;
+  justify-content:space-between;
+  padding:0 6%;
+  background:rgba(251,250,246,.94);
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:10
 }
 
 .logo{
-  font:500 27px "Bodoni Moda",serif;
+  font-family:"Bodoni Moda",serif;
+  font-size:25px;
+  color:var(--green)
 }
 
-.actions{
+nav{
   display:flex;
-  gap:8px;
-  align-items:center;
+  gap:18px;
+  align-items:center
+}
+
+button{
+  font:inherit;
+  cursor:pointer
 }
 
 .btn{
-  border:1px solid transparent;
+  border:0;
   background:var(--green);
   color:#fff;
-  padding:11px 16px;
-  border-radius:2px;
-  font-weight:600;
+  padding:11px 17px;
+  border-radius:4px
 }
 
-.btn.light{
+.btn:hover{
+  background:var(--green2)
+}
+
+.btn.secondary{
   background:transparent;
-  border-color:#ffffff66;
-}
-
-.btn.paper{
-  background:var(--paper);
   color:var(--green);
-  border-color:var(--line);
-}
-
-.btn.danger{
-  background:var(--terra);
+  border:1px solid var(--green)
 }
 
 main{
-  max-width:1240px;
+  max-width:1180px;
   margin:auto;
-  padding:0 6vw 70px;
+  padding:0 5% 70px
 }
 
 .hero{
-  min-height:470px;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:45px;
-  align-items:center;
-  border-bottom:1px solid var(--line);
+  padding:75px 0 55px;
+  border-bottom:1px solid var(--line)
 }
 
 .eyebrow{
+  letter-spacing:.16em;
   text-transform:uppercase;
-  letter-spacing:.17em;
   font-size:11px;
-  font-weight:700;
-  color:var(--terra);
+  color:var(--terra)
 }
 
-h1,
-h2,
-.book-title{
+h1{
   font-family:"Bodoni Moda",serif;
-  font-weight:400;
-}
-
-.hero h1{
-  font-size:clamp(52px,7vw,90px);
+  font-weight:500;
+  font-size:clamp(48px,8vw,88px);
   line-height:.95;
-  margin:16px 0 25px;
+  max-width:780px;
+  margin:17px 0
 }
 
 .hero p{
-  max-width:580px;
+  max-width:600px;
   color:var(--muted);
-  font-size:18px;
-  line-height:1.7;
+  font-size:17px;
+  line-height:1.7
 }
 
-.hero-art{
-  min-height:350px;
-  background:linear-gradient(
-    135deg,
-    #294f44,
-    #102f28
-  );
+.toolbar{
   display:flex;
-  align-items:end;
-  padding:32px;
-  color:#fff;
+  gap:10px;
+  margin:35px 0 25px
 }
 
-.hero-art span{
-  font:30px "Bodoni Moda",serif;
-  max-width:280px;
+.toolbar input{
+  flex:1
 }
 
-.section{
-  padding:55px 0;
-}
-
-.head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:20px;
-  margin-bottom:25px;
-}
-
-.section h2{
-  font-size:42px;
-  margin:5px 0;
-}
-
-.search{
-  display:flex;
-  gap:8px;
-  width:min(600px,100%);
-}
-
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
-  padding:13px 14px;
+  padding:12px;
   border:1px solid var(--line);
-  background:var(--paper);
+  border-radius:4px;
+  background:#fff;
   color:var(--ink);
-  border-radius:2px;
-  outline:0;
+  font:inherit
 }
 
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:var(--green);
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:24px;
-}
-
-.chip{
-  border:1px solid var(--line);
-  background:transparent;
-  border-radius:30px;
-  padding:8px 13px;
-  color:var(--muted);
-}
-
-.chip.active{
-  background:var(--green);
-  border-color:var(--green);
-  color:#fff;
-}
-
-.books{
+.grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.book{
-  background:var(--paper);
-  border:1px solid var(--line);
-  padding:22px;
-  min-height:225px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.book-title{
-  font-size:28px;
-  line-height:1.12;
-}
-
-.author{
-  color:var(--muted);
-  margin-top:7px;
-}
-
-.meta{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:14px;
-}
-
-.book-actions{
-  margin-top:18px;
-}
-
-.card,
-.row,
-.empty,
-.loading{
-  background:var(--paper);
-  border:1px solid var(--line);
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:18px
 }
 
 .card{
-  padding:24px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:22px;
+  min-height:180px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
 }
 
-.empty,
-.loading{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
+.card h3{
+  font-family:"Bodoni Moda",serif;
+  font-size:23px;
+  font-weight:500;
+  margin:0 0 8px
 }
 
-.row{
-  padding:17px;
-  margin-bottom:8px;
-  display:grid;
-  grid-template-columns:1fr auto auto;
-  gap:18px;
-  align-items:center;
+.meta{
+  font-size:13px;
+  color:var(--muted)
 }
 
-.row strong,
-.row span{
-  display:block;
+section{
+  padding-top:45px
 }
 
-.row span,
-.row small{
-  color:var(--muted);
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:18px
+}
+
+.section-title h2{
+  font-family:"Bodoni Moda",serif;
+  font-weight:500;
+  font-size:34px;
+  margin:0
 }
 
 .hidden{
-  display:none!important;
+  display:none!important
+}
+
+.panel{
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:25px;
+  margin-top:20px
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
+}
+
+.field.full{
+  grid-column:1/-1
+}
+
+.msg{
+  padding:12px 14px;
+  margin:12px 0;
+  border-radius:4px;
+  font-size:14px;
+  background:#eee9dc
+}
+
+.msg.error{
+  background:#f3ddd6;
+  color:#713b2a
+}
+
+.msg.ok{
+  background:#dfece5;
+  color:#234d3d
 }
 
 .modal{
   position:fixed;
   inset:0;
-  background:#0b1712a8;
+  background:rgba(20,29,25,.55);
   display:none;
   align-items:center;
   justify-content:center;
-  padding:18px;
-  z-index:30;
+  padding:20px;
+  z-index:30
 }
 
 .modal.open{
-  display:flex;
+  display:flex
 }
 
-.modal-box{
+.modalbox{
   background:var(--paper);
-  width:min(520px,100%);
-  max-height:90vh;
-  overflow:auto;
+  width:min(430px,100%);
   padding:30px;
+  border:1px solid var(--line)
 }
 
-.close{
-  float:right;
-  border:0;
-  background:none;
-  font-size:26px;
-  color:var(--muted);
+.modalbox h2{
+  font-family:"Bodoni Moda",serif;
+  font-weight:500;
+  font-size:34px;
+  margin:0 0 20px
 }
 
-.modal h2{
-  font-size:36px;
-  margin:0 0 20px;
-}
-
-.form{
-  display:grid;
-  gap:12px;
-}
-
-.notice{
-  padding:12px 14px;
-  background:#eee9de;
-  border-left:3px solid var(--terra);
-  margin-bottom:14px;
-  line-height:1.45;
-}
-
-.success{
-  border-left-color:var(--green);
-}
-
-.tabs{
+.actions{
   display:flex;
-  gap:3px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:20px;
-  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+  align-items:center
 }
 
-.tab{
+.link{
   border:0;
   background:none;
-  padding:12px 16px;
-  color:var(--muted);
+  color:var(--green);
+  text-decoration:underline;
+  padding:0
 }
 
-.tab.active{
-  color:var(--green);
-  font-weight:700;
-  border-bottom:2px solid var(--green);
+.admin{
+  border-top:1px solid var(--line);
+  margin-top:45px;
+  padding-top:35px
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--paper)
+}
+
+th,td{
+  text-align:left;
+  padding:13px;
+  border-bottom:1px solid var(--line);
+  font-size:14px
+}
+
+th{
+  font-weight:600;
+  color:var(--green)
 }
 
 footer{
   border-top:1px solid var(--line);
-  padding:28px 6vw;
+  padding:25px 6%;
   color:var(--muted);
-  font-size:13px;
+  font-size:13px
 }
 
-@media(max-width:800px){
+@media(max-width:650px){
 
   header{
-    padding:17px 5vw;
+    padding:0 5%;
+    height:68px
+  }
+
+  .logo{
+    font-size:21px
+  }
+
+  nav .hide-mobile{
+    display:none
   }
 
   .hero{
-    grid-template-columns:1fr;
-    padding:45px 0;
+    padding:50px 0 40px
   }
 
-  .hero-art{
-    min-height:250px;
+  .form-grid{
+    grid-template-columns:1fr
   }
 
-  .books{
-    grid-template-columns:1fr;
+  .field.full{
+    grid-column:auto
   }
 
-  .head{
-    display:block;
+  .toolbar{
+    flex-direction:column
   }
 
-  .search{
-    margin-top:18px;
-  }
-
-  .row{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:58px;
-  }
 }
 </style>
 </head>
@@ -421,28 +335,30 @@ footer{
     Carioca Library
   </div>
 
-  <div class="actions">
-
-    <span
-      id="userName"
-      class="hidden">
-    </span>
+  <nav>
 
     <button
+      class="btn secondary hide-mobile"
+      id="userLabel"
+      type="button">
+      Visitante
+    </button>
+
+    <button
+      class="btn"
       id="loginBtn"
-      class="btn light"
-      onclick="openAuth()">
+      type="button">
       Entrar
     </button>
 
     <button
+      class="btn hidden"
       id="logoutBtn"
-      class="btn light hidden"
-      onclick="logout()">
+      type="button">
       Sair
     </button>
 
-  </div>
+  </nav>
 
 </header>
 
@@ -451,93 +367,46 @@ footer{
 
 <section class="hero">
 
-  <div>
-
-    <div class="eyebrow">
-      Acervo da JOCUM Carioca
-    </div>
-
-    <h1>
-      Ler, aprender e servir.
-    </h1>
-
-    <p>
-      Um espaço para encontrar histórias,
-      conhecimento e recursos.
-    </p>
-
-    <button
-      class="btn"
-      onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
-      Explorar o acervo
-    </button>
-
+  <div class="eyebrow">
+    Acervo da JOCUM Carioca
   </div>
 
+  <h1>
+    Ler, aprender e servir.
+  </h1>
 
-  <div class="hero-art">
-
-    <span>
-      Uma biblioteca para ler,
-      aprender e servir.
-    </span>
-
-  </div>
+  <p>
+    Um espaço para encontrar histórias, conhecimento e recursos.
+  </p>
 
 </section>
 
 
-<section
-  id="catalogo"
-  class="section">
+<section>
 
-  <div class="head">
+  <div class="section-title">
+    <h2>Acervo</h2>
+  </div>
 
-    <div>
+  <div class="toolbar">
 
-      <div class="eyebrow">
-        Acervo
-      </div>
+    <input
+      id="search"
+      placeholder="Buscar por título ou autor...">
 
-      <h2>
-        Livros
-      </h2>
-
-    </div>
-
-
-    <div class="search">
-
-      <input
-        id="search"
-        placeholder="Buscar por título ou autor..."
-        oninput="renderBooks()">
-
-      <button
-        class="btn paper"
-        onclick="clearSearch()">
-        Limpar
-      </button>
-
-    </div>
+    <select id="categoryFilter">
+      <option value="">
+        Todas as coleções
+      </option>
+    </select>
 
   </div>
 
-
-  <div
-    id="chips"
-    class="chips">
-  </div>
-
+  <div id="status"></div>
 
   <div
     id="books"
-    class="books">
-
-    <div class="loading">
-      Carregando acervo...
-    </div>
-
+    class="grid">
   </div>
 
 </section>
@@ -545,25 +414,15 @@ footer{
 
 <section
   id="myArea"
-  class="section hidden">
+  class="hidden">
 
-  <div class="head">
-
-    <div>
-
-      <div class="eyebrow">
-        Minha conta
-      </div>
-
-      <h2>
-        Meus empréstimos
-      </h2>
-
-    </div>
-
+  <div class="section-title">
+    <h2>Meus empréstimos</h2>
   </div>
 
-  <div id="myLoans">
+  <div
+    id="myLoans"
+    class="grid">
   </div>
 
 </section>
@@ -571,187 +430,144 @@ footer{
 
 <section
   id="adminArea"
-  class="section hidden">
+  class="admin hidden">
 
-  <div class="head">
+  <div class="section-title">
+    <h2>Administração</h2>
+  </div>
 
-    <div>
+  <div id="adminStatus"></div>
 
-      <div class="eyebrow">
-        Administração
+
+  <div class="panel">
+
+    <h3>
+      Adicionar livro
+    </h3>
+
+    <form id="bookForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>
+            Título<br>
+
+            <input
+              id="title"
+              required>
+
+          </label>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Autor<br>
+
+            <input
+              id="author">
+
+          </label>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            ISBN<br>
+
+            <input
+              id="isbn">
+
+          </label>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Edição<br>
+
+            <input
+              id="edition">
+
+          </label>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Ano<br>
+
+            <input
+              id="year"
+              type="number">
+
+          </label>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Coleção<br>
+
+            <select id="category"></select>
+
+          </label>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Descrição<br>
+
+            <textarea
+              id="description"
+              rows="4"></textarea>
+
+          </label>
+
+        </div>
+
       </div>
 
-      <h2>
-        Biblioteca
-      </h2>
 
-    </div>
-
-  </div>
-
-
-  <div class="tabs">
-
-    <button
-      class="tab active"
-      onclick="adminTab('books',this)">
-      Livros
-    </button>
-
-    <button
-      class="tab"
-      onclick="adminTab('categories',this)">
-      Coleções
-    </button>
-
-    <button
-      class="tab"
-      onclick="adminTab('loans',this)">
-      Empréstimos
-    </button>
-
-    <button
-      class="tab"
-      onclick="adminTab('users',this)">
-      Usuários
-    </button>
-
-  </div>
-
-
-  <div id="panel-books">
-
-    <div
-      class="card"
-      style="margin-bottom:18px">
-
-      <h3>
-        Cadastrar novo livro
-      </h3>
-
-      <form
-        id="bookForm"
-        class="form">
-
-        <input
-          id="title"
-          required
-          placeholder="Título *">
-
-        <input
-          id="author"
-          placeholder="Autor">
-
-        <div
-          style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-
-          <input
-            id="isbn"
-            placeholder="ISBN">
-
-          <input
-            id="edition"
-            placeholder="Edição">
-
-        </div>
-
-
-        <div
-          style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-
-          <input
-            id="year"
-            type="number"
-            placeholder="Ano">
-
-          <select id="category">
-
-            <option value="">
-              Sem coleção
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <input
-          id="cover"
-          placeholder="URL da capa (opcional)">
-
-
-        <textarea
-          id="description"
-          rows="3"
-          placeholder="Descrição (opcional)">
-        </textarea>
-
+      <div class="actions">
 
         <button
-          id="bookButton"
-          class="btn">
+          class="btn"
+          type="submit">
+
           Cadastrar livro
+
         </button>
 
-      </form>
+      </div>
 
-    </div>
-
-
-    <div id="adminBooks">
-    </div>
+    </form>
 
   </div>
 
 
-  <div
-    id="panel-categories"
-    class="hidden">
+  <div class="panel">
 
-    <div
-      class="card"
-      style="margin-bottom:18px">
+    <h3>
+      Livros cadastrados
+    </h3>
 
-      <form
-        id="categoryForm"
-        style="display:flex;gap:10px">
-
-        <input
-          id="newCategory"
-          required
-          placeholder="Nome da nova coleção">
-
-        <button class="btn">
-          Criar
-        </button>
-
-      </form>
-
-    </div>
-
-
-    <div id="adminCategories">
-    </div>
-
-  </div>
-
-
-  <div
-    id="panel-loans"
-    class="hidden">
-
-    <div id="adminLoans">
-    </div>
-
-  </div>
-
-
-  <div
-    id="panel-users"
-    class="hidden">
-
-    <div id="adminUsers">
-    </div>
+    <div id="adminBooks"></div>
 
   </div>
 
@@ -761,76 +577,122 @@ footer{
 
 
 <footer>
-
-  Uma biblioteca para ler,
-  aprender e servir.
-  · JOCUM Carioca
-
+  Uma biblioteca para ler, aprender e servir.
 </footer>
 
 
+<!-- LOGIN -->
+
 <div
-  id="authModal"
-  class="modal">
+  class="modal"
+  id="authModal">
 
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('authModal')">
-      ×
-    </button>
+  <div class="modalbox">
 
     <h2 id="authTitle">
       Entrar
     </h2>
 
-    <div id="authNotice">
-    </div>
+    <div id="authMsg"></div>
 
-    <form
-      id="authForm"
-      class="form">
 
-      <input
-        id="name"
-        class="hidden"
-        placeholder="Nome completo">
+    <form id="authForm">
 
-      <input
-        id="email"
-        type="email"
-        required
-        placeholder="E-mail">
+      <div
+        id="nameField"
+        class="hidden">
 
-      <input
-        id="password"
-        type="password"
-        required
-        placeholder="Senha">
+        <label>
+          Nome<br>
 
-      <button
-        id="authSubmit"
-        class="btn">
-        Entrar
-      </button>
+          <input id="fullName">
+
+        </label>
+
+      </div>
+
+
+      <div style="margin-top:12px">
+
+        <label>
+          E-mail<br>
+
+          <input
+            id="email"
+            type="email"
+            required
+            autocomplete="email">
+
+        </label>
+
+      </div>
+
+
+      <div style="margin-top:12px">
+
+        <label>
+          Senha<br>
+
+          <input
+            id="password"
+            type="password"
+            required
+            autocomplete="current-password">
+
+        </label>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="btn"
+          id="authSubmit"
+          type="submit">
+
+          Entrar
+
+        </button>
+
+
+        <button
+          class="link"
+          id="switchAuth"
+          type="button">
+
+          Criar conta
+
+        </button>
+
+      </div>
 
     </form>
 
 
-    <div
-      style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+    <div style="margin-top:18px">
 
       <button
-        class="btn paper"
-        onclick="toggleSignup()">
-        Criar conta
+        class="link"
+        id="forgotBtn"
+        type="button">
+
+        Esqueci minha senha
+
       </button>
 
+    </div>
+
+
+    <div style="margin-top:20px">
+
       <button
-        class="btn paper"
-        onclick="forgotPassword()">
-        Esqueci minha senha
+        class="link"
+        id="closeAuth"
+        type="button">
+
+        Fechar
+
       </button>
 
     </div>
@@ -840,40 +702,57 @@ footer{
 </div>
 
 
-<div
-  id="recoveryModal"
-  class="modal">
+<!-- RECUPERAÇÃO -->
 
-  <div class="modal-box">
+<div
+  class="modal"
+  id="resetModal">
+
+  <div class="modalbox">
 
     <h2>
       Nova senha
     </h2>
 
-    <div id="recoveryNotice">
-    </div>
+    <div id="resetMsg"></div>
 
-    <form
-      id="recoveryForm"
-      class="form">
 
-      <input
-        id="newPassword"
-        type="password"
-        minlength="6"
-        required
-        placeholder="Nova senha">
+    <form id="resetForm">
 
-      <input
-        id="newPassword2"
-        type="password"
-        minlength="6"
-        required
-        placeholder="Repita a nova senha">
+      <label>
 
-      <button class="btn">
-        Salvar nova senha
-      </button>
+        Nova senha<br>
+
+        <input
+          id="newPassword"
+          type="password"
+          minlength="6"
+          required>
+
+      </label>
+
+
+      <div class="actions">
+
+        <button
+          class="btn"
+          type="submit">
+
+          Salvar senha
+
+        </button>
+
+
+        <button
+          class="link"
+          id="closeReset"
+          type="button">
+
+          Fechar
+
+        </button>
+
+      </div>
 
     </form>
 
@@ -881,236 +760,169 @@ footer{
 
 </div>
 
-  <script>
+
+<script>
 
 const SUPABASE_URL =
   "https://qcgsuazwggixcqqduxwo.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_ZQTa-n4hxGN-jbP0WTuOrw_wew8DkO6";
 
-const supabaseClient =
+
+const db =
   supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
   );
 
 
-/* =====================================================
-   ESTADO DO SISTEMA
-   ===================================================== */
+let user = null;
 
-let currentUser = null;
-let currentProfile = null;
+let profile = null;
 
-let books = [];
 let categories = [];
 
-let activeCategory = "";
+let books = [];
+
+let signupMode = false;
 
 
-/* =====================================================
-   COLEÇÕES PADRÃO
-   ===================================================== */
-
-const DEFAULT_CATEGORIES = [
-
-  "Comentários bíblicos",
-  "História cristã",
-  "História",
-  "Filosofia",
-  "Psicologia",
-  "Artes",
-  "Missões transculturais",
-  "Evangelismo",
-  "Anciões da JOCUM",
-  "Liderança",
-  "Escatologia",
-  "Autoajuda",
-  "Biografia",
-  "Espírito Santo",
-  "Pessoa de Jesus",
-  "Doutrinas",
-  "Igreja",
-  "Educação",
-  "Família",
-  "Oração",
-  "Ficção",
-  "Vida cristã",
-  "Graça",
-  "Hermenêutica",
-  "Estudos das cartas de Paulo",
-  "Teologia",
-  "JOCUM Rio"
-
-];
+const $ =
+  id => document.getElementById(id);
 
 
-/* =====================================================
-   FUNÇÕES AUXILIARES
-   ===================================================== */
-
-const $ = id =>
-  document.getElementById(id);
-
-
-const esc = value =>
-  String(value ?? "")
-    .replace(
-      /[&<>"']/g,
-      character => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[character])
-    );
-
-
-const date = value =>
-  value
-    ? new Date(value).toLocaleDateString("pt-BR")
-    : "—";
-
-
-const isAdmin = () =>
-  currentProfile?.role === "admin" &&
-  currentProfile?.active !== false;
-
-
-/* =====================================================
-   CARREGAR PERFIL
-   ===================================================== */
-
-async function loadProfile(){
-
-  if (!currentUser){
-
-    currentProfile = null;
-
-    return;
-  }
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("profiles")
-      .select(`
-        id,
-        email,
-        full_name,
-        role,
-        active
-      `)
-      .eq(
-        "id",
-        currentUser.id
-      )
-      .maybeSingle();
-
-
-  if (error){
-
-    console.error(
-      "Erro ao carregar perfil:",
-      error
-    );
-
-    currentProfile = null;
-
-    return;
-  }
-
-
-  currentProfile = data || null;
-
-}
-
-
-/* =====================================================
-   CRIAR COLEÇÕES PADRÃO
-   ===================================================== */
-
-async function seedCategories(){
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("categories")
-      .select("name");
-
-
-  if (error){
-
-    console.error(
-      "Erro ao verificar coleções:",
-      error
-    );
-
-    return;
-  }
-
-
-  const existing =
-    new Set(
-      (data || [])
-        .map(
-          item =>
-            item.name.toLowerCase()
-        )
-    );
-
-
-  const missing =
-    DEFAULT_CATEGORIES.filter(
-      category =>
-        !existing.has(
-          category.toLowerCase()
-        )
-    );
-
-
-  if (missing.length === 0){
-
-    return;
-  }
-
-
-  const {
-    error: insertError
-  } =
-    await supabaseClient
-      .from("categories")
-      .insert(
-        missing.map(
-          name => ({
-            name
-          })
-        )
+const esc =
+  s =>
+    String(s ?? "")
+      .replace(
+        /[&<>"']/g,
+        c =>
+          ({
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+          }[c])
       );
 
 
-  if (insertError){
+function message(
+  el,
+  text,
+  type=""
+){
 
-    console.error(
-      "Erro ao criar coleções:",
-      insertError
-    );
-
-  }
+  el.innerHTML =
+    text
+      ? `<div class="msg ${type}">
+          ${esc(text)}
+        </div>`
+      : "";
 
 }
 
 
-/* =====================================================
-   CARREGAR COLEÇÕES
-   ===================================================== */
+function isAdmin(){
+
+  return (
+    profile?.role === "admin" &&
+    profile?.active !== false
+  );
+
+}
+
+
+function openAuth(){
+
+  $("authModal").classList.add("open");
+
+  $("email").focus();
+
+}
+
+
+function closeAuth(){
+
+  $("authModal").classList.remove("open");
+
+  message(
+    $("authMsg"),
+    ""
+  );
+
+}
+
+
+function showStatus(
+  text,
+  type=""
+){
+
+  message(
+    $("status"),
+    text,
+    type
+  );
+
+}
+
+
+function showAdminStatus(
+  text,
+  type=""
+){
+
+  message(
+    $("adminStatus"),
+    text,
+    type
+  );
+
+}
+
+
+async function loadProfile(){
+
+  if(!user){
+
+    profile = null;
+
+    return;
+
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await db
+      .from("profiles")
+      .select(
+        "id,email,full_name,role,active"
+      )
+      .eq("id",user.id)
+      .maybeSingle();
+
+
+  if(error){
+
+    console.error(error);
+
+    profile = null;
+
+    return;
+
+  }
+
+
+  profile = data;
+
+}
+
 
 async function loadCategories(){
 
@@ -1118,591 +930,321 @@ async function loadCategories(){
     data,
     error
   } =
-    await supabaseClient
+    await db
       .from("categories")
-      .select(
-        "id,name"
-      )
+      .select("id,name")
       .order("name");
 
 
-  if (error){
+  if(error){
 
-    console.error(
-      "Erro ao carregar coleções:",
-      error
+    showStatus(
+      "Não consegui carregar as coleções: " +
+      error.message,
+      "error"
     );
 
     return;
+
   }
 
 
-  categories =
-    data || [];
+  categories = data || [];
 
 
-  renderCategories();
-
-  fillCategory();
-
-}
-
-
-/* =====================================================
-   MOSTRAR COLEÇÕES
-   ===================================================== */
-
-function renderCategories(){
-
-  const container =
-    $("chips");
-
-
-  if (!container){
-
-    return;
-  }
-
-
-  container.innerHTML =
-
-    `<button
-      class="chip ${!activeCategory ? "active" : ""}"
-      onclick="chooseCategory('')">
-      Todas
-    </button>`
-
-    +
+  $("categoryFilter").innerHTML =
+    '<option value="">Todas as coleções</option>' +
 
     categories
       .map(
-        category => `
+        c =>
+          `<option value="${esc(c.id)}">
+            ${esc(c.name)}
+          </option>`
+      )
+      .join("");
 
-          <button
-            class="chip ${
-              activeCategory === category.id
-                ? "active"
-                : ""
-            }"
-            onclick="chooseCategory('${category.id}')">
 
-            ${esc(category.name)}
+  $("category").innerHTML =
+    '<option value="">Sem coleção</option>' +
 
-          </button>
-
-        `
+    categories
+      .map(
+        c =>
+          `<option value="${esc(c.id)}">
+            ${esc(c.name)}
+          </option>`
       )
       .join("");
 
 }
 
-
-/* =====================================================
-   SELECIONAR COLEÇÃO
-   ===================================================== */
-
-function chooseCategory(id){
-
-  activeCategory = id;
-
-  renderCategories();
-
-  renderBooks();
-
-}
-
-
-/* =====================================================
-   PREENCHER SELECT DE COLEÇÃO
-   ===================================================== */
-
-function fillCategory(){
-
-  const select =
-    $("category");
-
-
-  if (!select){
-
-    return;
-  }
-
-
-  select.innerHTML =
-
-    `<option value="">
-      Sem coleção
-    </option>`
-
-    +
-
-    categories
-      .map(
-        category => `
-
-          <option
-            value="${category.id}">
-
-            ${esc(category.name)}
-
-          </option>
-
-        `
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   CARREGAR LIVROS
-   ===================================================== */
 
 async function loadBooks(){
 
-  const container =
-    $("books");
-
-
-  if (container){
-
-    container.innerHTML =
-      `<div class="loading">
-        Carregando acervo...
-      </div>`;
-  }
+  const q =
+    db
+      .from("books")
+      .select(
+        "id,title,author,isbn,edition,publication_year,description,category_id,categories(name)"
+      )
+      .order("title");
 
 
   const {
     data,
     error
-  } =
-    await supabaseClient
-      .from("books")
-      .select(`
-        id,
-        title,
-        author,
-        isbn,
-        edition,
-        publication_year,
-        description,
-        cover_url,
-        category_id,
-
-        categories (
-          id,
-          name
-        ),
-
-        book_copies (
-          id,
-          status,
-          inventory_code
-        )
-      `)
-      .order(
-        "title"
-      );
+  } = await q;
 
 
-  if (error){
+  if(error){
 
-    console.error(
-      "Erro ao carregar livros:",
-      error
+    showStatus(
+      "Não consegui carregar os livros: " +
+      error.message,
+      "error"
     );
 
-
-    if (container){
-
-      container.innerHTML = `
-
-        <div class="empty">
-
-          Não foi possível carregar
-          o acervo.
-
-          <br><br>
-
-          <small>
-            ${esc(error.message)}
-          </small>
-
-        </div>
-
-      `;
-    }
-
-
     return;
+
   }
 
 
-  books =
-    data || [];
-
+  books = data || [];
 
   renderBooks();
 
 }
 
 
-/* =====================================================
-   MOSTRAR LIVROS
-   ===================================================== */
-
 function renderBooks(){
 
-  const container =
-    $("books");
+  const term =
+    $("search")
+      .value
+      .trim()
+      .toLowerCase();
 
 
-  if (!container){
-
-    return;
-  }
+  const cat =
+    $("categoryFilter").value;
 
 
-  const search =
-    (
-      $("search")?.value || ""
-    )
-      .toLowerCase()
-      .trim();
-
-
-  const filtered =
+  const list =
     books.filter(
-      book => {
+      b =>
 
-        const categoryOK =
-          !activeCategory ||
-          book.category_id ===
-            activeCategory;
+        (
+          !term ||
 
-
-        const searchOK =
-          !search ||
-
-          (
-            book.title || ""
-          )
+          `${b.title} ${b.author || ""}`
             .toLowerCase()
-            .includes(search)
+            .includes(term)
+        )
 
-          ||
+        &&
 
-          (
-            book.author || ""
-          )
-            .toLowerCase()
-            .includes(search);
+        (
+          !cat ||
+          b.category_id === cat
+        )
 
-
-        return (
-          categoryOK &&
-          searchOK
-        );
-
-      }
     );
 
 
-  if (
-    filtered.length === 0
-  ){
+  $("books").innerHTML =
 
-    container.innerHTML = `
+    list.length
 
-      <div
-        class="empty"
-        style="grid-column:1/-1">
+      ?
 
-        Nenhum livro encontrado.
+      list
+        .map(
+          b => `
 
-      </div>
-
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML =
-    filtered
-      .map(
-        book => {
-
-          const copies =
-            book.book_copies ||
-            [];
-
-
-          const available =
-            copies.filter(
-              copy =>
-                copy.status ===
-                "available"
-            ).length;
-
-
-          return `
-
-            <article
-              class="book">
+            <article class="card">
 
               <div>
 
-                <div class="eyebrow">
-
+                <div class="meta">
                   ${esc(
-                    book.categories?.name ||
+                    b.categories?.name ||
                     "Acervo"
                   )}
-
                 </div>
 
-
-                <div class="book-title">
-
-                  ${esc(
-                    book.title
-                  )}
-
-                </div>
-
-
-                <div class="author">
-
-                  ${esc(
-                    book.author ||
-                    "Autor não informado"
-                  )}
-
-                </div>
-
+                <h3>
+                  ${esc(b.title)}
+                </h3>
 
                 <div class="meta">
-
-                  ${
-                    book.edition
-                      ? esc(
-                          book.edition
-                        ) + " · "
-                      : ""
-                  }
-
-                  ${
-                    book.publication_year ||
-                    ""
-                  }
-
-                  ${
-                    book.isbn
-                      ? " · ISBN " +
-                        esc(
-                          book.isbn
-                        )
-                      : ""
-                  }
-
-                  <br>
-
-                  ${available}
-                  exemplar(es)
-                  disponível(is)
-
+                  ${esc(
+                    b.author ||
+                    "Autor não informado"
+                  )}
                 </div>
 
               </div>
 
 
-              <div
-                class="book-actions">
+              ${
+                user
 
-                <button
+                ?
+
+                `<button
                   class="btn"
-                  onclick="borrow('${book.id}')">
+                  type="button"
+                  onclick="borrowBook('${b.id}')">
 
-                  ${
-                    currentUser
-                      ? "Emprestar"
-                      : "Entrar para emprestar"
-                  }
+                  Quero emprestar
 
-                </button>
+                </button>`
 
-              </div>
+                :
+
+                `<button
+                  class="btn secondary"
+                  type="button"
+                  onclick="openAuth()">
+
+                  Entrar para emprestar
+
+                </button>`
+              }
 
             </article>
 
-          `;
+          `
+        )
+        .join("")
 
-        }
-      )
-      .join("");
+      :
+
+      `<div class="panel">
+        Nenhum livro encontrado.
+      </div>`;
 
 }
 
 
-/* =====================================================
-   EMPRESTAR LIVRO
-   ===================================================== */
+async function borrowBook(
+  bookId
+){
 
-async function borrow(bookId){
-
-  if (!currentUser){
+  if(!user){
 
     openAuth();
 
     return;
-  }
 
-
-  const book =
-    books.find(
-      item =>
-        item.id === bookId
-    );
-
-
-  const copy =
-    (
-      book?.book_copies ||
-      []
-    ).find(
-      item =>
-        item.status ===
-        "available"
-    );
-
-
-  if (!copy){
-
-    alert(
-      "Não há exemplar disponível."
-    );
-
-    return;
   }
 
 
   const {
-    data: activeLoans,
-    error: loanCheckError
+    data:copy,
+    error:ce
   } =
-    await supabaseClient
-      .from("loans")
+    await db
+      .from("book_copies")
       .select("id")
-      .eq(
-        "user_id",
-        currentUser.id
-      )
-      .eq(
-        "status",
-        "borrowed"
-      );
+      .eq("book_id",bookId)
+      .eq("status","available")
+      .limit(1)
+      .maybeSingle();
 
 
-  if (loanCheckError){
+  if(ce){
 
-    alert(
-      "Não foi possível verificar seus empréstimos.\n\n" +
-      loanCheckError.message
+    showStatus(
+      "Erro ao verificar exemplares: " +
+      ce.message,
+      "error"
     );
 
     return;
+
   }
 
 
-  if (
-    (activeLoans || [])
-      .length >= 3
-  ){
+  if(!copy){
 
-    alert(
-      "Você já possui 3 empréstimos ativos."
+    showStatus(
+      "Não há exemplar disponível deste livro.",
+      "error"
     );
 
     return;
+
   }
 
 
-  const dueDate =
-    new Date();
-
-
-  dueDate.setDate(
-    dueDate.getDate() + 14
-  );
+  const due =
+    new Date(
+      Date.now() +
+      14 * 86400000
+    )
+    .toISOString()
+    .slice(0,10);
 
 
   const {
-    error: insertError
+    error:le
   } =
-    await supabaseClient
+    await db
       .from("loans")
       .insert({
 
-        user_id:
-          currentUser.id,
+        user_id:user.id,
 
-        copy_id:
-          copy.id,
+        copy_id:copy.id,
 
-        borrowed_at:
-          new Date().toISOString(),
+        due_date:due,
 
-        due_date:
-          dueDate.toISOString(),
-
-        status:
-          "borrowed"
+        status:"active"
 
       });
 
 
-  if (insertError){
+  if(le){
 
-    alert(
-      "Não foi possível realizar o empréstimo.\n\n" +
-      insertError.message
+    showStatus(
+      "Não foi possível registrar o empréstimo: " +
+      le.message,
+      "error"
     );
 
     return;
+
   }
 
 
   const {
-    error: copyError
+    error:ue
   } =
-    await supabaseClient
+    await db
       .from("book_copies")
       .update({
-        status:
-          "borrowed"
+        status:"borrowed"
       })
-      .eq(
-        "id",
-        copy.id
-      );
+      .eq("id",copy.id);
 
 
-  if (copyError){
+  if(ue){
 
-    alert(
-      "O empréstimo foi criado, mas houve erro ao atualizar o exemplar.\n\n" +
-      copyError.message
+    showStatus(
+      "O empréstimo foi criado, mas o exemplar não foi atualizado. Avise a administração.",
+      "error"
     );
 
     return;
+
   }
 
 
-  alert(
-    "Livro emprestado com sucesso!\n\n" +
-    "Prazo: 14 dias."
+  showStatus(
+    "Empréstimo registrado.",
+    "ok"
   );
 
 
@@ -1713,50 +1255,23 @@ async function borrow(bookId){
 }
 
 
-/* =====================================================
-   MEUS EMPRÉSTIMOS
-   ===================================================== */
-
 async function loadMyLoans(){
 
-  if (!currentUser){
-
-    return;
-  }
+  if(!user) return;
 
 
   const {
     data,
     error
   } =
-    await supabaseClient
+    await db
       .from("loans")
-      .select(`
-
-        id,
-        borrowed_at,
-        due_date,
-        returned_at,
-        status,
-        copy_id,
-
-        book_copies (
-
-          inventory_code,
-
-          books (
-
-            title,
-            author
-
-          )
-
-        )
-
-      `)
+      .select(
+        "id,due_date,status,returned_at,book_copies(inventory_code,books(title,author))"
+      )
       .eq(
         "user_id",
-        currentUser.id
+        user.id
       )
       .order(
         "borrowed_at",
@@ -1766,1023 +1281,134 @@ async function loadMyLoans(){
       );
 
 
-  if (error){
+  if(error){
 
-    $("myLoans").innerHTML = `
-
-      <div class="empty">
-
-        ${esc(
-          error.message
-        )}
-
-      </div>
-
-    `;
+    $("myLoans").innerHTML =
+      `<div class="panel">
+        Erro: ${esc(error.message)}
+      </div>`;
 
     return;
-  }
 
-
-  const loans =
-    data || [];
-
-
-  if (
-    loans.length === 0
-  ){
-
-    $("myLoans").innerHTML = `
-
-      <div class="empty">
-
-        Você ainda não possui
-        empréstimos.
-
-      </div>
-
-    `;
-
-    return;
   }
 
 
   $("myLoans").innerHTML =
-    loans
-      .map(
-        loan => `
 
-          <div class="row">
+    (data || []).length
 
-            <div>
+      ?
 
-              <strong>
+      (data || [])
+        .map(
+          l => `
 
-                ${esc(
-                  loan
-                    .book_copies
-                    ?.books
-                    ?.title ||
-                  "Livro"
-                )}
+            <article class="card">
 
-              </strong>
+              <div>
 
+                <div class="meta">
+                  ${esc(l.status)}
+                </div>
 
-              <span>
+                <h3>
+                  ${esc(
+                    l.book_copies?.books?.title ||
+                    "Livro"
+                  )}
+                </h3>
 
-                ${esc(
-                  loan
-                    .book_copies
-                    ?.books
-                    ?.author ||
-                  ""
-                )}
+                <div class="meta">
+                  Devolver até:
+                  ${esc(
+                    l.due_date || "—"
+                  )}
+                </div>
 
-              </span>
+              </div>
 
-            </div>
-
-
-            <div>
-
-              <small>
-
-                Emprestado:
-                ${date(
-                  loan.borrowed_at
-                )}
-
-                <br>
-
-                Prazo:
-                ${date(
-                  loan.due_date
-                )}
-
-              </small>
-
-            </div>
-
-
-            <div>
 
               ${
-                loan.status ===
-                "borrowed"
+                l.status === "active"
 
                 ?
 
-                `
+                `<button
+                  class="btn secondary"
+                  type="button"
+                  onclick="returnBook('${l.id}')">
 
-                  <button
-                    class="btn"
-                    onclick="returnBook(
-                      '${loan.id}',
-                      '${loan.copy_id}'
-                    )">
+                  Marcar devolvido
 
-                    Marcar devolução
-
-                  </button>
-
-                `
+                </button>`
 
                 :
 
-                `
-
-                  <small>
-
-                    Devolvido:
-                    ${date(
-                      loan.returned_at
-                    )}
-
-                  </small>
-
-                `
+                ""
               }
 
-            </div>
+            </article>
 
-          </div>
+          `
+        )
+        .join("")
 
-        `
-      )
-      .join("");
+      :
+
+      `<div class="panel">
+        Você ainda não possui empréstimos.
+      </div>`;
 
 }
 
 
-/* =====================================================
-   DEVOLVER LIVRO
-   ===================================================== */
-
 async function returnBook(
-  loanId,
-  copyId
+  loanId
 ){
 
-  if (
-    !confirm(
-      "Confirmar devolução?"
-    )
-  ){
-
-    return;
-  }
-
-
-  const now =
-    new Date()
-      .toISOString();
-
-
   const {
+    data:loan,
     error
   } =
-    await supabaseClient
+    await db
       .from("loans")
-      .update({
-
-        returned_at:
-          now,
-
-        status:
-          "returned"
-
-      })
+      .select(
+        "id,copy_id"
+      )
       .eq(
         "id",
         loanId
       )
       .eq(
         "user_id",
-        currentUser.id
-      );
-
-
-  if (error){
-
-    alert(
-      error.message
-    );
-
-    return;
-  }
-
-
-  const {
-    error: copyError
-  } =
-    await supabaseClient
-      .
-
-    <script>
-
-/* =====================================================
-   ADMIN — LIVROS
-   ===================================================== */
-
-async function loadAdminBooks(){
-
-  const container =
-    $("adminBooks");
-
-  if (!container) return;
-
-
-  container.innerHTML = `
-    <div class="loading">
-      Carregando livros...
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("books")
-      .select(`
-        id,
-        title,
-        author,
-
-        categories (
-          name
-        ),
-
-        book_copies (
-          id,
-          status,
-          inventory_code
-        )
-      `)
-      .order(
-        "title"
-      );
-
-
-  if (error){
-
-    console.error(error);
-
-    container.innerHTML = `
-      <div class="empty">
-
-        Não foi possível carregar
-        os livros.
-
-        <br><br>
-
-        <small>
-          ${esc(error.message)}
-        </small>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  const booksData =
-    data || [];
-
-
-  if (!booksData.length){
-
-    container.innerHTML = `
-      <div class="empty">
-        Ainda não há livros cadastrados.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML =
-    booksData
-      .map(
-        book => {
-
-          const copies =
-            book.book_copies ||
-            [];
-
-
-          const available =
-            copies.filter(
-              copy =>
-                copy.status ===
-                "available"
-            ).length;
-
-
-          return `
-
-            <div class="row">
-
-              <div>
-
-                <strong>
-                  ${esc(
-                    book.title
-                  )}
-                </strong>
-
-                <span>
-
-                  ${esc(
-                    book.author ||
-                    "Autor não informado"
-                  )}
-
-                  ·
-
-                  ${esc(
-                    book.categories?.name ||
-                    "Sem coleção"
-                  )}
-
-                </span>
-
-              </div>
-
-
-              <div>
-
-                <small>
-
-                  ${copies.length}
-                  exemplar(es)
-
-                  <br>
-
-                  ${available}
-                  disponível(is)
-
-                </small>
-
-              </div>
-
-
-              <button
-                class="btn"
-                onclick="addCopy(
-                  '${book.id}'
-                )">
-
-                + Exemplar
-
-              </button>
-
-            </div>
-
-          `;
-
-        }
+        user.id
       )
-      .join("");
-
-}
+      .maybeSingle();
 
 
-/* =====================================================
-   ADICIONAR EXEMPLAR
-   ===================================================== */
+  if(error || !loan){
 
-async function addCopy(
-  bookId
-){
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
+    showStatus(
+      "Não encontrei esse empréstimo.",
+      "error"
     );
 
     return;
-  }
 
-
-  const inventoryCode =
-    "CAR-" +
-    Date.now()
-      .toString()
-      .slice(-8);
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("book_copies")
-      .insert({
-
-        book_id:
-          bookId,
-
-        inventory_code:
-          inventoryCode,
-
-        status:
-          "available"
-
-      });
-
-
-  if (error){
-
-    alert(
-      "Não foi possível adicionar o exemplar.\n\n" +
-      error.message
-    );
-
-    return;
-  }
-
-
-  alert(
-    "Exemplar adicionado com sucesso."
-  );
-
-
-  await loadAdminBooks();
-
-  await loadBooks();
-
-}
-
-
-/* =====================================================
-   ADMIN — COLEÇÕES
-   ===================================================== */
-
-async function loadAdminCategories(){
-
-  const container =
-    $("adminCategories");
-
-
-  if (!container) return;
-
-
-  container.innerHTML = `
-    <div class="loading">
-      Carregando coleções...
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("categories")
-      .select(
-        "id,name"
-      )
-      .order(
-        "name"
-      );
-
-
-  if (error){
-
-    container.innerHTML = `
-      <div class="empty">
-
-        ${esc(
-          error.message
-        )}
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  const list =
-    data || [];
-
-
-  container.innerHTML =
-    list
-      .map(
-        category => `
-
-          <div class="row">
-
-            <strong>
-
-              ${esc(
-                category.name
-              )}
-
-            </strong>
-
-
-            <span></span>
-
-
-            <button
-              class="btn danger"
-              onclick="deleteCategory(
-                '${category.id}'
-              )">
-
-              Excluir
-
-            </button>
-
-          </div>
-
-        `
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   CRIAR COLEÇÃO
-   ===================================================== */
-
-async function createCategory(
-  event
-){
-
-  event.preventDefault();
-
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
-    );
-
-    return;
-  }
-
-
-  const input =
-    $("newCategory");
-
-
-  const name =
-    input
-      .value
-      .trim();
-
-
-  if (!name){
-
-    alert(
-      "Digite o nome da coleção."
-    );
-
-    return;
   }
 
 
   const {
-    error
+    error:le
   } =
-    await supabaseClient
-      .from("categories")
-      .insert({
-        name
-      });
-
-
-  if (error){
-
-    alert(
-      "Não foi possível criar a coleção.\n\n" +
-      error.message
-    );
-
-    return;
-  }
-
-
-  input.value =
-    "";
-
-
-  await loadCategories();
-
-  await loadAdminCategories();
-
-
-  alert(
-    "Coleção criada com sucesso."
-  );
-
-}
-
-
-/* =====================================================
-   EXCLUIR COLEÇÃO
-   ===================================================== */
-
-async function deleteCategory(
-  categoryId
-){
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
-    );
-
-    return;
-  }
-
-
-  const confirmed =
-    confirm(
-      "Excluir esta coleção?"
-    );
-
-
-  if (!confirmed){
-
-    return;
-  }
-
-
-  /*
-    Verifica se existem
-    livros nessa coleção.
-  */
-
-  const {
-    count,
-    error:
-      countError
-  } =
-    await supabaseClient
-      .from("books")
-      .select(
-        "id",
-        {
-          count:
-            "exact",
-          head:
-            true
-        }
-      )
-      .eq(
-        "category_id",
-        categoryId
-      );
-
-
-  if (countError){
-
-    alert(
-      countError.message
-    );
-
-    return;
-  }
-
-
-  if (count > 0){
-
-    alert(
-
-      "Esta coleção possui livros.\n\n" +
-
-      "Mova os livros para outra " +
-      "coleção antes de excluí-la."
-
-    );
-
-    return;
-  }
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("categories")
-      .delete()
-      .eq(
-        "id",
-        categoryId
-      );
-
-
-  if (error){
-
-    alert(
-      "Não foi possível excluir a coleção.\n\n" +
-      error.message
-    );
-
-    return;
-  }
-
-
-  await loadCategories();
-
-  await loadAdminCategories();
-
-}
-
-
-/* =====================================================
-   ADMIN — EMPRÉSTIMOS
-   ===================================================== */
-
-async function loadAdminLoans(){
-
-  const container =
-    $("adminLoans");
-
-
-  if (!container) return;
-
-
-  container.innerHTML = `
-    <div class="loading">
-      Carregando empréstimos...
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("loans")
-      .select(`
-
-        id,
-        borrowed_at,
-        due_date,
-        returned_at,
-        status,
-        copy_id,
-
-        profiles (
-          full_name,
-          email
-        ),
-
-        book_copies (
-
-          inventory_code,
-
-          books (
-            title,
-            author
-          )
-
-        )
-
-      `)
-      .order(
-        "borrowed_at",
-        {
-          ascending:
-            false
-        }
-      );
-
-
-  if (error){
-
-    container.innerHTML = `
-      <div class="empty">
-
-        Não foi possível carregar
-        os empréstimos.
-
-        <br><br>
-
-        <small>
-          ${esc(
-            error.message
-          )}
-        </small>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  const loans =
-    data || [];
-
-
-  if (!loans.length){
-
-    container.innerHTML = `
-      <div class="empty">
-        Nenhum empréstimo.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML =
-    loans
-      .map(
-        loan => {
-
-          const title =
-            loan
-              .book_copies
-              ?.books
-              ?.title ||
-            "Livro";
-
-
-          const user =
-            loan
-              .profiles
-              ?.full_name ||
-
-            loan
-              .profiles
-              ?.email ||
-
-            "Usuário";
-
-
-          const active =
-            loan.status ===
-            "borrowed";
-
-
-          return `
-
-            <div class="row">
-
-              <div>
-
-                <strong>
-
-                  ${esc(
-                    title
-                  )}
-
-                </strong>
-
-
-                <span>
-
-                  ${esc(
-                    user
-                  )}
-
-                </span>
-
-              </div>
-
-
-              <div>
-
-                <small>
-
-                  ${
-                    active
-                      ? "Emprestado"
-                      : "Devolvido"
-                  }
-
-                  <br>
-
-                  Emprestado:
-                  ${date(
-                    loan.borrowed_at
-                  )}
-
-                  <br>
-
-                  Prazo:
-                  ${date(
-                    loan.due_date
-                  )}
-
-                </small>
-
-              </div>
-
-
-              <div>
-
-                ${
-                  active
-
-                    ?
-
-                    `
-
-                      <button
-                        class="btn"
-                        onclick="adminReturn(
-                          '${loan.id}',
-                          '${loan.copy_id}'
-                        )">
-
-                        Registrar devolução
-
-                      </button>
-
-                    `
-
-                    :
-
-                    `
-
-                      <small>
-
-                        Devolvido:
-                        ${date(
-                          loan.returned_at
-                        )}
-
-                      </small>
-
-                    `
-                }
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
-
-}
-
-
-/* =====================================================
-   ADMIN — REGISTRAR DEVOLUÇÃO
-   ===================================================== */
-
-async function adminReturn(
-  loanId,
-  copyId
-){
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
-    );
-
-    return;
-  }
-
-
-  if (
-    !confirm(
-      "Registrar devolução?"
-    )
-  ){
-
-    return;
-  }
-
-
-  const now =
-    new Date()
-      .toISOString();
-
-
-  const {
-    error
-  } =
-    await supabaseClient
+    await db
       .from("loans")
       .update({
 
-        returned_at:
-          now,
+        status:"returned",
 
-        status:
-          "returned"
+        returned_at:
+          new Date().toISOString()
 
       })
       .eq(
@@ -2791,542 +1417,321 @@ async function adminReturn(
       );
 
 
-  if (error){
+  if(le){
 
-    alert(
-      "Não foi possível registrar a devolução.\n\n" +
-      error.message
+    showStatus(
+      "Não foi possível registrar a devolução: " +
+      le.message,
+      "error"
     );
 
     return;
+
   }
 
 
   const {
-    error:
-      copyError
+    error:ce
   } =
-    await supabaseClient
+    await db
       .from("book_copies")
       .update({
-
-        status:
-          "available"
-
+        status:"available"
       })
       .eq(
         "id",
-        copyId
+        loan.copy_id
       );
 
 
-  if (copyError){
+  if(ce){
 
-    alert(
-      "O empréstimo foi encerrado, " +
-      "mas o exemplar não pôde ser atualizado.\n\n" +
-      copyError.message
+    showStatus(
+      "Devolução registrada, mas o exemplar precisa ser conferido pela administração.",
+      "error"
     );
 
     return;
+
   }
 
 
-  await loadAdminLoans();
+  showStatus(
+    "Devolução registrada.",
+    "ok"
+  );
 
-  await loadAdminBooks();
 
   await loadBooks();
 
-
-  alert(
-    "Devolução registrada com sucesso."
-  );
+  await loadMyLoans();
 
 }
 
 
-/* =====================================================
-   ADMIN — USUÁRIOS
-   ===================================================== */
+async function saveBook(e){
 
-async function loadAdminUsers(){
-
-  const container =
-    $("adminUsers");
+  e.preventDefault();
 
 
-  if (!container) return;
+  if(!isAdmin()){
+
+    showAdminStatus(
+      "Você não tem permissão de administrador.",
+      "error"
+    );
+
+    return;
+
+  }
 
 
-  container.innerHTML = `
-    <div class="loading">
-      Carregando usuários...
-    </div>
-  `;
+  const payload = {
+
+    title:
+      $("title")
+        .value
+        .trim(),
+
+    author:
+      $("author")
+        .value
+        .trim() ||
+      null,
+
+    isbn:
+      $("isbn")
+        .value
+        .trim() ||
+      null,
+
+    edition:
+      $("edition")
+        .value
+        .trim() ||
+      null,
+
+    publication_year:
+      $("year").value
+        ?
+        Number(
+          $("year").value
+        )
+        :
+        null,
+
+    description:
+      $("description")
+        .value
+        .trim() ||
+      null,
+
+    category_id:
+      $("category").value ||
+      null
+
+  };
 
 
   const {
     data,
     error
   } =
-    await supabaseClient
-      .from("profiles")
-      .select(`
-
-        id,
-        email,
-        full_name,
-        role,
-        active
-
-      `)
-      .order(
-        "full_name"
-      );
-
-
-  if (error){
-
-    container.innerHTML = `
-      <div class="empty">
-
-        Não foi possível carregar
-        os usuários.
-
-        <br><br>
-
-        <small>
-          ${esc(
-            error.message
-          )}
-        </small>
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  const users =
-    data || [];
-
-
-  if (!users.length){
-
-    container.innerHTML = `
-      <div class="empty">
-        Nenhum usuário.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  container.innerHTML =
-    users
-      .map(
-        user => {
-
-          const principal =
-            (
-              user.email ||
-              ""
-            )
-              .toLowerCase() ===
-            "secretaria@jocumcarioca.org.br";
-
-
-          const admin =
-            user.role ===
-            "admin";
-
-
-          return `
-
-            <div class="row">
-
-              <div>
-
-                <strong>
-
-                  ${esc(
-                    user.full_name ||
-                    "Sem nome"
-                  )}
-
-                </strong>
-
-
-                <span>
-
-                  ${esc(
-                    user.email ||
-                    ""
-                  )}
-
-                </span>
-
-              </div>
-
-
-              <div>
-
-                <small>
-
-                  ${
-                    user.active === false
-                      ? "Inativo"
-                      : "Ativo"
-                  }
-
-                  ·
-
-                  ${
-                    admin
-                      ? "Administrador"
-                      : "Usuário"
-                  }
-
-                </small>
-
-              </div>
-
-
-              <div>
-
-                ${
-                  principal
-
-                    ?
-
-                    `
-
-                      <small>
-
-                        Administrador
-                        principal
-
-                      </small>
-
-                    `
-
-                    :
-
-                    `
-
-                      <button
-                        class="btn"
-                        onclick="toggleAdmin(
-                          '${user.id}',
-                          ${admin}
-                        )">
-
-                        ${
-                          admin
-                            ? "Remover admin"
-                            : "Tornar admin"
-                        }
-
-                      </button>
-
-                    `
-                }
-
-              </div>
-
-            </div>
-
-          `;
-
-        }
+    await db
+      .from("books")
+      .insert(payload)
+      .select(
+        "id,title"
       )
-      .join("");
+      .single();
+
+
+  if(error){
+
+    showAdminStatus(
+      "Não foi possível cadastrar o livro: " +
+      error.message,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  $("bookForm").reset();
+
+
+  showAdminStatus(
+    "Livro cadastrado: " +
+    data.title,
+    "ok"
+  );
+
+
+  await loadBooks();
+
+  await loadAdminBooks();
 
 }
 
 
-/* =====================================================
-   PROMOVER / REMOVER ADMIN
-   ===================================================== */
+async function loadAdminBooks(){
 
-async function toggleAdmin(
-  userId,
-  currentlyAdmin
-){
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
-    );
-
-    return;
-  }
-
-
-  const question =
-    currentlyAdmin
-
-      ?
-
-      "Remover administrador?"
-
-      :
-
-      "Tornar este usuário administrador?";
-
-
-  if (!confirm(question)){
-
-    return;
-  }
-
-
-  const newRole =
-    currentlyAdmin
-      ? "user"
-      : "admin";
+  if(!isAdmin()) return;
 
 
   const {
+    data,
     error
   } =
-    await supabaseClient
-      .from("profiles")
-      .update({
-
-        role:
-          newRole
-
-      })
-      .eq(
-        "id",
-        userId
-      );
+    await db
+      .from("books")
+      .select(
+        "id,title,author,category_id,categories(name)"
+      )
+      .order("title");
 
 
-  if (error){
+  if(error){
 
-    alert(
-      "Não foi possível alterar o usuário.\n\n" +
-      error.message
-    );
+    $("adminBooks").innerHTML =
+      `<div class="msg error">
+        ${esc(error.message)}
+      </div>`;
 
     return;
+
   }
 
 
-  await loadAdminUsers();
+  $("adminBooks").innerHTML = `
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            Livro
+          </th>
+
+          <th>
+            Autor
+          </th>
+
+          <th>
+            Coleção
+          </th>
+
+        </tr>
+
+      </thead>
 
 
-  alert(
+      <tbody>
 
-    newRole === "admin"
+        ${
+          (data || [])
+            .map(
+              b => `
 
-      ?
+                <tr>
 
-      "Usuário agora é administrador."
+                  <td>
+                    ${esc(b.title)}
+                  </td>
 
-      :
+                  <td>
+                    ${esc(
+                      b.author ||
+                      "—"
+                    )}
+                  </td>
 
-      "Administrador removido."
+                  <td>
+                    ${esc(
+                      b.categories?.name ||
+                      "—"
+                    )}
+                  </td>
 
-  );
+                </tr>
+
+              `
+            )
+            .join("")
+        }
+
+      </tbody>
+
+    </table>
+
+  `;
 
 }
 
 
-/* =====================================================
-   ABAS ADMINISTRATIVAS
-   ===================================================== */
+function updateUI(){
 
-function adminTab(
-  name,
-  element
-){
-
-  if (!isAdmin()){
-
-    alert(
-      "Acesso restrito aos administradores."
-    );
-
-    return;
-  }
-
-
-  document
-    .querySelectorAll(
-      ".tab"
-    )
-    .forEach(
-      tab =>
-        tab.classList.remove(
-          "active"
-        )
-    );
-
-
-  element.classList.add(
-    "active"
-  );
-
-
-  [
-    "books",
-    "categories",
-    "loans",
-    "users"
-  ]
-    .forEach(
-      panel => {
-
-        $(
-          "panel-" +
-          panel
-        )
-          .classList
-          .toggle(
-            "hidden",
-            panel !== name
-          );
-
-      }
-    );
-
-
-  if (
-    name ===
-    "books"
-  ){
-
-    loadAdminBooks();
-
-  }
-
-
-  if (
-    name ===
-    "categories"
-  ){
-
-    loadAdminCategories();
-
-  }
-
-
-  if (
-    name ===
-    "loans"
-  ){
-
-    loadAdminLoans();
-
-  }
-
-
-  if (
-    name ===
-    "users"
-  ){
-
-    loadAdminUsers();
-
-  }
-
-}
-
-
-/* =====================================================
-   MODAIS
-   ===================================================== */
-
-function openAuth(){
-
-  $("authModal")
-    .classList
-    .add(
-      "open"
-    );
-
-}
-
-
-function closeModal(
-  id
-){
-
-  $(id)
-    .classList
-    .remove(
-      "open"
-    );
-
-}
-
-
-/* =====================================================
-   ALTERNAR LOGIN / CADASTRO
-   ===================================================== */
-
-function toggleSignup(){
-
-  const nameField =
-    $("name");
-
-
-  const signup =
-    nameField
-      .classList
-      .contains(
-        "hidden"
-      );
-
-
-  nameField
+  $("loginBtn")
     .classList
     .toggle(
       "hidden",
-      !signup
+      !!user
     );
 
 
-  $("authTitle")
-    .textContent =
-      signup
-        ? "Criar conta"
-        : "Entrar";
+  $("logoutBtn")
+    .classList
+    .toggle(
+      "hidden",
+      !user
+    );
 
 
-  $("authSubmit")
+  $("userLabel")
     .textContent =
-      signup
-        ? "Criar conta"
-        : "Entrar";
+      user
+        ?
+        (
+          profile?.full_name ||
+          user.email
+        )
+        :
+        "Visitante";
+
+
+  $("myArea")
+    .classList
+    .toggle(
+      "hidden",
+      !user
+    );
+
+
+  $("adminArea")
+    .classList
+    .toggle(
+      "hidden",
+      !isAdmin()
+    );
+
+
+  if(user)
+    loadMyLoans();
+
+
+  if(isAdmin())
+    loadAdminBooks();
 
 }
 
 
-/* =====================================================
-   LOGIN / CADASTRO
-   ===================================================== */
+async function authSubmit(e){
 
-async function auth(
-  event
-){
-
-  event.preventDefault();
-
-
-  const signup =
-    !$("name")
-      .classList
-      .contains(
-        "hidden"
-      );
+  e.preventDefault();
 
 
   const email =
@@ -3340,58 +1745,85 @@ async function auth(
       .value;
 
 
-  const name =
-    $("name")
+  const fullName =
+    $("fullName")
       .value
       .trim();
 
 
-  const button =
-    $("authSubmit");
+  $("authSubmit")
+    .disabled = true;
 
 
-  button.disabled =
-    true;
+  $("authSubmit")
+    .textContent =
+      "Entrando...";
 
 
-  $("authNotice")
-    .innerHTML =
-      "";
+  message(
+    $("authMsg"),
+    ""
+  );
 
 
-  let result;
+  try{
+
+    let result;
 
 
-  if (signup){
+    if(signupMode){
 
-    result =
-      await supabaseClient
-        .auth
-        .signUp({
+      result =
+        await db.auth.signUp({
 
           email,
 
           password,
 
           options:{
-
             data:{
               full_name:
-                name
+                fullName
             }
-
           }
 
         });
 
-  }
 
-  else{
+      if(result.error)
+        throw result.error;
 
-    result =
-      await supabaseClient
-        .auth
-        .signInWithPassword({
+
+      if(!result.data.session){
+
+        message(
+          $("authMsg"),
+
+          "Conta criada. Se a confirmação de e-mail estiver ativa no Supabase, confirme o e-mail antes de entrar.",
+
+          "ok"
+        );
+
+      }
+
+      else{
+
+        message(
+          $("authMsg"),
+          "Conta criada.",
+          "ok"
+        );
+
+        closeAuth();
+
+      }
+
+    }
+
+    else{
+
+      result =
+        await db.auth.signInWithPassword({
 
           email,
 
@@ -3399,66 +1831,50 @@ async function auth(
 
         });
 
-  }
+
+      if(result.error)
+        throw result.error;
 
 
-  if (
-    result.error
-  ){
-
-    $("authNotice")
-      .innerHTML = `
-
-        <div class="notice">
-
-          ${esc(
-            result.error.message
-          )}
-
-        </div>
-
-      `;
-
-  }
-
-  else{
-
-    closeModal(
-      "authModal"
-    );
-
-
-    if (
-      signup &&
-      !result.data.session
-    ){
-
-      alert(
-
-        "Conta criada.\n\n" +
-
-        "Se a confirmação de e-mail " +
-        "estiver ativada no Supabase, " +
-        "confirme seu e-mail antes de entrar."
-
-      );
+      closeAuth();
 
     }
 
   }
 
+  catch(err){
 
-  button.disabled =
-    false;
+    message(
+      $("authMsg"),
+
+      err.message ||
+      "Erro ao entrar.",
+
+      "error"
+    );
+
+  }
+
+  finally{
+
+    $("authSubmit")
+      .disabled = false;
+
+
+    $("authSubmit")
+      .textContent =
+        signupMode
+          ?
+          "Criar conta"
+          :
+          "Entrar";
+
+  }
 
 }
 
 
-/* =====================================================
-   RECUPERAÇÃO DE SENHA
-   ===================================================== */
-
-async function forgotPassword(){
+async function forgot(){
 
   const email =
     $("email")
@@ -3466,463 +1882,305 @@ async function forgotPassword(){
       .trim();
 
 
-  if (!email){
+  if(!email){
 
-    $("authNotice")
-      .innerHTML = `
+    message(
+      $("authMsg"),
 
-        <div class="notice">
+      "Digite seu e-mail primeiro.",
 
-          Digite seu e-mail primeiro.
-
-        </div>
-
-      `;
+      "error"
+    );
 
     return;
+
   }
 
 
   const {
     error
   } =
-    await supabaseClient
-      .auth
-      .resetPasswordForEmail(
+    await db.auth.resetPasswordForEmail(
 
-        email,
+      email,
 
-        {
+      {
+        redirectTo:
+          location.origin +
+          location.pathname
+      }
 
-          redirectTo:
-            location.origin +
-            location.pathname
-
-        }
-
-      );
+    );
 
 
-  $("authNotice")
-    .innerHTML = `
+  if(error){
 
-      <div
-        class="notice ${
-          error
-            ? ""
-            : "success"
-        }">
+    message(
+      $("authMsg"),
+      error.message,
+      "error"
+    );
 
-        ${esc(
-          error?.message ||
-          "Link de recuperação enviado para seu e-mail."
-        )}
+    return;
 
-      </div>
+  }
 
-    `;
+
+  message(
+    $("authMsg"),
+
+    "Enviamos o link de recuperação para seu e-mail.",
+
+    "ok"
+  );
 
 }
 
 
-/* =====================================================
-   ATUALIZAR SENHA
-   ===================================================== */
+async function resetPassword(e){
 
-async function updatePassword(
-  event
-){
-
-  event.preventDefault();
-
-
-  const password =
-    $("newPassword")
-      .value;
-
-
-  const confirmation =
-    $("newPassword2")
-      .value;
-
-
-  if (
-    password !==
-    confirmation
-  ){
-
-    $("recoveryNotice")
-      .innerHTML = `
-
-        <div class="notice">
-
-          As senhas não são iguais.
-
-        </div>
-
-      `;
-
-    return;
-  }
+  e.preventDefault();
 
 
   const {
     error
   } =
-    await supabaseClient
-      .auth
-      .updateUser({
+    await db.auth.updateUser({
 
-        password
+      password:
+        $("newPassword")
+          .value
 
-      });
+    });
 
 
-  $("recoveryNotice")
-    .innerHTML = `
+  if(error){
 
-      <div
-        class="notice ${
-          error
-            ? ""
-            : "success"
-        }">
+    message(
+      $("resetMsg"),
+      error.message,
+      "error"
+    );
 
-        ${esc(
-          error?.message ||
-          "Senha alterada com sucesso."
-        )}
+    return;
 
-      </div>
+  }
 
-    `;
+
+  message(
+    $("resetMsg"),
+
+    "Senha alterada. Agora você pode entrar.",
+
+    "ok"
+  );
 
 }
 
-
-/* =====================================================
-   LOGOUT
-   ===================================================== */
 
 async function logout(){
 
-  await supabaseClient
-    .auth
-    .signOut();
+  await db.auth.signOut();
 
 }
 
 
-/* =====================================================
-   ATUALIZAR INTERFACE
-   ===================================================== */
-
-function updateUI(){
-
-  $("myArea")
-    .classList
-    .toggle(
-      "hidden",
-      !currentUser
-    );
-
-
-  $("adminArea")
-    .classList
-    .toggle(
-      "hidden",
-      !isAdmin()
-    );
-
-
-  $("loginBtn")
-    .classList
-    .toggle(
-      "hidden",
-      !!currentUser
-    );
-
-
-  $("logoutBtn")
-    .classList
-    .toggle(
-      "hidden",
-      !currentUser
-    );
-
-
-  $("userName")
-    .classList
-    .toggle(
-      "hidden",
-      !currentUser
-    );
-
-
-  $("userName")
-    .textContent =
-      currentProfile?.full_name ||
-      currentUser?.email ||
-      "";
-
-
-  renderBooks();
-
-
-  if (currentUser){
-
-    loadMyLoans();
-
-  }
-
-}
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-   ===================================================== */
-
-async function init(){
-
-  console.log(
-    "Carioca Library iniciando..."
+$("loginBtn")
+  .addEventListener(
+    "click",
+    openAuth
   );
 
 
-  /*
-    Configura os formulários.
-  */
-
-  $("bookForm")
-    .addEventListener(
-      "submit",
-      saveBook
-    );
-
-
-  $("categoryForm")
-    .addEventListener(
-      "submit",
-      createCategory
-    );
-
-
-  $("authForm")
-    .addEventListener(
-      "submit",
-      auth
-    );
-
-
-  $("recoveryForm")
-    .addEventListener(
-      "submit",
-      updatePassword
-    );
-
-
-  /*
-    Cria as coleções
-    padrão que estiverem
-    faltando.
-  */
-
-  await seedCategories();
-
-
-  /*
-    Carrega coleções.
-  */
-
-  await loadCategories();
-
-
-  /*
-    Carrega livros.
-  */
-
-  await loadBooks();
-
-
-  /*
-    Recupera sessão.
-  */
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .auth
-      .getSession();
-
-
-  if (error){
-
-    console.error(
-      "Erro ao recuperar sessão:",
-      error
-    );
-
-  }
-
-
-  currentUser =
-    data
-      ?.session
-      ?.user ||
-    null;
-
-
-  if (currentUser){
-
-    await loadProfile();
-
-  }
-
-
-  updateUI();
-
-
-  /*
-    Se for administrador,
-    carrega o painel.
-  */
-
-  if (isAdmin()){
-
-    await loadAdminBooks();
-
-  }
-
-
-  /*
-    Recuperação de senha.
-  */
-
-  if (
-    location.hash
-      .includes(
-        "type=recovery"
-      )
-  ){
-
-    $("recoveryModal")
-      .classList
-      .add(
-        "open"
-      );
-
-  }
-
-
-  console.log(
-    "Carioca Library carregada."
+$("logoutBtn")
+  .addEventListener(
+    "click",
+    logout
   );
 
-}
+
+$("closeAuth")
+  .addEventListener(
+    "click",
+    closeAuth
+  );
 
 
-/* =====================================================
-   OBSERVAR AUTENTICAÇÃO
-   ===================================================== */
-
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    async (
-      event,
-      session
-    ) => {
-
-      currentUser =
-        session
-          ?.user ||
-        null;
+$("authForm")
+  .addEventListener(
+    "submit",
+    authSubmit
+  );
 
 
-      if (currentUser){
-
-        await loadProfile();
-
-      }
-
-      else{
-
-        currentProfile =
-          null;
-
-      }
+$("forgotBtn")
+  .addEventListener(
+    "click",
+    forgot
+  );
 
 
-      updateUI();
+$("switchAuth")
+  .addEventListener(
+    "click",
+    () => {
+
+      signupMode =
+        !signupMode;
 
 
-      if (isAdmin()){
+      $("authTitle")
+        .textContent =
+          signupMode
+            ?
+            "Criar conta"
+            :
+            "Entrar";
 
-        loadAdminBooks();
 
-      }
+      $("authSubmit")
+        .textContent =
+          signupMode
+            ?
+            "Criar conta"
+            :
+            "Entrar";
+
+
+      $("nameField")
+        .classList
+        .toggle(
+          "hidden",
+          !signupMode
+        );
+
+
+      $("switchAuth")
+        .textContent =
+          signupMode
+            ?
+            "Já tenho uma conta"
+            :
+            "Criar conta";
 
     }
   );
 
 
-/* =====================================================
-   DISPONIBILIZAR FUNÇÕES PARA HTML
-   ===================================================== */
-
-window.openAuth =
-  openAuth;
-
-window.closeModal =
-  closeModal;
-
-window.toggleSignup =
-  toggleSignup;
-
-window.forgotPassword =
-  forgotPassword;
-
-window.logout =
-  logout;
-
-window.borrow =
-  borrow;
-
-window.returnBook =
-  returnBook;
-
-window.chooseCategory =
-  chooseCategory;
-
-window.clearSearch =
-  clearSearch;
-
-window.adminTab =
-  adminTab;
-
-window.addCopy =
-  addCopy;
-
-window.deleteCategory =
-  deleteCategory;
-
-window.adminReturn =
-  adminReturn;
-
-window.toggleAdmin =
-  toggleAdmin;
+$("bookForm")
+  .addEventListener(
+    "submit",
+    saveBook
+  );
 
 
-/* =====================================================
-   INICIAR SISTEMA
-   ===================================================== */
+$("search")
+  .addEventListener(
+    "input",
+    renderBooks
+  );
 
-init();
+
+$("categoryFilter")
+  .addEventListener(
+    "change",
+    renderBooks
+  );
+
+
+$("closeReset")
+  .addEventListener(
+    "click",
+    () =>
+      $("resetModal")
+        .classList
+        .remove("open")
+  );
+
+
+$("resetForm")
+  .addEventListener(
+    "submit",
+    resetPassword
+  );
+
+
+db.auth.onAuthStateChange(
+  async (
+    _event,
+    session
+  ) => {
+
+    user =
+      session?.user ||
+      null;
+
+
+    if(user)
+      await loadProfile();
+
+    else
+      profile = null;
+
+
+    updateUI();
+
+
+    if(user)
+      await loadMyLoans();
+
+  }
+);
+
+
+(async function start(){
+
+  showStatus(
+    "Carregando acervo..."
+  );
+
+
+  await loadCategories();
+
+  await loadBooks();
+
+
+  const {
+    data
+  } =
+    await db.auth.getSession();
+
+
+  user =
+    data.session?.user ||
+    null;
+
+
+  if(user)
+    await loadProfile();
+
+
+  updateUI();
+
+
+  showStatus("");
+
+
+  if(
+    location.hash.includes(
+      "type=recovery"
+    )
+  ){
+
+    $("resetModal")
+      .classList
+      .add("open");
+
+  }
+
+})();
 
 </script>
-
 
 </body>
 </html>
